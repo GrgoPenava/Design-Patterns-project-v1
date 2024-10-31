@@ -13,8 +13,15 @@ public class Manager {
     public static void main(String[] args) {
         ConfigManager config = ConfigManager.getInstance();
 
-        config.setStationFilePath("path/to/stationFile.csv");
-        System.out.println("Putanja datoteke: " + config.getStationFilePath());
+        parseCommandLineArgs(args, config);
+
+        if (!validateConfig(config)) {
+            return;
+        }
+
+        System.out.println("Putanja stanica datoteke: " + config.getStationFilePath());
+        System.out.println("Putanja vozila datoteke: " + config.getRailwayFilePath());
+        System.out.println("Putanja kompozicija datoteke: " + config.getCompositionFilePath());
 
         Map<String, Command> commands = new HashMap<>();
         commands.put("IP", new ListRailwaysCommand());
@@ -25,7 +32,6 @@ public class Manager {
 
         while (true) {
             System.out.print("Unesite komandu: ");
-            //commandInput = scanner.nextLine().trim().toUpperCase();
             commandInput = scanner.nextLine().trim();
 
             if (commandInput.equals("Q")) {
@@ -41,7 +47,42 @@ public class Manager {
                 System.out.println("Nepoznata komanda. Pokusajte ponovno.");
             }
         }
-
         scanner.close();
+    }
+
+    private static void parseCommandLineArgs(String[] args, ConfigManager config) {
+        for (int i = 0; i < args.length; i++) {
+            switch (args[i]) {
+                case "--zs":
+                    if (i + 1 < args.length) {
+                        config.setStationFilePath(args[++i]);
+                    } else {
+                        System.out.println("Nedostaje putanja za --zs opciju");
+                    }
+                    break;
+                case "--zps":
+                    if (i + 1 < args.length) {
+                        config.setRailwayFilePath(args[++i]);
+                    } else {
+                        System.out.println("Nedostaje putanja za --zps opciju");
+                    }
+                    break;
+                case "--zk":
+                    if (i + 1 < args.length) {
+                        config.setCompositionFilePath(args[++i]);
+                    } else {
+                        System.out.println("Nedostaje putanja za --zk opciju");
+                    }
+                    break;
+                default:
+                    System.out.println("Nepoznata opcija: " + args[i]);
+            }
+        }
+    }
+
+    private static boolean validateConfig(ConfigManager config) {
+        return config.getStationFilePath() != null &&
+                config.getRailwayFilePath() != null &&
+                config.getCompositionFilePath() != null;
     }
 }

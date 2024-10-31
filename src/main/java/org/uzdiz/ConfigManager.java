@@ -32,6 +32,22 @@ public class ConfigManager {
         return stationFilePath;
     }
 
+    public void setRailwayFilePath(String path) {
+        this.railwayFilePath = path;
+    }
+
+    public String getRailwayFilePath() {
+        return railwayFilePath;
+    }
+
+    public void setCompositionFilePath(String path) {
+        this.compositionFilePath = path;
+    }
+
+    public String getCompositionFilePath() {
+        return compositionFilePath;
+    }
+
     public void incrementErrorCount() {
         this.errorCount++;
     }

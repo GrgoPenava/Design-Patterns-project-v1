@@ -5,28 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="korisnicki unos, pocetna struktura">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/files/DZ_1_kompozicije.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/files/DZ_1_stanice.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/files/DZ_1_vozila.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/LocalRailway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/Railway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/RailwayFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/RegionalRailway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/CsvAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/RailwayCsvAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/StationCsvAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/MainStation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/Station.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/StationFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/StopStation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/CommandExecutor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListRailwaysCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/Manager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +55,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "Application.Run.executor": "Run",
+    "Application.dobra komanda.executor": "Run",
     "Maven.gpenava_zadaca_1 [install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -90,7 +73,7 @@
       <recent name="$PROJECT_DIR$/src/files" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.dobra komanda">
     <configuration name="Run" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.uzdiz.Manager" />
       <module name="gpenava_zadaca_1" />
@@ -98,6 +81,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="dobra komanda" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.uzdiz.Manager" />
+      <module name="gpenava_zadaca_1" />
+      <option name="PROGRAM_PARAMETERS" value="--zs DZ_1_stanice.csv --zps DZ_1_vozila.csv --zk DZ_1_kompozicije.csv" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Run" />
+      <item itemvalue="Application.dobra komanda" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -116,7 +111,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730402255665</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="korisnicki unos, pocetna struktura">
+      <option name="closed" value="true" />
+      <created>1730409335227</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730409335227</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
