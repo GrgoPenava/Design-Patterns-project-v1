@@ -1,5 +1,7 @@
 package org.uzdiz;
 
+import org.uzdiz.reader.RailwayCsvAdapter;
+import org.uzdiz.reader.StationCsvAdapter;
 import org.uzdiz.userInput.Command;
 import org.uzdiz.userInput.CommandExecutor;
 import org.uzdiz.userInput.ListRailwaysCommand;
@@ -16,8 +18,13 @@ public class Manager {
         parseCommandLineArgs(args, config);
 
         if (!validateConfig(config)) {
+            System.out.println("Svi argumenti (--zs, --zps, --zk) su obavezni.");
+            config.incrementErrorCount();
             return;
         }
+
+        new StationCsvAdapter().loadData(config.getStationFilePath());
+        new RailwayCsvAdapter().loadData(config.getRailwayFilePath());
 
         System.out.println("Putanja stanica datoteke: " + config.getStationFilePath());
         System.out.println("Putanja vozila datoteke: " + config.getRailwayFilePath());
@@ -57,6 +64,7 @@ public class Manager {
                     if (i + 1 < args.length) {
                         config.setStationFilePath(args[++i]);
                     } else {
+                        config.incrementErrorCount();
                         System.out.println("Nedostaje putanja za --zs opciju");
                     }
                     break;
@@ -64,6 +72,7 @@ public class Manager {
                     if (i + 1 < args.length) {
                         config.setRailwayFilePath(args[++i]);
                     } else {
+                        config.incrementErrorCount();
                         System.out.println("Nedostaje putanja za --zps opciju");
                     }
                     break;
@@ -71,10 +80,12 @@ public class Manager {
                     if (i + 1 < args.length) {
                         config.setCompositionFilePath(args[++i]);
                     } else {
+                        config.incrementErrorCount();
                         System.out.println("Nedostaje putanja za --zk opciju");
                     }
                     break;
                 default:
+                    config.incrementErrorCount();
                     System.out.println("Nepoznata opcija: " + args[i]);
             }
         }

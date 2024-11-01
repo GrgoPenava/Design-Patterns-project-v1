@@ -1,6 +1,9 @@
 package org.uzdiz.station;
 
-//Ovo je kolodvor
 public class MainStation extends Station {
-    // Implementacija glavne stanice (kolodvora)
+    public MainStation(String naziv, String oznakaPruge, String vrstaStanice) {
+        super(naziv, oznakaPruge, vrstaStanice);
+    }
+
+    // Dodatne specifične metode za kolodvor
 }
