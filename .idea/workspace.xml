@@ -4,24 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="citanje parametara">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/Composition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/CompositionFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/FreightCompositionFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/PassengerCompositionFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Locomotive.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Vehicle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/VehicleFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Wagon.java" afterDir="false" />
+    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="citanje datoteke za stanice i spremanje u listu">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/InternationalRailway.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/RailwayFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/RailwayFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/StationCsvAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/StationCsvAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/MainStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/MainStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/Station.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/StationFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/StationFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/StopStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/StopStation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +56,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "Application.Run.executor": "Run",
-    "Application.dobra komanda.executor": "Debug",
+    "Application.dobra komanda.executor": "Run",
     "Maven.gpenava_zadaca_1 [install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -141,14 +129,23 @@
       <option name="project" value="LOCAL" />
       <updated>1730412831584</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="citanje datoteke za stanice i spremanje u listu">
+      <option name="closed" value="true" />
+      <created>1730501390322</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1730501390322</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init project" />
     <MESSAGE value="korisnicki unos, pocetna struktura" />
     <MESSAGE value="citanje parametara" />
-    <option name="LAST_COMMIT_MESSAGE" value="citanje parametara" />
+    <MESSAGE value="citanje datoteke za stanice i spremanje u listu" />
+    <option name="LAST_COMMIT_MESSAGE" value="citanje datoteke za stanice i spremanje u listu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -160,7 +157,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java</url>
-          <line>70</line>
+          <line>66</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>

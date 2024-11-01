@@ -10,7 +10,6 @@ import java.util.List;
 public class ConfigManager {
     private static ConfigManager instance;
 
-    // Putanje do CSV datoteka
     private String stationFilePath;
     private String railwayFilePath;
     private String compositionFilePath;
@@ -19,11 +18,9 @@ public class ConfigManager {
     private List<Railway> railways = new ArrayList<>();
     private List<Composition> compositions = new ArrayList<>();
 
-    // Brojač pogrešaka
     private int errorCount;
 
     private ConfigManager() {
-        // Inicijalizacija zadane konfiguracije
         this.errorCount = 0;
     }
 
@@ -34,7 +31,6 @@ public class ConfigManager {
         return instance;
     }
 
-    // Metoda za postavljanje putanje do datoteka
     public void setStationFilePath(String path) {
         this.stationFilePath = path;
     }
@@ -90,6 +86,4 @@ public class ConfigManager {
     public List<Composition> getCompositions() {
         return compositions;
     }
-
-    // Ostale metode za konfiguraciju i validaciju
 }

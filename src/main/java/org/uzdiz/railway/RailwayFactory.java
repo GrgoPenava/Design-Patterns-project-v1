@@ -2,10 +2,12 @@ package org.uzdiz.railway;
 
 public class RailwayFactory {
     public static Railway createRailway(String type) {
-        return switch (type) {
-            case "lokalna" -> new LocalRailway();
-            case "regionalna" -> new RegionalRailway();
-            default -> throw new IllegalArgumentException("Unknown railway type");
+        char railType = type.charAt(0);
+        return switch (railType) {
+            case 'L' -> new LocalRailway();
+            case 'R' -> new RegionalRailway();
+            case 'M' -> new InternationalRailway();
+            default -> throw new IllegalArgumentException("Nepoznat tip pruge" + type);
         };
     }
 }
