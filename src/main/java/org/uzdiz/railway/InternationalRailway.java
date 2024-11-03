@@ -1,5 +1,12 @@
 package org.uzdiz.railway;
 
+import org.uzdiz.station.Station;
+
+import java.util.ArrayList;
+
 public class InternationalRailway extends Railway {
-    // Implementacija medunarodne pruge
+    public InternationalRailway(String oznakaPruge) {
+        super(oznakaPruge);
+        this.kategorija = "Međunarodna";
+    }
 }

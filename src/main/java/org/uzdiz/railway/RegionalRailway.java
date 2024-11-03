@@ -1,5 +1,12 @@
 package org.uzdiz.railway;
 
+import org.uzdiz.station.Station;
+
+import java.util.ArrayList;
+
 public class RegionalRailway extends Railway {
-    // Implementacija regionalne pruge
+    public RegionalRailway(String oznakaPruge) {
+        super(oznakaPruge);
+        this.kategorija = "Regionalna";
+    }
 }

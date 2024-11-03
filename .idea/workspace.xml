@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="citanje datoteke za stanice i spremanje u listu">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/InternationalRailway.java" afterDir="false" />
+    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="dodana medunarodna pruga">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/InternationalRailway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/InternationalRailway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/LocalRailway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/LocalRailway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/Railway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/Railway.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/RailwayFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/RailwayFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/RegionalRailway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/RegionalRailway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/StationCsvAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/StationCsvAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListRailwaysCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListRailwaysCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +69,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap"
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -137,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730501390322</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="dodana medunarodna pruga">
+      <option name="closed" value="true" />
+      <created>1730505304659</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1730505304659</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -145,20 +156,16 @@
     <MESSAGE value="korisnicki unos, pocetna struktura" />
     <MESSAGE value="citanje parametara" />
     <MESSAGE value="citanje datoteke za stanice i spremanje u listu" />
-    <option name="LAST_COMMIT_MESSAGE" value="citanje datoteke za stanice i spremanje u listu" />
+    <MESSAGE value="dodana medunarodna pruga" />
+    <option name="LAST_COMMIT_MESSAGE" value="dodana medunarodna pruga" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/reader/StationCsvAdapter.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="7" />
+          <line>89</line>
+          <option name="timeStamp" value="14" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
