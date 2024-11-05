@@ -125,7 +125,7 @@ public class StationCsvAdapter implements CsvReader {
     private boolean isInvalidLength(String[] data) {
         if (data.length != 14) {
             ConfigManager.getInstance().incrementErrorCount();
-            System.out.println("Greška br." + ConfigManager.getInstance().getErrorCount() + ": Zapis nije potpun, očekuje se 14 podataka, ali postoji " + data.length);
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Zapis nije potpun, očekuje se 14 podataka, ali postoji " + data.length);
             return true;
         }
         return false;
@@ -139,7 +139,7 @@ public class StationCsvAdapter implements CsvReader {
         for (int i = 0; i < data.length; i++) {
             if (data[i] == null || data[i].isEmpty()) {
                 ConfigManager.getInstance().incrementErrorCount();
-                System.out.println("Greška br." + ConfigManager.getInstance().getErrorCount() + ": Nedostaje vrijednost za stupac '" + columnNames[i] + "'.");
+                System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nedostaje vrijednost za stupac '" + columnNames[i] + "'.");
                 return false;
             }
         }
@@ -149,7 +149,7 @@ public class StationCsvAdapter implements CsvReader {
     private boolean validateStationType(String stationType) {
         if (!stationType.equals("kol.") && !stationType.equals("staj.")) {
             ConfigManager.getInstance().incrementErrorCount();
-            System.out.println("Greška br." + ConfigManager.getInstance().getErrorCount() + ": Vrsta stanice mora biti 'kol.' ili 'staj.'. '" + stationType + "' zapis nije podržan.");
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Vrsta stanice mora biti 'kol.' ili 'staj.'. '" + stationType + "' zapis nije podržan.");
             return false;
         }
         return true;
@@ -158,7 +158,7 @@ public class StationCsvAdapter implements CsvReader {
     private boolean validateStationStatus(String stationStatus) {
         if (!stationStatus.equals("O") && !stationStatus.equals("Z")) {
             ConfigManager.getInstance().incrementErrorCount();
-            System.out.println("Greška br." + ConfigManager.getInstance().getErrorCount() + ": Status stanice mora biti 'O' ili 'Z'. '" + stationStatus + "' nije podržana vrijednost.");
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Status stanice mora biti 'O' ili 'Z'. '" + stationStatus + "' nije podržana vrijednost.");
             return false;
         }
         return true;
@@ -167,7 +167,7 @@ public class StationCsvAdapter implements CsvReader {
     private boolean validatePassengerLoad(String passengerLoad) {
         if (!passengerLoad.equals("DA") && !passengerLoad.equals("NE")) {
             ConfigManager.getInstance().incrementErrorCount();
-            System.out.println("Greška br." + ConfigManager.getInstance().getErrorCount() + ": Putnici ul/iz mora biti 'DA' ili 'NE'. '" + passengerLoad + "' nije podržana vrijednost.");
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Putnici ul/iz mora biti 'DA' ili 'NE'. '" + passengerLoad + "' nije podržana vrijednost.");
             return false;
         }
         return true;
@@ -176,7 +176,7 @@ public class StationCsvAdapter implements CsvReader {
     private boolean validateCargoLoad(String cargoLoad) {
         if (!cargoLoad.equals("DA") && !cargoLoad.equals("NE")) {
             ConfigManager.getInstance().incrementErrorCount();
-            System.out.println("Greška br." + ConfigManager.getInstance().getErrorCount() + ": Roba ut/ist mora biti 'DA' ili 'NE'. '" + cargoLoad + "' nije podržana vrijednost.");
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Roba ut/ist mora biti 'DA' ili 'NE'. '" + cargoLoad + "' nije podržana vrijednost.");
             return false;
         }
         return true;
@@ -185,7 +185,7 @@ public class StationCsvAdapter implements CsvReader {
     private boolean validateRailwayCategory(String category) {
         if (!category.equals("M") && !category.equals("L") && !category.equals("R")) {
             ConfigManager.getInstance().incrementErrorCount();
-            System.out.println("Greška br." + ConfigManager.getInstance().getErrorCount() + ": Kategorija pruge mora biti 'M', 'L' ili 'R'. '" + category + "' nije podržana vrijednost.");
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Kategorija pruge mora biti 'M', 'L' ili 'R'. '" + category + "' nije podržana vrijednost.");
             return false;
         }
         return true;
@@ -196,7 +196,7 @@ public class StationCsvAdapter implements CsvReader {
             Integer.parseInt(peron);
         } catch (NumberFormatException e) {
             ConfigManager.getInstance().incrementErrorCount();
-            System.out.println("Greška br." + ConfigManager.getInstance().getErrorCount() + ": Broj perona mora biti cijeli broj. '" + peron + "' nije ispravan broj.");
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Broj perona mora biti cijeli broj. '" + peron + "' nije ispravan broj.");
             return false;
         }
         return true;
@@ -207,7 +207,7 @@ public class StationCsvAdapter implements CsvReader {
             Integer.parseInt(track);
         } catch (NumberFormatException e) {
             ConfigManager.getInstance().incrementErrorCount();
-            System.out.println("Greška br." + ConfigManager.getInstance().getErrorCount() + ": Broj kolosjeka mora biti cijeli broj. '" + track + "' nije ispravan broj.");
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Broj kolosjeka mora biti cijeli broj. '" + track + "' nije ispravan broj.");
             return false;
         }
         return true;
@@ -216,7 +216,7 @@ public class StationCsvAdapter implements CsvReader {
     private boolean validateAxleLoad(String axleLoad) {
         if (!isDecimalOrInteger(axleLoad)) {
             ConfigManager.getInstance().incrementErrorCount();
-            System.out.println("Greška br." + ConfigManager.getInstance().getErrorCount() + ": DO po osovini mora biti cijeli broj ili decimalni broj sa zarezom. '" + axleLoad + "' nije ispravna vrijednost.");
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": DO po osovini mora biti cijeli broj ili decimalni broj sa zarezom. '" + axleLoad + "' nije ispravna vrijednost.");
             return false;
         }
         return true;
@@ -225,7 +225,7 @@ public class StationCsvAdapter implements CsvReader {
     private boolean validateMeterLoad(String meterLoad) {
         if (!isDecimalOrInteger(meterLoad)) {
             ConfigManager.getInstance().incrementErrorCount();
-            System.out.println("Greška br." + ConfigManager.getInstance().getErrorCount() + ": DO po dužnom metru mora biti cijeli broj ili decimalni broj sa zarezom. '" + meterLoad + "' nije ispravna vrijednost.");
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": DO po dužnom metru mora biti cijeli broj ili decimalni broj sa zarezom. '" + meterLoad + "' nije ispravna vrijednost.");
             return false;
         }
         return true;
@@ -234,7 +234,7 @@ public class StationCsvAdapter implements CsvReader {
     private boolean validateRailwayStatus(String status) {
         if (!status.equals("I") && !status.equals("K") && !status.equals("Z")) {
             ConfigManager.getInstance().incrementErrorCount();
-            System.out.println("Greška br." + ConfigManager.getInstance().getErrorCount() + ": Status pruge mora biti 'I', 'K' ili 'Z'. '" + status + "' nije podržana vrijednost.");
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Status pruge mora biti 'I', 'K' ili 'Z'. '" + status + "' nije podržana vrijednost.");
             return false;
         }
         return true;
@@ -243,7 +243,7 @@ public class StationCsvAdapter implements CsvReader {
     private boolean validateLength(String length) {
         if (!isDecimalOrInteger(length)) {
             ConfigManager.getInstance().incrementErrorCount();
-            System.out.println("Greška br." + ConfigManager.getInstance().getErrorCount() + ": Duljina mora biti cijeli broj ili decimalni broj. '" + length + "' nije ispravna vrijednost.");
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Duljina mora biti cijeli broj ili decimalni broj. '" + length + "' nije ispravna vrijednost.");
             return false;
         }
         return true;

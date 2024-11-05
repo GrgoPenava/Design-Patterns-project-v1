@@ -33,24 +33,28 @@ public class Manager {
         Scanner scanner = new Scanner(System.in);
         String commandInput;
 
+        // Unutar while petlje
         while (true) {
             System.out.print("Unesite komandu: ");
-            commandInput = scanner.nextLine().trim();
+            String userInput = scanner.nextLine().trim();
 
-            if (commandInput.equals("Q")) {
+            if (userInput.equals("Q")) {
                 System.out.println("Prekid programa.");
                 break;
             }
 
-            Command command = commands.get(commandInput);
+            Command command = commands.get(userInput.split(" ")[0]);
             if (command != null) {
                 CommandExecutor executor = new CommandExecutor(command);
-                executor.executeCommand();
+                executor.executeCommand(userInput);
             } else {
-                System.out.println("Nepoznata komanda. Pokusajte ponovno.");
+                config.incrementErrorCount();
+                System.out.println("Nepoznata komanda. Pokušajte ponovno.");
             }
         }
+
         scanner.close();
+
     }
 
     private static void parseCommandLineArgs(String[] args, ConfigManager config) {
@@ -61,6 +65,7 @@ public class Manager {
                         config.setStationFilePath(args[++i]);
                     } else {
                         config.incrementErrorCount();
+                        //TODO brojac dodat
                         System.out.println("Nedostaje putanja za --zs opciju");
                     }
                     break;
@@ -69,6 +74,7 @@ public class Manager {
                         config.setRailwayFilePath(args[++i]);
                     } else {
                         config.incrementErrorCount();
+                        //TODO brojac dodat
                         System.out.println("Nedostaje putanja za --zps opciju");
                     }
                     break;
@@ -77,11 +83,13 @@ public class Manager {
                         config.setCompositionFilePath(args[++i]);
                     } else {
                         config.incrementErrorCount();
+                        //TODO brojac dodat
                         System.out.println("Nedostaje putanja za --zk opciju");
                     }
                     break;
                 default:
                     config.incrementErrorCount();
+                    //TODO brojac dodat
                     System.out.println("Nepoznata opcija: " + args[i]);
             }
         }

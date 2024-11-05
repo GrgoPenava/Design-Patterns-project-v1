@@ -6,8 +6,7 @@ import org.uzdiz.station.Station;
 import org.uzdiz.table.TableBuilder;
 
 public class ListRailwaysCommand implements Command {
-    public void execute() {
-        // Logika za ispis pruga
+    public void execute(String input) {
         TableBuilder table = new TableBuilder();
         table.setHeaders("Oznaka", "Početna stanica", "Završna stanica", "Duljina (km)");
         for (Railway railway : ConfigManager.getInstance().getRailways()) {
@@ -19,7 +18,6 @@ public class ListRailwaysCommand implements Command {
                     .sum();
 
             table.addRow(railway.getOznakaPruge(), firstStation.getnaziv(), lastStation.getnaziv(), String.format("%.2f", getSum));
-            //System.out.println(railway.getOznakaPruge() + "," + firstStation.getnaziv() + "," + lastStation.getnaziv() + "," + getSum);
         }
         table.build();
     }

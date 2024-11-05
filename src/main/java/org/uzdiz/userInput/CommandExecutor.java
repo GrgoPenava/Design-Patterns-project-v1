@@ -7,7 +7,7 @@ public class CommandExecutor {
         this.command = command;
     }
 
-    public void executeCommand() {
-        this.command.execute();
+    public void executeCommand(String input) {
+        this.command.execute(input);
     }
 }
