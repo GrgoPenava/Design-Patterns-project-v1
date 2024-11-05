@@ -18,17 +18,13 @@ public class Manager {
         parseCommandLineArgs(args, config);
 
         if (!validateConfig(config)) {
-            System.out.println("Svi argumenti (--zs, --zps, --zk) su obavezni.");
+            System.out.println("Greška: Svi argumenti (--zs, --zps, --zk) su obavezni.");
             config.incrementErrorCount();
             return;
         }
 
         new StationCsvAdapter().loadData(config.getStationFilePath());
         new RailwayCsvAdapter().loadData(config.getRailwayFilePath());
-
-        System.out.println("Putanja stanica datoteke: " + config.getStationFilePath());
-        System.out.println("Putanja vozila datoteke: " + config.getRailwayFilePath());
-        System.out.println("Putanja kompozicija datoteke: " + config.getCompositionFilePath());
 
         Map<String, Command> commands = new HashMap<>();
         commands.put("IP", new ListRailwaysCommand());
