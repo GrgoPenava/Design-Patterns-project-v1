@@ -1,10 +1,7 @@
 package org.uzdiz.reader;
 
+import org.uzdiz.vehicle.Composition;
 import org.uzdiz.ConfigManager;
-import org.uzdiz.composition.Composition;
-import org.uzdiz.composition.ConcreteCompositionBuilder;
-import org.uzdiz.composition.CompositionBuilder;
-import org.uzdiz.composition.CompositionDirector;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -34,14 +31,9 @@ public class CompositionReader implements CsvReader {
                     continue;
                 }
 
-                CompositionBuilder compBuilder = new ConcreteCompositionBuilder();
-                CompositionDirector director = new CompositionDirector(compBuilder);
-
-                Composition composition = director.createBasicComposition(
-                        data[0], // Oznaka
-                        data[1], // Oznaka vozila
-                        data[2]  // Uloga
-                );
+                Composition composition = new Composition.CompositionBuilder(data[0])
+                        .setOznakaVozila(data[1])
+                        .setUloga(data[2]).build();
 
                 compositions.add(composition);
             }

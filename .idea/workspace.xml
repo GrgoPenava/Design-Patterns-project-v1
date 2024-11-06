@@ -4,33 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="nesta">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/CompositionBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/CompositionDirector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/ConcreteCompositionBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/CompositionReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListCompositionsCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/ConcreteVehicleBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/VehicleBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/VehicleDirector.java" afterDir="false" />
+    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="kompozicije">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/DZ_1_stanice.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Composition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/DZ_1_kompozicije.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/DZ_1_kompozicije.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/DZ_1_stanice.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/DZ_1_stanice.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/DZ_1_kompozicije.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/DZ_1_kompozicije.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/DZ_1_stanice.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/DZ_1_vozila.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/DZ_1_vozila.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/Composition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/Composition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/CompositionFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/FreightCompositionFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/PassengerCompositionFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/CsvReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/CsvReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/Composition.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/CompositionBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/CompositionDirector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/ConcreteCompositionBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/CompositionReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/CompositionReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/VehicleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/VehicleReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/MainStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/MainStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/StopStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/StopStation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/table/TableBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/table/TableBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Locomotive.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListCompositionsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListCompositionsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/ConcreteVehicleBuilder.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Vehicle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/VehicleFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Wagon.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/VehicleBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/VehicleDirector.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,12 +73,13 @@
     "Application.Main.executor": "Run",
     "Application.Run.executor": "Run",
     "Application.dobra komanda.executor": "Debug",
+    "Maven.gpenava_zadaca_1 [clean].executor": "Run",
     "Maven.gpenava_zadaca_1 [install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/grgo/Desktop/zadaca/gpenava_zadaca_1/src/files",
+    "last_opened_file_path": "/home/grgo/Desktop/zadaca/gpenava_zadaca_1/src/main/java/org/uzdiz",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -93,6 +88,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/org/uzdiz" />
       <recent name="$PROJECT_DIR$/src/files" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -101,17 +97,17 @@
   </component>
   <component name="RunManager" selected="Application.dobra komanda">
     <configuration name="Run" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="org.uzdiz.Manager" />
+      <option name="MAIN_CLASS_NAME" value="org.uzdiz.Main" />
       <module name="gpenava_zadaca_1" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="dobra komanda" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="org.uzdiz.Manager" />
+      <option name="MAIN_CLASS_NAME" value="org.uzdiz.Main" />
       <module name="gpenava_zadaca_1" />
       <option name="PROGRAM_PARAMETERS" value="--zs DZ_1_stanice.csv --zps DZ_1_vozila.csv --zk DZ_1_kompozicije.csv" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/files" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/main/java/org/uzdiz" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -218,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730912379252</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="kompozicije">
+      <option name="closed" value="true" />
+      <created>1730924273167</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1730924273167</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -233,14 +237,15 @@
     <MESSAGE value="ISI2S, ali treba ispraviti ispis duplih stanica za ISI2S" />
     <MESSAGE value="ISI2S obrnuti redosljed ispravljen" />
     <MESSAGE value="nesta" />
-    <option name="LAST_COMMIT_MESSAGE" value="nesta" />
+    <MESSAGE value="kompozicije" />
+    <option name="LAST_COMMIT_MESSAGE" value="kompozicije" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListCompositionsCommand.java</url>
-          <line>27</line>
+          <line>24</line>
           <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>

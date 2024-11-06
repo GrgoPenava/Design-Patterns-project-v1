@@ -1,10 +1,7 @@
 package org.uzdiz.reader;
 
 import org.uzdiz.ConfigManager;
-import org.uzdiz.vehicle.ConcreteVehicleBuilder;
 import org.uzdiz.vehicle.Vehicle;
-import org.uzdiz.vehicle.VehicleBuilder;
-import org.uzdiz.vehicle.VehicleDirector;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -33,17 +30,10 @@ public class VehicleReader implements CsvReader {
                     continue;
                 }
 
-                VehicleBuilder vehBuilder = new ConcreteVehicleBuilder();
-                VehicleDirector director = new VehicleDirector(vehBuilder);
-
-                Vehicle vehicle = director.constructStandardVehicle(
-                        data[0],
-                        data[1],
-                        data[2],
-                        data[3]
-                );
-
-                vehBuilder.setNamjera(data[4])
+                Vehicle vehicle = new Vehicle.VehicleBuilder(data[0], data[1])
+                        .setProizvodac(data[2])
+                        .setGodina(data[3])
+                        .setNamjera(data[4])
                         .setVrstaPrijevoza(data[5])
                         .setVrstaPogona(data[6])
                         .setMaksBrzina(data[7])
@@ -56,9 +46,9 @@ public class VehicleReader implements CsvReader {
                         .setNosivost(data[14].replace(",", "."))
                         .setPovrsina(data[15].replace(",", "."))
                         .setZapremnina(data[16].replace(",", "."))
-                        .setStatus(data[17]);
+                        .setStatus(data[17]).build();
 
-                vehicles.add(vehBuilder.build());
+                vehicles.add(vehicle);
             }
 
             ConfigManager.getInstance().setVehicles(vehicles);

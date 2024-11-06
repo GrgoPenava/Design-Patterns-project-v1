@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Manager {
+public class Main {
     public static void main(String[] args) {
         ConfigManager config = ConfigManager.getInstance();
 
