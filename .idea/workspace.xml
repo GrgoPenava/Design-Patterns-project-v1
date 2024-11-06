@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="validacija, tablica">
+    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="ISP komande">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsBetweenCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/files/DZ_1_stanice.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/DZ_1_stanice.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/StationCsvAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/StationCsvAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/Command.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/CommandExecutor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/CommandExecutor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListRailwaysCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListRailwaysCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +162,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730837230917</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="ISP komande">
+      <option name="closed" value="true" />
+      <created>1730847586508</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1730847586508</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -176,6 +181,7 @@
     <MESSAGE value="dodana medunarodna pruga" />
     <MESSAGE value="IP naredba" />
     <MESSAGE value="validacija, tablica" />
-    <option name="LAST_COMMIT_MESSAGE" value="validacija, tablica" />
+    <MESSAGE value="ISP komande" />
+    <option name="LAST_COMMIT_MESSAGE" value="ISP komande" />
   </component>
 </project>

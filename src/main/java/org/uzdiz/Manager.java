@@ -2,10 +2,7 @@ package org.uzdiz;
 
 import org.uzdiz.reader.RailwayCsvAdapter;
 import org.uzdiz.reader.StationCsvAdapter;
-import org.uzdiz.userInput.Command;
-import org.uzdiz.userInput.CommandExecutor;
-import org.uzdiz.userInput.ListRailwaysCommand;
-import org.uzdiz.userInput.ListStationsCommand;
+import org.uzdiz.userInput.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +26,7 @@ public class Manager {
         Map<String, Command> commands = new HashMap<>();
         commands.put("IP", new ListRailwaysCommand());
         commands.put("ISP", new ListStationsCommand());
+        commands.put("ISI2S", new ListStationsBetweenCommand());
 
         Scanner scanner = new Scanner(System.in);
         String commandInput;

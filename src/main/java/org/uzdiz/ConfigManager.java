@@ -7,6 +7,7 @@ import org.uzdiz.station.Station;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO popraviti singleton s preze
 public class ConfigManager {
     private static ConfigManager instance;
 
