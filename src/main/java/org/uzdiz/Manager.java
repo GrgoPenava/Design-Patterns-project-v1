@@ -15,7 +15,7 @@ public class Manager {
         parseCommandLineArgs(args, config);
 
         if (!validateConfig(config)) {
-            System.out.println("Greška: Svi argumenti (--zs, --zps, --zk) su obavezni.");
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Svi argumenti (--zs, --zps, --zk) su obavezni.");
             config.incrementErrorCount();
             return;
         }
@@ -29,9 +29,7 @@ public class Manager {
         commands.put("ISI2S", new ListStationsBetweenCommand());
 
         Scanner scanner = new Scanner(System.in);
-        String commandInput;
 
-        // Unutar while petlje
         while (true) {
             System.out.print("Unesite komandu: ");
             String userInput = scanner.nextLine().trim();
@@ -47,7 +45,7 @@ public class Manager {
                 executor.executeCommand(userInput);
             } else {
                 config.incrementErrorCount();
-                System.out.println("Nepoznata komanda. Pokušajte ponovno.");
+                System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nepoznata komanda. Pokušajte ponovno.");
             }
         }
 
@@ -63,8 +61,7 @@ public class Manager {
                         config.setStationFilePath(args[++i]);
                     } else {
                         config.incrementErrorCount();
-                        //TODO brojac dodat
-                        System.out.println("Nedostaje putanja za --zs opciju");
+                        System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nedostaje putanja za --zs opciju");
                     }
                     break;
                 case "--zps":
@@ -72,8 +69,7 @@ public class Manager {
                         config.setRailwayFilePath(args[++i]);
                     } else {
                         config.incrementErrorCount();
-                        //TODO brojac dodat
-                        System.out.println("Nedostaje putanja za --zps opciju");
+                        System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nedostaje putanja za --zps opciju");
                     }
                     break;
                 case "--zk":
@@ -81,14 +77,12 @@ public class Manager {
                         config.setCompositionFilePath(args[++i]);
                     } else {
                         config.incrementErrorCount();
-                        //TODO brojac dodat
-                        System.out.println("Nedostaje putanja za --zk opciju");
+                        System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nedostaje putanja za --zk opciju");
                     }
                     break;
                 default:
                     config.incrementErrorCount();
-                    //TODO brojac dodat
-                    System.out.println("Nepoznata opcija: " + args[i]);
+                    System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nepoznata opcija: " + args[i]);
             }
         }
     }

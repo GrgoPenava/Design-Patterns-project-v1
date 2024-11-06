@@ -5,18 +5,18 @@ import org.uzdiz.railway.Railway;
 import org.uzdiz.station.Station;
 import org.uzdiz.table.TableBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-//TODO treba ispraviti ispis duplikata npr ISI2S Čakovec-Luka
 public class ListStationsBetweenCommand implements Command {
     public void execute(String input) {
         if (!validateInput(input)) {
-            ConfigManager.getInstance().incrementErrorCount();
             return;
         }
 
-        String[] parts = input.substring(6).split("[-]");
+        // Parsiranje ulaza za početnu i završnu stanicu
+        String[] parts = input.substring(6).split(" - ");
         String startStation = parts[0].trim();
         String endStation = parts[1].trim();
 
@@ -54,7 +54,7 @@ public class ListStationsBetweenCommand implements Command {
         if (startIndex < endIndex) {
             printNormalOrder(table, stations, startIndex, endIndex);
         } else {
-            printReverseOrder(table, stations, startIndex, endIndex);
+            printReverseOrder2(table, stations, startIndex, endIndex);
         }
 
         table.build();
@@ -76,14 +76,43 @@ public class ListStationsBetweenCommand implements Command {
         }
     }
 
+    private void printReverseOrder2(TableBuilder table, List<Station> stations, int startIndex, int endIndex) {
+        List<Station> withoutDuplicates = new ArrayList<>();
+        for (int i = endIndex + 1; i < startIndex + 1; i++) {
+            Station currentStation = stations.get(i);
+
+            boolean hasDuplicateWithNonZeroLength = stations.subList(endIndex + 1, startIndex).stream()
+                    .anyMatch(station -> station.getnaziv().equals(currentStation.getnaziv()) && station.getduzina() > 0);
+
+            if (currentStation.getduzina() == 0 && hasDuplicateWithNonZeroLength) {
+                continue;
+            }
+
+            withoutDuplicates.add(currentStation);
+        }
+
+        double distanceSum = 0;
+        for (int i = withoutDuplicates.size() - 1; i >= 0; i--) {
+            Station station = withoutDuplicates.get(i);
+
+            if (i < withoutDuplicates.size() - 1) {
+                distanceSum += withoutDuplicates.get(i + 1).getduzina();
+            }
+
+            if (i != withoutDuplicates.size() - 1)
+                table.addRow(station.getnaziv(), station.getvrstaStanice(), String.format("%.2f", distanceSum));
+        }
+    }
+
+
     private boolean validateInput(String input) {
-        String[] parts = input.split(" ");
-        if (parts.length < 2 || !input.contains("-")) {
+        if (!input.contains(" - ")) {
             ConfigManager.getInstance().incrementErrorCount();
-            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Naredba mora sadržavati početnu stanicu, znak '-' i završnu stanicu.");
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Naredba mora sadržavati početnu stanicu, znak ' - ' i završnu stanicu.");
             return false;
         }
-        String[] stationParts = input.substring(6).split("[-]");
+
+        String[] stationParts = input.substring(6).split(" - ");
         if (stationParts.length != 2 || stationParts[0].trim().isEmpty() || stationParts[1].trim().isEmpty()) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Unesite ispravno ime početne i završne stanice.");
