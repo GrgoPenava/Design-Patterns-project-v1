@@ -53,8 +53,8 @@ public class VehicleReader implements CsvReader {
 
             ConfigManager.getInstance().setVehicles(vehicles);
         } catch (IOException e) {
-            System.out.println("Greška pri čitanju datoteke: " + filePath);
-            e.printStackTrace();
+            ConfigManager.getInstance().incrementErrorCount();
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nije moguće učitati datoteku - " + filePath);
         }
     }
 
@@ -66,6 +66,7 @@ public class VehicleReader implements CsvReader {
         }
 
         return validatePresence(data) &&
+                validateYear(data[3], "Godina") &&
                 validateInteger(data[7], "Maksimalna Brzina", 1, 200) &&
                 validateDoubleRange(data[8].replace(",", "."), "Maksimalna Snaga", -1.0, 10.0, true) &&
                 validateInteger(data[9], "Broj Sjedecih Mjesta") &&
@@ -159,4 +160,21 @@ public class VehicleReader implements CsvReader {
         }
         return true;
     }
+
+    private boolean validateYear(String year, String fieldName) {
+        try {
+            int yearValue = Integer.parseInt(year);
+            if (yearValue <= 0) {
+                ConfigManager.getInstance().incrementErrorCount();
+                System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": " + fieldName + " mora biti pozitivan cijeli broj. Pronađeno: '" + year + "'");
+                return false;
+            }
+            return true;
+        } catch (NumberFormatException e) {
+            ConfigManager.getInstance().incrementErrorCount();
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": " + fieldName + " mora biti cijeli broj. Pronađeno: '" + year + "'");
+            return false;
+        }
+    }
+
 }

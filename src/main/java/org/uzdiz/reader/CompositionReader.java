@@ -40,8 +40,8 @@ public class CompositionReader implements CsvReader {
 
             ConfigManager.getInstance().setCompositions(compositions);
         } catch (IOException e) {
-            System.out.println("Greška pri čitanju datoteke: " + filePath);
-            e.printStackTrace();
+            ConfigManager.getInstance().incrementErrorCount();
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nije moguće učitati datoteku - " + filePath);
         }
     }
 

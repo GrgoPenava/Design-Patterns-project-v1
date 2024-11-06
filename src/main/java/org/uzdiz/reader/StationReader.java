@@ -25,7 +25,8 @@ public class StationReader implements CsvReader {
         File file = new File(filePath);
 
         if (!file.exists()) {
-            System.out.println("Greška: Nije moguće pronaći datoteku " + filePath + ". Provjerite jeste li pozicionirani u odgovarajući direktorij.");
+            ConfigManager.getInstance().incrementErrorCount();
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nije moguće učitati datoteku - " + filePath);
             return;
         }
 
@@ -89,7 +90,6 @@ public class StationReader implements CsvReader {
             ConfigManager.getInstance().setStations(stations);
         } catch (IOException e) {
             System.out.println("Greška pri čitanju stanica datoteke: " + filePath);
-            e.printStackTrace();
         }
     }
 

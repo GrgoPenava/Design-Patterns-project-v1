@@ -38,7 +38,6 @@ public class Main {
             String userInput = scanner.nextLine().trim();
 
             if (userInput.equals("Q")) {
-                System.out.println("Prekid programa.");
                 break;
             }
 
