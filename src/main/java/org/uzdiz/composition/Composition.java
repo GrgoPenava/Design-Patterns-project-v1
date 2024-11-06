@@ -2,30 +2,47 @@ package org.uzdiz.composition;
 
 import org.uzdiz.vehicle.Vehicle;
 
-import java.util.List;
-
 public class Composition {
-    private String id;
-    private List<Vehicle> vehicles;
+    private String oznaka;
+    private String oznakaVozila;
+    private String uloga;
 
-    public Composition(String id, List<Vehicle> vehicles) {
-        this.id = id;
-        this.vehicles = vehicles;
+    public Composition() {
     }
 
-    public String getId() {
-        return id;
+    public String getOznaka() {
+        return oznaka;
     }
 
-    public List<Vehicle> getVehicles() {
-        return vehicles;
+    public Composition setOznaka(String oznaka) {
+        this.oznaka = oznaka;
+        return this;
+    }
+
+    public String getOznakaVozila() {
+        return oznakaVozila;
+    }
+
+    public Composition setOznakaVozila(String oznakaVozila) {
+        this.oznakaVozila = oznakaVozila;
+        return this;
+    }
+
+    public String getUloga() {
+        return uloga;
+    }
+
+    public Composition setUloga(String uloga) {
+        this.uloga = uloga;
+        return this;
     }
 
     @Override
     public String toString() {
         return "Composition{" +
-                "id='" + id + '\'' +
-                ", vehicles=" + vehicles +
+                "oznaka='" + oznaka + '\'' +
+                ", oznakaVozila='" + oznakaVozila + '\'' +
+                ", uloga='" + uloga + '\'' +
                 '}';
     }
 }

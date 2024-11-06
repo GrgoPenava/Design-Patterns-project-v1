@@ -1,175 +1,191 @@
 package org.uzdiz.vehicle;
 
-public abstract class Vehicle {
+// Product - služi kao "Product" u uzorku
+public class Vehicle {
     private String oznaka;
     private String opis;
     private String proizvodac;
     private String godina;
     private String namjera;
     private String vrstaPrijevoza;
-    private char vrstaPogona;
-    private Integer maksBrzina;
-    private Double maksSnaga;
-    private Integer brojSjedecihMjesta;
-    private Integer brojStajacihMjesta;
-    private Integer brojBicikala;
-    private Integer brojKreveta;
-    private Integer brojAutomobila;
-    private Double nosivost;
-    private Double povrsina;
-    private Double zapremnina;
-    private char status;
+    private String vrstaPogona;
+    private String maksBrzina;
+    private String maksSnaga;
+    private String brojSjedecihMjesta;
+    private String brojStajacihMjesta;
+    private String brojBicikala;
+    private String brojKreveta;
+    private String brojAutomobila;
+    private String nosivost;
+    private String povrsina;
+    private String zapremnina;
+    private String status;
 
-    // Constructor
-    public Vehicle(String oznaka, String opis) {
-        this.oznaka = oznaka;
-        this.opis = opis;
+    public Vehicle() {
     }
 
-    // Getters and Setters
     public String getOznaka() {
         return oznaka;
     }
 
-    public void setOznaka(String oznaka) {
+    public Vehicle setOznaka(String oznaka) {
         this.oznaka = oznaka;
+        return this;
     }
 
     public String getOpis() {
         return opis;
     }
 
-    public void setOpis(String opis) {
+    public Vehicle setOpis(String opis) {
         this.opis = opis;
+        return this;
     }
 
     public String getProizvodac() {
         return proizvodac;
     }
 
-    public void setProizvodac(String proizvodac) {
+    public Vehicle setProizvodac(String proizvodac) {
         this.proizvodac = proizvodac;
+        return this;
     }
 
     public String getGodina() {
         return godina;
     }
 
-    public void setGodina(String godina) {
+    public Vehicle setGodina(String godina) {
         this.godina = godina;
+        return this;
     }
 
     public String getNamjera() {
         return namjera;
     }
 
-    public void setNamjera(String namjera) {
+    public Vehicle setNamjera(String namjera) {
         this.namjera = namjera;
+        return this;
     }
 
     public String getVrstaPrijevoza() {
         return vrstaPrijevoza;
     }
 
-    public void setVrstaPrijevoza(String vrstaPrijevoza) {
+    public Vehicle setVrstaPrijevoza(String vrstaPrijevoza) {
         this.vrstaPrijevoza = vrstaPrijevoza;
+        return this;
     }
 
-    public char getVrstaPogona() {
+    public String getVrstaPogona() {
         return vrstaPogona;
     }
 
-    public void setVrstaPogona(char vrstaPogona) {
+    public Vehicle setVrstaPogona(String vrstaPogona) {
         this.vrstaPogona = vrstaPogona;
+        return this;
     }
 
-    public Integer getMaksBrzina() {
+    public String getMaksBrzina() {
         return maksBrzina;
     }
 
-    public void setMaksBrzina(Integer maksBrzina) {
+    public Vehicle setMaksBrzina(String maksBrzina) {
         this.maksBrzina = maksBrzina;
+        return this;
     }
 
-    public Double getMaksSnaga() {
+    public String getMaksSnaga() {
         return maksSnaga;
     }
 
-    public void setMaksSnaga(Double maksSnaga) {
+    public Vehicle setMaksSnaga(String maksSnaga) {
         this.maksSnaga = maksSnaga;
+        return this;
     }
 
-    public Integer getBrojSjedecihMjesta() {
+    public String getBrojSjedecihMjesta() {
         return brojSjedecihMjesta;
     }
 
-    public void setBrojSjedecihMjesta(Integer brojSjedecihMjesta) {
+    public Vehicle setBrojSjedecihMjesta(String brojSjedecihMjesta) {
         this.brojSjedecihMjesta = brojSjedecihMjesta;
+        return this;
     }
 
-    public Integer getBrojStajacihMjesta() {
+    public String getBrojStajacihMjesta() {
         return brojStajacihMjesta;
     }
 
-    public void setBrojStajacihMjesta(Integer brojStajacihMjesta) {
+    public Vehicle setBrojStajacihMjesta(String brojStajacihMjesta) {
         this.brojStajacihMjesta = brojStajacihMjesta;
+        return this;
     }
 
-    public Integer getBrojBicikala() {
+    public String getBrojBicikala() {
         return brojBicikala;
     }
 
-    public void setBrojBicikala(Integer brojBicikala) {
+    public Vehicle setBrojBicikala(String brojBicikala) {
         this.brojBicikala = brojBicikala;
+        return this;
     }
 
-    public Integer getBrojKreveta() {
+    public String getBrojKreveta() {
         return brojKreveta;
     }
 
-    public void setBrojKreveta(Integer brojKreveta) {
+    public Vehicle setBrojKreveta(String brojKreveta) {
         this.brojKreveta = brojKreveta;
+        return this;
     }
 
-    public Integer getBrojAutomobila() {
+    public String getBrojAutomobila() {
         return brojAutomobila;
     }
 
-    public void setBrojAutomobila(Integer brojAutomobila) {
+    public Vehicle setBrojAutomobila(String brojAutomobila) {
         this.brojAutomobila = brojAutomobila;
+        return this;
     }
 
-    public Double getNosivost() {
+    public String getNosivost() {
         return nosivost;
     }
 
-    public void setNosivost(Double nosivost) {
+    public Vehicle setNosivost(String nosivost) {
         this.nosivost = nosivost;
+        return this;
     }
 
-    public Double getPovrsina() {
+    public String getPovrsina() {
         return povrsina;
     }
 
-    public void setPovrsina(Double povrsina) {
+    public Vehicle setPovrsina(String povrsina) {
         this.povrsina = povrsina;
+        return this;
     }
 
-    public Double getZapremnina() {
+    public String getZapremnina() {
         return zapremnina;
     }
 
-    public void setZapremnina(Double zapremnina) {
+    public Vehicle setZapremnina(String zapremnina) {
         this.zapremnina = zapremnina;
+        return this;
     }
 
-    public char getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(char status) {
+    public Vehicle setStatus(String status) {
         this.status = status;
+        return this;
     }
+
 
     @Override
     public String toString() {
@@ -180,18 +196,18 @@ public abstract class Vehicle {
                 ", godina='" + godina + '\'' +
                 ", namjera='" + namjera + '\'' +
                 ", vrstaPrijevoza='" + vrstaPrijevoza + '\'' +
-                ", vrstaPogona=" + vrstaPogona +
-                ", maksBrzina=" + maksBrzina +
-                ", maksSnaga=" + maksSnaga +
-                ", brojSjedecihMjesta=" + brojSjedecihMjesta +
-                ", brojStajacihMjesta=" + brojStajacihMjesta +
-                ", brojBicikala=" + brojBicikala +
-                ", brojKreveta=" + brojKreveta +
-                ", brojAutomobila=" + brojAutomobila +
-                ", nosivost=" + nosivost +
-                ", povrsina=" + povrsina +
-                ", zapremnina=" + zapremnina +
-                ", status=" + status +
+                ", vrstaPogona='" + vrstaPogona + '\'' +
+                ", maksBrzina='" + maksBrzina + '\'' +
+                ", maksSnaga='" + maksSnaga + '\'' +
+                ", brojSjedecihMjesta='" + brojSjedecihMjesta + '\'' +
+                ", brojStajacihMjesta='" + brojStajacihMjesta + '\'' +
+                ", brojBicikala='" + brojBicikala + '\'' +
+                ", brojKreveta='" + brojKreveta + '\'' +
+                ", brojAutomobila='" + brojAutomobila + '\'' +
+                ", nosivost='" + nosivost + '\'' +
+                ", povrsina='" + povrsina + '\'' +
+                ", zapremnina='" + zapremnina + '\'' +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

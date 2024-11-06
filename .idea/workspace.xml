@@ -4,10 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="ISI2S, ali treba ispraviti ispis duplih stanica za ISI2S">
+    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="nesta">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/CompositionBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/CompositionDirector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/ConcreteCompositionBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/CompositionReader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListCompositionsCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/ConcreteVehicleBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/VehicleBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/VehicleDirector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/DZ_1_kompozicije.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/DZ_1_kompozicije.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/files/DZ_1_stanice.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/DZ_1_stanice.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsBetweenCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsBetweenCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/Composition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/Composition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/CompositionFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/FreightCompositionFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/composition/PassengerCompositionFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/CsvReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/CsvReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/VehicleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/VehicleReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/MainStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/MainStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/StopStation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/StopStation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/table/TableBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/table/TableBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Locomotive.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Vehicle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/VehicleFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Wagon.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +94,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/files" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.uzdiz.userInput" />
     </key>
   </component>
   <component name="RunManager" selected="Application.dobra komanda">
@@ -176,7 +202,23 @@
       <option name="project" value="LOCAL" />
       <updated>1730854511018</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="ISI2S obrnuti redosljed ispravljen">
+      <option name="closed" value="true" />
+      <created>1730902864899</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1730902864899</updated>
+    </task>
+    <task id="LOCAL-00011" summary="nesta">
+      <option name="closed" value="true" />
+      <created>1730912379252</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1730912379252</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -189,6 +231,19 @@
     <MESSAGE value="validacija, tablica" />
     <MESSAGE value="ISP komande" />
     <MESSAGE value="ISI2S, ali treba ispraviti ispis duplih stanica za ISI2S" />
-    <option name="LAST_COMMIT_MESSAGE" value="ISI2S, ali treba ispraviti ispis duplih stanica za ISI2S" />
+    <MESSAGE value="ISI2S obrnuti redosljed ispravljen" />
+    <MESSAGE value="nesta" />
+    <option name="LAST_COMMIT_MESSAGE" value="nesta" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListCompositionsCommand.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

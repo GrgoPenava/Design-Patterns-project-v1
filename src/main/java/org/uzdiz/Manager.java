@@ -1,5 +1,6 @@
 package org.uzdiz;
 
+import org.uzdiz.reader.CompositionReader;
 import org.uzdiz.reader.VehicleReader;
 import org.uzdiz.reader.StationReader;
 import org.uzdiz.userInput.*;
@@ -22,11 +23,13 @@ public class Manager {
 
         new StationReader().loadData(config.getStationFilePath());
         new VehicleReader().loadData(config.getRailwayFilePath());
+        new CompositionReader().loadData(config.getCompositionFilePath());
 
         Map<String, Command> commands = new HashMap<>();
         commands.put("IP", new ListRailwaysCommand());
         commands.put("ISP", new ListStationsCommand());
         commands.put("ISI2S", new ListStationsBetweenCommand());
+        commands.put("IK", new ListCompositionsCommand());
 
         Scanner scanner = new Scanner(System.in);
 

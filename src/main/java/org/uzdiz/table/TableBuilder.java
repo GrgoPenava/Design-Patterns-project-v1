@@ -7,7 +7,6 @@ public class TableBuilder {
     private List<String> headers = new ArrayList<>();
     private List<List<String>> rows = new ArrayList<>();
 
-    // Metoda za postavljanje zaglavlja
     public TableBuilder setHeaders(String... headers) {
         this.headers.clear();
         for (String header : headers) {
@@ -16,7 +15,6 @@ public class TableBuilder {
         return this;
     }
 
-    // Metoda za dodavanje retka
     public TableBuilder addRow(String... cells) {
         List<String> row = new ArrayList<>();
         for (String cell : cells) {
@@ -26,9 +24,7 @@ public class TableBuilder {
         return this;
     }
 
-    // Metoda za generiranje tablice u konzoli
     public void build() {
-        // Određivanje širine stupaca na temelju najdužeg teksta
         List<Integer> columnWidths = new ArrayList<>();
         for (int i = 0; i < headers.size(); i++) {
             int maxWidth = headers.get(i).length();
@@ -40,11 +36,9 @@ public class TableBuilder {
             columnWidths.add(maxWidth);
         }
 
-        // Ispis zaglavlja
         printRow(headers, columnWidths);
         printSeparator(columnWidths);
 
-        // Ispis redova
         for (List<String> row : rows) {
             printRow(row, columnWidths);
         }
