@@ -17,7 +17,7 @@ import org.uzdiz.station.Station;
 import org.uzdiz.station.StationFactory;
 
 
-public class StationCsvAdapter implements CsvReader {
+public class StationReader implements CsvReader {
     private List<Station> stations = new ArrayList<>();
 
     @Override
@@ -68,17 +68,14 @@ public class StationCsvAdapter implements CsvReader {
                             Integer.parseInt(data[13])
                     );
                     if (currentRailway == null || !oznakaPruge.equals(currentRailwayType)) {
-                        // Ako postoji trenutna pruga, dodaj je u listu
                         if (currentRailway != null) {
                             railways.add(currentRailway);
                         }
 
-                        // Kreiraj novu prugu i postavi oznaku pruge
                         currentRailway = factory.createRailway(data[6], oznakaPruge);
                         currentRailwayType = oznakaPruge;
                     }
 
-                    // Dodaj stanicu u trenutnu prugu
                     currentRailway.addStation(station);
                     stations.add(station);
                 } catch (IllegalArgumentException e) {

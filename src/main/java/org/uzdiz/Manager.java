@@ -1,7 +1,7 @@
 package org.uzdiz;
 
-import org.uzdiz.reader.RailwayCsvAdapter;
-import org.uzdiz.reader.StationCsvAdapter;
+import org.uzdiz.reader.VehicleReader;
+import org.uzdiz.reader.StationReader;
 import org.uzdiz.userInput.*;
 
 import java.util.HashMap;
@@ -20,8 +20,8 @@ public class Manager {
             return;
         }
 
-        new StationCsvAdapter().loadData(config.getStationFilePath());
-        new RailwayCsvAdapter().loadData(config.getRailwayFilePath());
+        new StationReader().loadData(config.getStationFilePath());
+        new VehicleReader().loadData(config.getRailwayFilePath());
 
         Map<String, Command> commands = new HashMap<>();
         commands.put("IP", new ListRailwaysCommand());
