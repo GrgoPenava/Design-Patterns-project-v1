@@ -71,7 +71,6 @@ public class ListStationsCommand implements Command {
     }
 
 
-    //TODO ispraviti ako je zapresic 0 za R201
     private void printReverseOrder(Railway choosenRailway, TableBuilder table) {
         double lenSum = 0;
         String lastStationName = "";

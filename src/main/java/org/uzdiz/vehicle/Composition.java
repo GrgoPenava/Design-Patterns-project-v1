@@ -35,7 +35,6 @@ public class Composition {
     public static class CompositionBuilder {
         private String oznaka;
         private String oznakaVozila;
-
         private String uloga;
 
         public CompositionBuilder(String oznaka) {

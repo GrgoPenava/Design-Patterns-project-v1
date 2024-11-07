@@ -15,7 +15,6 @@ public class ListStationsBetweenCommand implements Command {
             return;
         }
 
-        // Parsiranje ulaza za početnu i završnu stanicu
         String[] parts = input.substring(6).split(" - ");
         String startStation = parts[0].trim();
         String endStation = parts[1].trim();
@@ -54,7 +53,7 @@ public class ListStationsBetweenCommand implements Command {
         if (startIndex < endIndex) {
             printNormalOrder(table, stations, startIndex, endIndex);
         } else {
-            printReverseOrder2(table, stations, startIndex, endIndex);
+            printReverseOrder(table, stations, startIndex, endIndex);
         }
 
         table.build();
@@ -69,14 +68,6 @@ public class ListStationsBetweenCommand implements Command {
     }
 
     private void printReverseOrder(TableBuilder table, List<Station> stations, int startIndex, int endIndex) {
-        double distanceSum = 0;
-        for (int i = startIndex - 1; i > endIndex; i--) {
-            distanceSum += stations.get(i + 1).getduzina();
-            table.addRow(stations.get(i).getnaziv(), stations.get(i).getvrstaStanice(), String.format("%.2f", distanceSum));
-        }
-    }
-
-    private void printReverseOrder2(TableBuilder table, List<Station> stations, int startIndex, int endIndex) {
         List<Station> withoutDuplicates = new ArrayList<>();
         for (int i = endIndex + 1; i < startIndex + 1; i++) {
             Station currentStation = stations.get(i);

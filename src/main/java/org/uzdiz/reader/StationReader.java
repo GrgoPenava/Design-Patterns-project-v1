@@ -62,7 +62,7 @@ public class StationReader implements CsvReader {
                             data[6],
                             Integer.parseInt(data[7]),
                             data[8],
-                            Integer.parseInt(data[9]), //br kolosjeka
+                            Integer.parseInt(data[9]),
                             Double.parseDouble(data[10].replace(",", ".")),
                             Double.parseDouble(data[11].replace(",", ".")),
                             data[12],
