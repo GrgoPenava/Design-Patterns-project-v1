@@ -60,19 +60,11 @@ public class ListStationsBetweenCommand implements Command {
     }
 
     private void printNormalOrder(TableBuilder table, List<Station> stations, int startIndex, int endIndex) {
-        double distanceSum = 0;
-        for (int i = startIndex + 1; i < endIndex; i++) {
-            distanceSum += stations.get(i).getduzina();
-            table.addRow(stations.get(i).getnaziv(), stations.get(i).getvrstaStanice(), String.format("%.2f", distanceSum));
-        }
-    }
-
-    private void printReverseOrder(TableBuilder table, List<Station> stations, int startIndex, int endIndex) {
         List<Station> withoutDuplicates = new ArrayList<>();
-        for (int i = endIndex + 1; i < startIndex + 1; i++) {
+        for (int i = startIndex; i <= endIndex; i++) {
             Station currentStation = stations.get(i);
 
-            boolean hasDuplicateWithNonZeroLength = stations.subList(endIndex + 1, startIndex).stream()
+            boolean hasDuplicateWithNonZeroLength = stations.subList(startIndex, endIndex).stream()
                     .anyMatch(station -> station.getnaziv().equals(currentStation.getnaziv()) && station.getduzina() > 0);
 
             if (currentStation.getduzina() == 0 && hasDuplicateWithNonZeroLength) {
@@ -83,15 +75,40 @@ public class ListStationsBetweenCommand implements Command {
         }
 
         double distanceSum = 0;
-        for (int i = withoutDuplicates.size() - 1; i >= 0; i--) {
-            Station station = withoutDuplicates.get(i);
+        for (int i = 0; i <= withoutDuplicates.size() - 1; i++) {
+            if (i != 0) {
+                distanceSum += withoutDuplicates.get(i).getduzina();
+            }
+            table.addRow(withoutDuplicates.get(i).getnaziv(), withoutDuplicates.get(i).getvrstaStanice(), String.format("%.2f", distanceSum));
+        }
+    }
 
-            if (i < withoutDuplicates.size() - 1) {
-                distanceSum += withoutDuplicates.get(i + 1).getduzina();
+    private void printReverseOrder(TableBuilder table, List<Station> stations, int startIndex, int endIndex) {
+        //start je 8 - macinec
+        //end je 0 - kotoriba
+        List<Station> withoutDuplicates = new ArrayList<>();
+        for (int i = endIndex; i < startIndex + 1; i++) {
+            Station currentStation = stations.get(i);
+
+            boolean hasDuplicateWithNonZeroLength = stations.subList(endIndex, startIndex).stream()
+                    .anyMatch(station -> station.getnaziv().equals(currentStation.getnaziv()) && station.getduzina() > 0);
+
+            if (currentStation.getduzina() == 0 && hasDuplicateWithNonZeroLength) {
+                continue;
             }
 
-            if (i != withoutDuplicates.size() - 1)
-                table.addRow(station.getnaziv(), station.getvrstaStanice(), String.format("%.2f", distanceSum));
+            withoutDuplicates.add(currentStation);
+        }
+
+        double distanceSum = 0;
+        //withoutDuplicates.size() = 9
+        for (int i = withoutDuplicates.size(); i > 0; i--) {
+            Station station = withoutDuplicates.get(i - 1);
+
+            if (i < withoutDuplicates.size()) {
+                distanceSum += withoutDuplicates.get(i).getduzina();
+            }
+            table.addRow(station.getnaziv(), station.getvrstaStanice(), String.format("%.2f", distanceSum));
         }
     }
 
