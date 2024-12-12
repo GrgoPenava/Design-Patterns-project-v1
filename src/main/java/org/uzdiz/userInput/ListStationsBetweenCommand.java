@@ -84,8 +84,6 @@ public class ListStationsBetweenCommand implements Command {
     }
 
     private void printReverseOrder(TableBuilder table, List<Station> stations, int startIndex, int endIndex) {
-        //start je 8 - macinec
-        //end je 0 - kotoriba
         List<Station> withoutDuplicates = new ArrayList<>();
         for (int i = endIndex; i < startIndex + 1; i++) {
             Station currentStation = stations.get(i);
@@ -101,7 +99,6 @@ public class ListStationsBetweenCommand implements Command {
         }
 
         double distanceSum = 0;
-        //withoutDuplicates.size() = 9
         for (int i = withoutDuplicates.size(); i > 0; i--) {
             Station station = withoutDuplicates.get(i - 1);
 
