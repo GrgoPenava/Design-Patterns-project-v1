@@ -24,7 +24,7 @@ public class GraphUtil {
         graph.putIfAbsent(from, new HashMap<>());
         graph.get(from).put(to, weight);
         graph.putIfAbsent(to, new HashMap<>());
-        graph.get(to).put(from, weight);  // Ako je graf neusmjeren
+        graph.get(to).put(from, weight);
     }
 
     private void connectInterRailwayStations() {
@@ -94,7 +94,6 @@ public class GraphUtil {
             }
         }
 
-        // Rekonstruiramo put i bilježimo udaljenosti
         Station current = end;
         LinkedList<Station> path = new LinkedList<>();
         while (current != null && previous.containsKey(current)) {
@@ -115,55 +114,5 @@ public class GraphUtil {
                 .filter(station -> station.getnaziv().equals(name))
                 .findFirst()
                 .orElse(null);
-    }
-
-    private List<Station> reconstructPath(Map<Station, Station> previous, Station end) {
-        LinkedList<Station> path = new LinkedList<>();
-        while (end != null && previous.containsKey(end)) {
-            path.addFirst(end);
-            end = previous.get(end);
-        }
-        return path;
-    }
-
-    public Map<Station, Double> calculateDistancesForPath(List<Station> path, String startStation, String endStation) {
-        Boolean isNormalOrder = isNormalOrder(startStation, endStation);
-        Map<Station, Double> distances = new LinkedHashMap<>();
-        double distanceSum = 0.0;
-        if (isNormalOrder) {
-            for (int i = 0; i < path.size(); i++) {
-                if (i != 0) {
-                    distanceSum += path.get(i).getduzina();
-                }
-                distances.put(path.get(i), distanceSum);
-            }
-        } else {
-            //Obrnut redosljed kretanja
-            for (int i = 0; i < path.size(); i++) {
-                Station currentStation = path.get(i);
-                if (i != 0) {
-                    distanceSum += path.get(i - 1).getduzina();
-                }
-                distances.put(currentStation, distanceSum);
-            }
-        }
-        return distances;
-    }
-
-    private boolean isNormalOrder(String startStation, String endStation) {
-        List<Station> allStations = ConfigManager.getInstance().getStations();
-
-        int startIndex = -1;
-        int endIndex = -1;
-
-        for (int i = 0; i < allStations.size(); i++) {
-            if (allStations.get(i).getnaziv().equals(startStation) && startIndex == -1) {
-                startIndex = i;
-            }
-            if (allStations.get(i).getnaziv().equals(endStation)) {
-                endIndex = i;
-            }
-        }
-        return startIndex != -1 && endIndex != -1 && startIndex < endIndex;
     }
 }

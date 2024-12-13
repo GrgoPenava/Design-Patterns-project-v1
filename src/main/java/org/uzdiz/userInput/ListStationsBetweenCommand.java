@@ -133,7 +133,6 @@ public class ListStationsBetweenCommand implements Command {
                 uniqueStations.put(stationName, currentStation);
                 filteredMap.put(currentStation, entry.getValue());
             } else {
-                // Ako postoji duplikat, zadrži stanicu s većom udaljenosti
                 Station existingStation = uniqueStations.get(stationName);
                 if (currentStation.getduzina() > existingStation.getduzina()) {
                     uniqueStations.put(stationName, currentStation);
