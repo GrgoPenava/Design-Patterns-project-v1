@@ -33,21 +33,6 @@ public abstract class Railway {
         this.popisSvihStanica.add(station);
     }
 
-    @Override
-    public String toString() {
-        return "Railway{" +
-                "oznakaPruge='" + oznakaPruge + '\'' +
-                ", kategorija='" + kategorija + '\'' +
-                ", nacinPrijevoza='" + nacinPrijevoza + '\'' +
-                ", brojKolosjeka=" + brojKolosjeka +
-                ", duljina=" + duljina +
-                ", dozvoljenoOpterecenjePoOsovini=" + dozvoljenoOpterecenjePoOsovini +
-                ", dozvoljenoOpterecenjePoDuznomMetru=" + dozvoljenoOpterecenjePoDuznomMetru +
-                ", status='" + status + '\'' +
-                ", popisSvihStanica=" + popisSvihStanica +
-                '}';
-    }
-
     public String getOznakaPruge() {
         return oznakaPruge;
     }

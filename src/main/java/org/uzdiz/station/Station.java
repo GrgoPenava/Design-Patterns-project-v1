@@ -1,6 +1,7 @@
 package org.uzdiz.station;
 
 public abstract class Station {
+    private Integer id;
     private String naziv;
     private String oznakaPruge;
     private String vrstaStanice;
@@ -16,7 +17,8 @@ public abstract class Station {
     private String statusPruge;
     private int duzina;
 
-    public Station(String naziv, String oznakaPruge, String vrstaStanice) {
+    public Station(Integer id, String naziv, String oznakaPruge, String vrstaStanice) {
+        this.id = id;
         this.naziv = naziv;
         this.oznakaPruge = oznakaPruge;
         this.vrstaStanice = vrstaStanice;
@@ -41,6 +43,10 @@ public abstract class Station {
 
     public String getnaziv() {
         return naziv;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     public void setnaziv(String naziv) {
@@ -149,25 +155,5 @@ public abstract class Station {
 
     public void setduzina(int duzina) {
         this.duzina = duzina;
-    }
-
-    @Override
-    public String toString() {
-        return "Station{" +
-                "naziv='" + naziv + '\'' +
-                ", oznakaPruge='" + oznakaPruge + '\'' +
-                ", vrstaStanice='" + vrstaStanice + '\'' +
-                ", statusStanice='" + statusStanice + '\'' +
-                ", putnici=" + putnici +
-                ", roba=" + roba +
-                ", kategorijaPruge='" + kategorijaPruge + '\'' +
-                ", brojPerona=" + brojPerona +
-                ", vrstaPruge='" + vrstaPruge + '\'' +
-                ", brojKolosjeka=" + brojKolosjeka +
-                ", DOPoOsovini=" + DOPoOsovini +
-                ", DOPoDuznomM=" + DOPoDuznomM +
-                ", statusPruge='" + statusPruge + '\'' +
-                ", duzina=" + duzina +
-                '}';
     }
 }

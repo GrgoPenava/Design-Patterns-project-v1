@@ -34,6 +34,7 @@ public class StationReader implements CsvReader {
         List<Railway> railways = new ArrayList<>();
         Railway currentRailway = null;
         String currentRailwayType = null;
+        Integer idCounter = 0;
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath, StandardCharsets.UTF_8))) {
             String line;
@@ -53,7 +54,8 @@ public class StationReader implements CsvReader {
 
                 try {
                     String oznakaPruge = data[1];
-                    Station station = StationFactory.createStation(data[0], data[1], data[2]);
+                    Station station = StationFactory.createStation(idCounter, data[0], data[1], data[2]);
+                    idCounter++;
 
                     station.setAdditionalAttributes(
                             data[3],
