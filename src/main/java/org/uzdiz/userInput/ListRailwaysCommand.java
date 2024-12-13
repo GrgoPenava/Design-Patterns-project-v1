@@ -10,6 +10,10 @@ public class ListRailwaysCommand implements Command {
         TableBuilder table = new TableBuilder();
         table.setHeaders("Oznaka", "Početna stanica", "Završna stanica", "Duljina (km)");
         for (Railway railway : ConfigManager.getInstance().getRailways()) {
+            if (railway.getPopisSvihStanica().size() < 2) {
+                continue;
+            }
+
             Station firstStation = railway.getPopisSvihStanica().get(0);
             Station lastStation = railway.getPopisSvihStanica().get(railway.getPopisSvihStanica().size() - 1);
 
