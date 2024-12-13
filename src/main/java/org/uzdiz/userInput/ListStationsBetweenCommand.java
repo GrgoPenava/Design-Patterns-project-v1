@@ -6,10 +6,7 @@ import org.uzdiz.station.Station;
 import org.uzdiz.table.TableBuilder;
 import org.uzdiz.utils.GraphUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class ListStationsBetweenCommand implements Command {
     private GraphUtil graphUtil = new GraphUtil();
@@ -35,21 +32,17 @@ public class ListStationsBetweenCommand implements Command {
                 .findFirst();
 
         if (railwayOptional.isEmpty()) {
+            //ISI2S na različitim prugama
             Map<Station, Double> path = graphUtil.findShortestPath(startStation, endStation);
-            //List<Station> filteredPath = filterDuplicateStations(path);
-
-            //Map<Station, Double> stationDistances = graphUtil.calculateDistancesForPath(filteredPath, startStation, endStation);
+            Map<Station, Double> filteredPath = filterDuplicateStations(path);
 
             TableBuilder table = new TableBuilder();
             table.setHeaders("Naziv stanice", "Vrsta", "Broj km od početne stanice");
 
-            for (Map.Entry<Station, Double> entry : path.entrySet()) {
+            for (Map.Entry<Station, Double> entry : filteredPath.entrySet()) {
                 table.addRow(entry.getKey().getnaziv(), entry.getKey().getvrstaStanice(), String.format("%.2f", entry.getValue()));
             }
 
-            /*for (Map.Entry<Station, Double> entry : stationDistances.entrySet()) {
-                table.addRow(entry.getKey().getnaziv(), entry.getKey().getvrstaStanice(), String.format("%.2f", entry.getValue()));
-            }*/
             table.build();
             return;
         }
@@ -128,22 +121,31 @@ public class ListStationsBetweenCommand implements Command {
         }
     }
 
-    private List<Station> filterDuplicateStations(List<Station> path) {
-        List<Station> filteredPath = new ArrayList<>();
-        for (int i = 0; i < path.size(); i++) {
-            Station current = path.get(i);
-            // Ako je lista prazna ili je trenutna stanica različita od prethodne, dodaj ju
-            if (filteredPath.isEmpty() || !filteredPath.get(filteredPath.size() - 1).getnaziv().equals(current.getnaziv())) {
-                filteredPath.add(current);
+    private Map<Station, Double> filterDuplicateStations(Map<Station, Double> stationDistances) {
+        Map<String, Station> uniqueStations = new LinkedHashMap<>();
+        Map<Station, Double> filteredMap = new LinkedHashMap<>();
+
+        for (Map.Entry<Station, Double> entry : stationDistances.entrySet()) {
+            Station currentStation = entry.getKey();
+            String stationName = currentStation.getnaziv();
+
+            if (!uniqueStations.containsKey(stationName)) {
+                uniqueStations.put(stationName, currentStation);
+                filteredMap.put(currentStation, entry.getValue());
             } else {
-                // Ako postoji duplikat, zadrži onaj zapis koji ima Dužina != 0
-                if (current.getduzina() != 0) {
-                    filteredPath.set(filteredPath.size() - 1, current);
+                // Ako postoji duplikat, zadrži stanicu s većom udaljenosti
+                Station existingStation = uniqueStations.get(stationName);
+                if (currentStation.getduzina() > existingStation.getduzina()) {
+                    uniqueStations.put(stationName, currentStation);
+                    filteredMap.remove(existingStation);
+                    filteredMap.put(currentStation, entry.getValue());
                 }
             }
         }
-        return filteredPath;
+
+        return filteredMap;
     }
+
 
     private boolean validateInput(String input) {
         if (!input.contains(" - ")) {
