@@ -1,9 +1,10 @@
 package org.uzdiz;
 
-import org.uzdiz.railwayFactory.Railway;
-import org.uzdiz.builder.Station;
 import org.uzdiz.builder.Composition;
+import org.uzdiz.builder.Station;
+import org.uzdiz.builder.TimeTable;
 import org.uzdiz.builder.Vehicle;
+import org.uzdiz.railwayFactory.Railway;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +15,17 @@ public class ConfigManager {
     private String stationFilePath;
     private String railwayFilePath;
     private String compositionFilePath;
+    private String timeTableFilePath;
+    private String drivingDaysFilePath;
+
 
     private List<Station> stations = new ArrayList<>();
     private List<Railway> railways = new ArrayList<>();
     private List<Composition> compositions = new ArrayList<>();
     private List<Vehicle> vehicles = new ArrayList<>();
+    private List<TimeTable> timeTables = new ArrayList<>();
+    private List<DrivingDays> drivingDays = new ArrayList<>();
+
 
     private int errorCount;
 
@@ -99,5 +106,37 @@ public class ConfigManager {
 
     public List<Vehicle> getVehicles() {
         return vehicles;
+    }
+
+    public String getTimeTableFilePath() {
+        return timeTableFilePath;
+    }
+
+    public void setTimeTableFilePath(String timeTableFilePath) {
+        this.timeTableFilePath = timeTableFilePath;
+    }
+
+    public String getDrivingDaysFilePath() {
+        return drivingDaysFilePath;
+    }
+
+    public void setDrivingDaysFilePath(String drivingDaysFilePath) {
+        this.drivingDaysFilePath = drivingDaysFilePath;
+    }
+
+    public void setTimeTables(List<TimeTable> timeTables) {
+        this.timeTables = timeTables;
+    }
+
+    public void setDrivingDaysList(List<DrivingDays> drivingDaysList) {
+        this.drivingDays = drivingDaysList;
+    }
+
+    public List<DrivingDays> getDrivingDaysList() {
+        return drivingDays;
+    }
+
+    public List<TimeTable> getTimeTables() {
+        return timeTables;
     }
 }

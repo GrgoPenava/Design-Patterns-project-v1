@@ -15,7 +15,7 @@ public class Main {
 
         if (!validateConfig(config)) {
             config.incrementErrorCount();
-            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Svi argumenti (--zs, --zps, --zk) su obavezni.");
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Svi argumenti (--zs, --zps, --zk, --zvr, --zod) su obavezni.");
             return;
         }
 
@@ -78,6 +78,22 @@ public class Main {
                         System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nedostaje putanja za --zk opciju");
                     }
                     break;
+                case "--zvr":
+                    if (i + 1 < args.length) {
+                        config.setTimeTableFilePath(args[++i]);
+                    } else {
+                        config.incrementErrorCount();
+                        System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nedostaje putanja za --zvr opciju");
+                    }
+                    break;
+                case "--zod":
+                    if (i + 1 < args.length) {
+                        config.setDrivingDaysFilePath(args[++i]);
+                    } else {
+                        config.incrementErrorCount();
+                        System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nedostaje putanja za --zod opciju");
+                    }
+                    break;
                 default:
                     config.incrementErrorCount();
                     System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nepoznata opcija: " + args[i]);
@@ -88,6 +104,8 @@ public class Main {
     private static boolean validateConfig(ConfigManager config) {
         return config.getStationFilePath() != null &&
                 config.getRailwayFilePath() != null &&
+                config.getDrivingDaysFilePath() != null &&
+                config.getTimeTableFilePath() != null &&
                 config.getCompositionFilePath() != null;
     }
 
@@ -100,5 +118,11 @@ public class Main {
 
         CsvReaderCreator compositionReaderCreator = new CompositionReaderCreator();
         compositionReaderCreator.loadData(config.getCompositionFilePath());
+
+        CsvReaderCreator timeTableReaderCreator = new TimeTableReaderCreator();
+        timeTableReaderCreator.loadData(config.getTimeTableFilePath());
+
+        CsvReaderCreator drivingDaysReaderCreator = new DrivingDaysReaderCreator();
+        drivingDaysReaderCreator.loadData(config.getDrivingDaysFilePath());
     }
 }
