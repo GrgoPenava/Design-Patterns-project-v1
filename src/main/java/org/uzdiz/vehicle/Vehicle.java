@@ -224,29 +224,5 @@ public class Vehicle {
             return new Vehicle(this);
         }
     }
-
-    @Override
-    public String toString() {
-        return "Vehicle{" +
-                "oznaka='" + oznaka + '\'' +
-                ", opis='" + opis + '\'' +
-                ", proizvodac='" + proizvodac + '\'' +
-                ", godina='" + godina + '\'' +
-                ", namjera='" + namjera + '\'' +
-                ", vrstaPrijevoza='" + vrstaPrijevoza + '\'' +
-                ", vrstaPogona='" + vrstaPogona + '\'' +
-                ", maksBrzina='" + maksBrzina + '\'' +
-                ", maksSnaga='" + maksSnaga + '\'' +
-                ", brojSjedecihMjesta='" + brojSjedecihMjesta + '\'' +
-                ", brojStajacihMjesta='" + brojStajacihMjesta + '\'' +
-                ", brojBicikala='" + brojBicikala + '\'' +
-                ", brojKreveta='" + brojKreveta + '\'' +
-                ", brojAutomobila='" + brojAutomobila + '\'' +
-                ", nosivost='" + nosivost + '\'' +
-                ", povrsina='" + povrsina + '\'' +
-                ", zapremnina='" + zapremnina + '\'' +
-                ", status='" + status + '\'' +
-                '}';
-    }
 }
 

@@ -4,36 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="novi podaci dz2">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railwayFactory/InternationalRailway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railwayFactory/InternationalRailwayCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railwayFactory/LocalRailway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railwayFactory/LocalRailwayCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railwayFactory/RailwayCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railwayFactory/RailwayProduct.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railwayFactory/RegionalRailway.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railwayFactory/RegionalRailwayCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/CompositionReaderCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/CsvReaderCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/StationReaderCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/VehicleReaderCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/InternationalRailway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/InternationalRailway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/LocalRailway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/LocalRailway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/Railway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railwayFactory/Railway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/RailwayFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/RailwayFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/RailwayFactoryImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/RailwayFactoryImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/RegionalRailway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railway/RegionalRailway.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/CompositionReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/CompositionReaderProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/CsvReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/CsvReaderProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/StationReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/StationReaderProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/reader/VehicleReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/VehicleReaderProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListRailwaysCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListRailwaysCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsBetweenCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsBetweenCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/utils/GraphUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/utils/GraphUtil.java" afterDir="false" />
+    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="Dodan factory method za citavnje csv-a, ispravljen factory method za razlicite pruge">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Composition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Composition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Vehicle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +125,7 @@
       <updated>1730401945725</updated>
       <workItem from="1734033077874" duration="5911000" />
       <workItem from="1734081137196" duration="23286000" />
-      <workItem from="1734175698437" duration="9919000" />
+      <workItem from="1734175698437" duration="10899000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
@@ -322,7 +295,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734125878045</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Dodan factory method za citavnje csv-a, ispravljen factory method za razlicite pruge">
+      <option name="closed" value="true" />
+      <created>1734188800683</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1734188800683</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -350,7 +331,8 @@
     <MESSAGE value="Remove redundant comments and unused methods in codebase&#10;&#10;Cleaned up unnecessary comments and removed unused methods to improve code readability and maintainability. This ensures the code is less cluttered and easier to understand without affecting its functionality. Minor adjustments were also made to related metadata files." />
     <MESSAGE value="Filter out railways with fewer than two stations.&#10;&#10;This change ensures that only railways with at least two stations are included in the table output. It prevents incomplete or invalid railway data from being displayed, improving the integrity of the command’s results." />
     <MESSAGE value="novi podaci dz2" />
-    <option name="LAST_COMMIT_MESSAGE" value="novi podaci dz2" />
+    <MESSAGE value="Dodan factory method za citavnje csv-a, ispravljen factory method za razlicite pruge" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodan factory method za citavnje csv-a, ispravljen factory method za razlicite pruge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

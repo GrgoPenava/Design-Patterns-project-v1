@@ -23,15 +23,6 @@ public class Composition {
         return uloga;
     }
 
-    @Override
-    public String toString() {
-        return "Composition{" +
-                "oznaka='" + oznaka + '\'' +
-                ", oznakaVozila='" + oznakaVozila + '\'' +
-                ", uloga='" + uloga + '\'' +
-                '}';
-    }
-
     public static class CompositionBuilder {
         private String oznaka;
         private String oznakaVozila;
