@@ -2,8 +2,8 @@ package org.uzdiz.userInput;
 
 import org.uzdiz.ConfigManager;
 import org.uzdiz.railwayFactory.Railway;
-import org.uzdiz.station.Station;
-import org.uzdiz.table.TableBuilder;
+import org.uzdiz.builder.Station;
+import org.uzdiz.utils.TableBuilder;
 
 import java.util.List;
 
@@ -49,20 +49,20 @@ public class ListStationsCommand implements Command {
 
         List<Station> stations = choosenRailway.getPopisSvihStanica();
 
-        if (!stations.isEmpty() && stations.get(0).getduzina() > 0) {
-            stations.get(0).setduzina(0);
+        if (!stations.isEmpty() && stations.get(0).getDuzina() > 0) {
+            stations.get(0).setDuzina(0);
         }
 
         for (Station station : stations) {
-            if (!station.getnaziv().equals(lastStationName) || !station.getvrstaStanice().equals(lastStationType)) {
+            if (!station.getNaziv().equals(lastStationName) || !station.getVrstaStanice().equals(lastStationType)) {
                 if (!lastStationName.isEmpty()) {
                     table.addRow(lastStationName, lastStationType, String.format("%.2f", lenSum));
                 }
-                lastStationName = station.getnaziv();
-                lastStationType = station.getvrstaStanice();
+                lastStationName = station.getNaziv();
+                lastStationType = station.getVrstaStanice();
             }
 
-            lenSum += station.getduzina();
+            lenSum += station.getDuzina();
         }
 
         if (!lastStationName.isEmpty()) {
@@ -80,17 +80,17 @@ public class ListStationsCommand implements Command {
         List<Station> stations = choosenRailway.getPopisSvihStanica();
         for (int i = stations.size() - 1; i >= 0; i--) {
             Station station = stations.get(i);
-            if (!station.getnaziv().equals(lastStationName) || !station.getvrstaStanice().equals(lastStationType)) {
+            if (!station.getNaziv().equals(lastStationName) || !station.getVrstaStanice().equals(lastStationType)) {
                 if (!lastStationName.isEmpty()) {
                     table.addRow(lastStationName, lastStationType, String.format("%.2f", lenSum - accumulatedLength));
                 }
-                lastStationName = station.getnaziv();
-                lastStationType = station.getvrstaStanice();
+                lastStationName = station.getNaziv();
+                lastStationType = station.getVrstaStanice();
                 accumulatedLength = 0;
             }
 
-            lenSum += station.getduzina();
-            accumulatedLength += station.getduzina();
+            lenSum += station.getDuzina();
+            accumulatedLength += station.getDuzina();
         }
 
         if (!lastStationName.isEmpty()) {

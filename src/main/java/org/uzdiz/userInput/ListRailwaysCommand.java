@@ -2,8 +2,8 @@ package org.uzdiz.userInput;
 
 import org.uzdiz.ConfigManager;
 import org.uzdiz.railwayFactory.Railway;
-import org.uzdiz.station.Station;
-import org.uzdiz.table.TableBuilder;
+import org.uzdiz.builder.Station;
+import org.uzdiz.utils.TableBuilder;
 
 public class ListRailwaysCommand implements Command {
     public void execute(String input) {
@@ -18,10 +18,10 @@ public class ListRailwaysCommand implements Command {
             Station lastStation = railway.getPopisSvihStanica().get(railway.getPopisSvihStanica().size() - 1);
 
             double getSum = railway.getPopisSvihStanica().stream()
-                    .mapToDouble(Station::getduzina)
+                    .mapToDouble(Station::getDuzina)
                     .sum();
 
-            table.addRow(railway.getOznakaPruge(), firstStation.getnaziv(), lastStation.getnaziv(), String.format("%.2f", getSum));
+            table.addRow(railway.getOznakaPruge(), firstStation.getNaziv(), lastStation.getNaziv(), String.format("%.2f", getSum));
         }
         table.build();
     }

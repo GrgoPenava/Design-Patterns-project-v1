@@ -1,7 +1,7 @@
 package org.uzdiz.utils;
 
 import org.uzdiz.ConfigManager;
-import org.uzdiz.station.Station;
+import org.uzdiz.builder.Station;
 import org.uzdiz.railwayFactory.Railway;
 
 import java.util.*;
@@ -14,7 +14,7 @@ public class GraphUtil {
         for (Railway railway : railways) {
             List<Station> stations = railway.getPopisSvihStanica();
             for (int i = 0; i < stations.size() - 1; i++) {
-                addEdge(stations.get(i), stations.get(i + 1), stations.get(i + 1).getduzina());
+                addEdge(stations.get(i), stations.get(i + 1), stations.get(i + 1).getDuzina());
             }
         }
         connectInterRailwayStations();
@@ -31,7 +31,7 @@ public class GraphUtil {
         Map<String, List<Station>> stationNameToStations = new HashMap<>();
         for (Railway railway : ConfigManager.getInstance().getRailways()) {
             for (Station station : railway.getPopisSvihStanica()) {
-                stationNameToStations.computeIfAbsent(station.getnaziv(), k -> new ArrayList<>()).add(station);
+                stationNameToStations.computeIfAbsent(station.getNaziv(), k -> new ArrayList<>()).add(station);
             }
         }
 
@@ -111,7 +111,7 @@ public class GraphUtil {
 
     private Station findStationByName(String name) {
         return ConfigManager.getInstance().getStations().stream()
-                .filter(station -> station.getnaziv().equals(name))
+                .filter(station -> station.getNaziv().equals(name))
                 .findFirst()
                 .orElse(null);
     }

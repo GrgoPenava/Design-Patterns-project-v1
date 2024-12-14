@@ -1,7 +1,7 @@
 package org.uzdiz.readerFactory;
 
 import org.uzdiz.ConfigManager;
-import org.uzdiz.vehicle.Vehicle;
+import org.uzdiz.builder.Vehicle;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,9 +12,12 @@ import java.util.List;
 
 public class VehicleReaderProduct implements CsvReaderProduct {
     private List<Vehicle> vehicles = new ArrayList<>();
+    private String path;
+    private Integer fileErrorCounter = 0;
 
     @Override
     public void loadData(String filePath) {
+        this.path = filePath;
         try (BufferedReader br = new BufferedReader(new FileReader(filePath, StandardCharsets.UTF_8))) {
             String line;
             boolean isFirstLine = true;
@@ -25,10 +28,13 @@ public class VehicleReaderProduct implements CsvReaderProduct {
                     continue;
                 }
 
+                if (line.startsWith("#")) continue;
+
                 String[] data = line.split(";");
                 if (!validateData(data)) {
                     continue;
                 }
+
 
                 Vehicle vehicle = new Vehicle.VehicleBuilder(data[0], data[1])
                         .setProizvodac(data[2])
@@ -55,6 +61,7 @@ public class VehicleReaderProduct implements CsvReaderProduct {
         } catch (IOException e) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nije moguće učitati datoteku - " + filePath);
+            this.printFileError();
         }
     }
 
@@ -62,6 +69,7 @@ public class VehicleReaderProduct implements CsvReaderProduct {
         if (data.length != 18) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Zapis nije potpun, očekuje se 18 podataka, ali postoji " + data.length);
+            this.printFileError();
             return false;
         }
 
@@ -80,6 +88,11 @@ public class VehicleReaderProduct implements CsvReaderProduct {
                 validateStatus(data[17], "Status");
     }
 
+    private void printFileError() {
+        this.fileErrorCounter++;
+        System.out.println("-> Greška datoteke (" + path + ") br. " + this.fileErrorCounter);
+    }
+
     private boolean validatePresence(String[] data) {
         String[] columnNames = {
                 "Oznaka", "Opis", "Proizvodac", "Godina", "Namjera", "Vrsta Prijevoza", "Vrsta Pogona",
@@ -91,6 +104,7 @@ public class VehicleReaderProduct implements CsvReaderProduct {
             if (data[i] == null || data[i].isEmpty()) {
                 ConfigManager.getInstance().incrementErrorCount();
                 System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nedostaje vrijednost za stupac '" + columnNames[i] + "'.");
+                this.printFileError();
                 return false;
             }
         }
@@ -104,6 +118,7 @@ public class VehicleReaderProduct implements CsvReaderProduct {
         } catch (NumberFormatException e) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": " + fieldName + " mora biti cijeli broj. Pronađeno: '" + value + "'");
+            this.printFileError();
             return false;
         }
     }
@@ -114,12 +129,14 @@ public class VehicleReaderProduct implements CsvReaderProduct {
             if (intValue < min || intValue > max) {
                 ConfigManager.getInstance().incrementErrorCount();
                 System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": " + fieldName + " mora biti između " + min + " i " + max + ". Pronađeno: '" + value + "'");
+                this.printFileError();
                 return false;
             }
             return true;
         } catch (NumberFormatException e) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": " + fieldName + " mora biti cijeli broj. Pronađeno: '" + value + "'");
+            this.printFileError();
             return false;
         }
     }
@@ -131,6 +148,7 @@ public class VehicleReaderProduct implements CsvReaderProduct {
         } catch (NumberFormatException e) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": " + fieldName + " mora biti decimalan broj. Pronađeno: '" + value + "'");
+            this.printFileError();
             return false;
         }
     }
@@ -142,12 +160,14 @@ public class VehicleReaderProduct implements CsvReaderProduct {
                 ConfigManager.getInstance().incrementErrorCount();
                 System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": " + fieldName + " mora biti između " + min + " i " + max +
                         " ili -1. Pronađeno: '" + value + "'");
+                this.printFileError();
                 return false;
             }
             return true;
         } catch (NumberFormatException e) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": " + fieldName + " mora biti decimalan broj. Pronađeno: '" + value + "'");
+            this.printFileError();
             return false;
         }
     }
@@ -156,6 +176,7 @@ public class VehicleReaderProduct implements CsvReaderProduct {
         if (!value.equals("I") && !value.equals("K")) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": " + fieldName + " mora biti 'I' ili 'K'. Pronađeno: '" + value + "'");
+            this.printFileError();
             return false;
         }
         return true;
@@ -167,12 +188,14 @@ public class VehicleReaderProduct implements CsvReaderProduct {
             if (yearValue <= 0) {
                 ConfigManager.getInstance().incrementErrorCount();
                 System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": " + fieldName + " mora biti pozitivan cijeli broj. Pronađeno: '" + year + "'");
+                this.printFileError();
                 return false;
             }
             return true;
         } catch (NumberFormatException e) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": " + fieldName + " mora biti cijeli broj. Pronađeno: '" + year + "'");
+            this.printFileError();
             return false;
         }
     }

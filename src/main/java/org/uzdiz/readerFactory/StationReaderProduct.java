@@ -11,19 +11,21 @@ import java.util.regex.Pattern;
 
 import org.uzdiz.ConfigManager;
 import org.uzdiz.railwayFactory.*;
-import org.uzdiz.station.Station;
-import org.uzdiz.station.StationFactory;
+import org.uzdiz.builder.Station;
 
 public class StationReaderProduct implements CsvReaderProduct {
     private List<Station> stations = new ArrayList<>();
+    private String path;
+    private Integer fileErrorCounter = 0;
 
     @Override
     public void loadData(String filePath) {
+        this.path = filePath;
         File file = new File(filePath);
-
         if (!file.exists()) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nije moguće učitati datoteku - " + filePath);
+            this.printFileError();
             return;
         }
 
@@ -42,7 +44,9 @@ public class StationReaderProduct implements CsvReaderProduct {
                     continue;
                 }
 
-                String[] data = line.split(";");
+                if (line.startsWith("#")) continue;
+
+                String[] data = line.split(";", -1);
 
                 if (!validateData(data)) {
                     continue;
@@ -50,11 +54,7 @@ public class StationReaderProduct implements CsvReaderProduct {
 
                 try {
                     String oznakaPruge = data[1];
-                    Station station = StationFactory.createStation(idCounter, data[0], data[1], data[2]);
-                    idCounter++;
-
-                    station.setAdditionalAttributes(
-                            data[3],
+                    Station.StationBuilder stationBuilder = new Station.StationBuilder().setObavezniParametri(idCounter, data[0], data[1], data[2], data[3],
                             "DA".equals(data[4]),
                             "DA".equals(data[5]),
                             data[6],
@@ -64,8 +64,21 @@ public class StationReaderProduct implements CsvReaderProduct {
                             Double.parseDouble(data[10].replace(",", ".")),
                             Double.parseDouble(data[11].replace(",", ".")),
                             data[12],
-                            Integer.parseInt(data[13])
-                    );
+                            Integer.parseInt(data[13]));
+
+                    if (!data[14].isEmpty()) {
+                        stationBuilder.setVrijemeNormalniVlak(Integer.parseInt(data[14]));
+                    }
+                    if (!data[15].isEmpty()) {
+                        stationBuilder.setVrijemeUbrzaniVlak(Integer.parseInt(data[15]));
+                    }
+                    if (!data[16].isEmpty()) {
+                        stationBuilder.setVrijemeBrziVlak(Integer.parseInt(data[16]));
+                    }
+
+                    Station station = stationBuilder.build();
+                    idCounter++;
+
                     if (currentRailway == null || !oznakaPruge.equals(currentRailwayType)) {
                         if (currentRailway != null) {
                             railways.add(currentRailway);
@@ -78,6 +91,7 @@ public class StationReaderProduct implements CsvReaderProduct {
                     stations.add(station);
                 } catch (IllegalArgumentException e) {
                     System.out.println("Nepodrzan zapis: " + line + " (" + e.getMessage() + ")");
+                    this.printFileError();
                 }
             }
 
@@ -87,7 +101,13 @@ public class StationReaderProduct implements CsvReaderProduct {
             ConfigManager.getInstance().setStations(stations);
         } catch (IOException e) {
             System.out.println("Greška pri čitanju stanica datoteke: " + filePath);
+            this.printFileError();
         }
+    }
+
+    private void printFileError() {
+        this.fileErrorCounter++;
+        System.out.println("-> Greška datoteke (" + path + ") br. " + this.fileErrorCounter);
     }
 
     public Railway createRailway(String type, String oznakaPruge) {
@@ -138,9 +158,10 @@ public class StationReaderProduct implements CsvReaderProduct {
     }
 
     private boolean isInvalidLength(String[] data) {
-        if (data.length != 14) {
+        if (data.length != 17) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Zapis nije potpun, očekuje se 14 podataka, ali postoji " + data.length);
+            this.printFileError();
             return true;
         }
         return false;
@@ -151,10 +172,11 @@ public class StationReaderProduct implements CsvReaderProduct {
                 "Roba ut/ist", "Kategorija pruge", "Broj perona", "Vrsta pruge", "Broj kolosjeka",
                 "DO po osovini", "DO po dužnom metru", "Status pruge", "Dužina"};
 
-        for (int i = 0; i < data.length; i++) {
+        for (int i = 0; i <= 14; i++) {
             if (data[i] == null || data[i].isEmpty()) {
                 ConfigManager.getInstance().incrementErrorCount();
                 System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nedostaje vrijednost za stupac '" + columnNames[i] + "'.");
+                this.printFileError();
                 return false;
             }
         }
@@ -165,6 +187,7 @@ public class StationReaderProduct implements CsvReaderProduct {
         if (!stationType.equals("kol.") && !stationType.equals("staj.")) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Vrsta stanice mora biti 'kol.' ili 'staj.'. '" + stationType + "' zapis nije podržan.");
+            this.printFileError();
             return false;
         }
         return true;
@@ -174,6 +197,7 @@ public class StationReaderProduct implements CsvReaderProduct {
         if (!stationStatus.equals("O") && !stationStatus.equals("Z")) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Status stanice mora biti 'O' ili 'Z'. '" + stationStatus + "' nije podržana vrijednost.");
+            this.printFileError();
             return false;
         }
         return true;
@@ -183,6 +207,7 @@ public class StationReaderProduct implements CsvReaderProduct {
         if (!passengerLoad.equals("DA") && !passengerLoad.equals("NE")) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Putnici ul/iz mora biti 'DA' ili 'NE'. '" + passengerLoad + "' nije podržana vrijednost.");
+            this.printFileError();
             return false;
         }
         return true;
@@ -192,6 +217,7 @@ public class StationReaderProduct implements CsvReaderProduct {
         if (!cargoLoad.equals("DA") && !cargoLoad.equals("NE")) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Roba ut/ist mora biti 'DA' ili 'NE'. '" + cargoLoad + "' nije podržana vrijednost.");
+            this.printFileError();
             return false;
         }
         return true;
@@ -201,6 +227,7 @@ public class StationReaderProduct implements CsvReaderProduct {
         if (!category.equals("M") && !category.equals("L") && !category.equals("R")) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Kategorija pruge mora biti 'M', 'L' ili 'R'. '" + category + "' nije podržana vrijednost.");
+            this.printFileError();
             return false;
         }
         return true;
@@ -212,6 +239,7 @@ public class StationReaderProduct implements CsvReaderProduct {
         } catch (NumberFormatException e) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Broj perona mora biti cijeli broj. '" + peron + "' nije ispravan broj.");
+            this.printFileError();
             return false;
         }
         return true;
@@ -223,6 +251,7 @@ public class StationReaderProduct implements CsvReaderProduct {
         } catch (NumberFormatException e) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Broj kolosjeka mora biti cijeli broj. '" + track + "' nije ispravan broj.");
+            this.printFileError();
             return false;
         }
         return true;
@@ -232,6 +261,7 @@ public class StationReaderProduct implements CsvReaderProduct {
         if (!isDecimalOrInteger(axleLoad)) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": DO po osovini mora biti cijeli broj ili decimalni broj sa zarezom. '" + axleLoad + "' nije ispravna vrijednost.");
+            this.printFileError();
             return false;
         }
         return true;
@@ -241,6 +271,7 @@ public class StationReaderProduct implements CsvReaderProduct {
         if (!isDecimalOrInteger(meterLoad)) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": DO po dužnom metru mora biti cijeli broj ili decimalni broj sa zarezom. '" + meterLoad + "' nije ispravna vrijednost.");
+            this.printFileError();
             return false;
         }
         return true;
@@ -250,6 +281,7 @@ public class StationReaderProduct implements CsvReaderProduct {
         if (!status.equals("I") && !status.equals("K") && !status.equals("Z")) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Status pruge mora biti 'I', 'K' ili 'Z'. '" + status + "' nije podržana vrijednost.");
+            this.printFileError();
             return false;
         }
         return true;
@@ -259,6 +291,7 @@ public class StationReaderProduct implements CsvReaderProduct {
         if (!isDecimalOrInteger(length)) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Duljina mora biti cijeli broj ili decimalni broj. '" + length + "' nije ispravna vrijednost.");
+            this.printFileError();
             return false;
         }
         return true;

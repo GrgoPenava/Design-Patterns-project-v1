@@ -1,9 +1,9 @@
 package org.uzdiz.userInput;
 
-import org.uzdiz.vehicle.Composition;
+import org.uzdiz.builder.Composition;
 import org.uzdiz.ConfigManager;
-import org.uzdiz.table.TableBuilder;
-import org.uzdiz.vehicle.Vehicle;
+import org.uzdiz.utils.TableBuilder;
+import org.uzdiz.builder.Vehicle;
 
 import java.util.List;
 import java.util.stream.Collectors;

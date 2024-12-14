@@ -1,4 +1,4 @@
-package org.uzdiz.vehicle;
+package org.uzdiz.builder;
 
 public class Vehicle {
     private String oznaka;

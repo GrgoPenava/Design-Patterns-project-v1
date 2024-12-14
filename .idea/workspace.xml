@@ -4,9 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="Dodan factory method za citavnje csv-a, ispravljen factory method za razlicite pruge">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Composition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Composition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Vehicle.java" afterDir="false" />
+    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="Ne treba mi RailwayProduct - ne koristi se nigdje">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/builder/Station.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/DZ_2_stanice.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/DZ_2_stanice.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/railwayFactory/Railway.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/railwayFactory/Railway.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/CompositionReaderProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/CompositionReaderProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/StationReaderProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/StationReaderProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/VehicleReaderProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/VehicleReaderProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/MainStation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/Station.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/StationFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/station/StopStation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/table/TableBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/utils/TableBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListCompositionsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListCompositionsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListRailwaysCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListRailwaysCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsBetweenCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsBetweenCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/utils/GraphUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/utils/GraphUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Composition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/builder/Composition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/vehicle/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/builder/Vehicle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,31 +69,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Run.executor&quot;: &quot;Run&quot;,
-    &quot;Application.dobra komanda.executor&quot;: &quot;Debug&quot;,
-    &quot;Maven.gpenava_zadaca_1 [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.gpenava_zadaca_1 [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/grgo/Desktop/zadaca/gpenava_zadaca_1 (copy)&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.Run.executor": "Run",
+    "Application.dobra komanda.executor": "Debug",
+    "Maven.gpenava_zadaca_1 [clean].executor": "Run",
+    "Maven.gpenava_zadaca_1 [install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Grgo/Desktop",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.keymap",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/org/uzdiz" />
@@ -96,7 +114,7 @@
     <configuration name="dobra komanda" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.uzdiz.Main" />
       <module name="gpenava_zadaca_1" />
-      <option name="PROGRAM_PARAMETERS" value="--zs DZ_1_stanice.csv --zps DZ_1_vozila.csv --zk DZ_1_kompozicije.csv" />
+      <option name="PROGRAM_PARAMETERS" value="--zs DZ_2_stanice.csv --zps DZ_2_vozila.csv --zk DZ_2_kompozicije.csv" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/main/java/org/uzdiz" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -125,7 +143,7 @@
       <updated>1730401945725</updated>
       <workItem from="1734033077874" duration="5911000" />
       <workItem from="1734081137196" duration="23286000" />
-      <workItem from="1734175698437" duration="10899000" />
+      <workItem from="1734175698437" duration="18982000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
@@ -303,7 +321,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734188800683</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Maknuo sam toString koji mi ne treba">
+      <option name="closed" value="true" />
+      <created>1734188997848</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1734188997848</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Ne treba mi RailwayProduct - ne koristi se nigdje">
+      <option name="closed" value="true" />
+      <created>1734189854170</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1734189854170</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,7 +366,9 @@
     <MESSAGE value="Filter out railways with fewer than two stations.&#10;&#10;This change ensures that only railways with at least two stations are included in the table output. It prevents incomplete or invalid railway data from being displayed, improving the integrity of the command’s results." />
     <MESSAGE value="novi podaci dz2" />
     <MESSAGE value="Dodan factory method za citavnje csv-a, ispravljen factory method za razlicite pruge" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodan factory method za citavnje csv-a, ispravljen factory method za razlicite pruge" />
+    <MESSAGE value="Maknuo sam toString koji mi ne treba" />
+    <MESSAGE value="Ne treba mi RailwayProduct - ne koristi se nigdje" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ne treba mi RailwayProduct - ne koristi se nigdje" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -344,8 +380,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListRailwaysCommand.java</url>
-          <line>9</line>
-          <option name="timeStamp" value="9" />
+          <line>10</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

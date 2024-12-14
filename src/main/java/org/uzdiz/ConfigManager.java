@@ -1,9 +1,9 @@
 package org.uzdiz;
 
 import org.uzdiz.railwayFactory.Railway;
-import org.uzdiz.station.Station;
-import org.uzdiz.vehicle.Composition;
-import org.uzdiz.vehicle.Vehicle;
+import org.uzdiz.builder.Station;
+import org.uzdiz.builder.Composition;
+import org.uzdiz.builder.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;

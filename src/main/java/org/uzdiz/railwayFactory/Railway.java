@@ -1,6 +1,6 @@
 package org.uzdiz.railwayFactory;
 
-import org.uzdiz.station.Station;
+import org.uzdiz.builder.Station;
 
 import java.util.ArrayList;
 import java.util.List;

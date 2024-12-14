@@ -1,4 +1,4 @@
-package org.uzdiz.table;
+package org.uzdiz.utils;
 
 import java.util.ArrayList;
 import java.util.List;

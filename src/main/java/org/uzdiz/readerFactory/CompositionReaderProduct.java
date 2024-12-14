@@ -1,6 +1,6 @@
 package org.uzdiz.readerFactory;
 
-import org.uzdiz.vehicle.Composition;
+import org.uzdiz.builder.Composition;
 import org.uzdiz.ConfigManager;
 
 import java.io.BufferedReader;
@@ -12,9 +12,12 @@ import java.util.List;
 
 public class CompositionReaderProduct implements CsvReaderProduct {
     private List<Composition> compositions = new ArrayList<>();
+    private String path;
+    private Integer fileErrorCounter = 0;
 
     @Override
     public void loadData(String filePath) {
+        this.path = filePath;
         try (BufferedReader br = new BufferedReader(new FileReader(filePath, StandardCharsets.UTF_8))) {
             String line;
             boolean isFirstLine = true;
@@ -24,6 +27,8 @@ public class CompositionReaderProduct implements CsvReaderProduct {
                     isFirstLine = false;
                     continue;
                 }
+
+                if (line.startsWith("#")) continue;
 
                 String[] data = line.split(";");
 
@@ -42,7 +47,13 @@ public class CompositionReaderProduct implements CsvReaderProduct {
         } catch (IOException e) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nije moguće učitati datoteku - " + filePath);
+            this.printFileError();
         }
+    }
+
+    private void printFileError() {
+        this.fileErrorCounter++;
+        System.out.println("-> Greška datoteke (" + path + ") br. " + this.fileErrorCounter);
     }
 
     private boolean isEmptyRow(String[] data) {
@@ -58,6 +69,7 @@ public class CompositionReaderProduct implements CsvReaderProduct {
         if (data.length != 3) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Zapis nije potpun, očekuju se 3 podatka, ali postoji " + data.length);
+            this.printFileError();
             return false;
         }
 
@@ -71,6 +83,7 @@ public class CompositionReaderProduct implements CsvReaderProduct {
             if (data[i] == null || data[i].trim().isEmpty()) {
                 ConfigManager.getInstance().incrementErrorCount();
                 System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nedostaje vrijednost za stupac '" + columnNames[i] + "'.");
+                this.printFileError();
                 return false;
             }
         }
@@ -81,6 +94,7 @@ public class CompositionReaderProduct implements CsvReaderProduct {
         if (!value.equals("P") && !value.equals("V")) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": " + fieldName + " mora biti 'P' ili 'V'. Pronađeno: '" + value + "'");
+            this.printFileError();
             return false;
         }
         return true;

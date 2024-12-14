@@ -2,8 +2,8 @@ package org.uzdiz.userInput;
 
 import org.uzdiz.ConfigManager;
 import org.uzdiz.railwayFactory.Railway;
-import org.uzdiz.station.Station;
-import org.uzdiz.table.TableBuilder;
+import org.uzdiz.builder.Station;
+import org.uzdiz.utils.TableBuilder;
 import org.uzdiz.utils.GraphUtil;
 
 import java.util.*;
@@ -40,7 +40,7 @@ public class ListStationsBetweenCommand implements Command {
             table.setHeaders("Naziv stanice", "Vrsta", "Broj km od početne stanice");
 
             for (Map.Entry<Station, Double> entry : filteredPath.entrySet()) {
-                table.addRow(entry.getKey().getnaziv(), entry.getKey().getvrstaStanice(), String.format("%.2f", entry.getValue()));
+                table.addRow(entry.getKey().getNaziv(), entry.getKey().getVrstaStanice(), String.format("%.2f", entry.getValue()));
             }
 
             table.build();
@@ -77,9 +77,9 @@ public class ListStationsBetweenCommand implements Command {
             Station currentStation = stations.get(i);
 
             boolean hasDuplicateWithNonZeroLength = stations.subList(startIndex, endIndex).stream()
-                    .anyMatch(station -> station.getnaziv().equals(currentStation.getnaziv()) && station.getduzina() > 0);
+                    .anyMatch(station -> station.getNaziv().equals(currentStation.getNaziv()) && station.getDuzina() > 0);
 
-            if (currentStation.getduzina() == 0 && hasDuplicateWithNonZeroLength) {
+            if (currentStation.getDuzina() == 0 && hasDuplicateWithNonZeroLength) {
                 continue;
             }
 
@@ -89,9 +89,9 @@ public class ListStationsBetweenCommand implements Command {
         double distanceSum = 0;
         for (int i = 0; i <= withoutDuplicates.size() - 1; i++) {
             if (i != 0) {
-                distanceSum += withoutDuplicates.get(i).getduzina();
+                distanceSum += withoutDuplicates.get(i).getDuzina();
             }
-            table.addRow(withoutDuplicates.get(i).getnaziv(), withoutDuplicates.get(i).getvrstaStanice(), String.format("%.2f", distanceSum));
+            table.addRow(withoutDuplicates.get(i).getNaziv(), withoutDuplicates.get(i).getVrstaStanice(), String.format("%.2f", distanceSum));
         }
     }
 
@@ -101,9 +101,9 @@ public class ListStationsBetweenCommand implements Command {
             Station currentStation = stations.get(i);
 
             boolean hasDuplicateWithNonZeroLength = stations.subList(endIndex, startIndex).stream()
-                    .anyMatch(station -> station.getnaziv().equals(currentStation.getnaziv()) && station.getduzina() > 0);
+                    .anyMatch(station -> station.getNaziv().equals(currentStation.getNaziv()) && station.getDuzina() > 0);
 
-            if (currentStation.getduzina() == 0 && hasDuplicateWithNonZeroLength) {
+            if (currentStation.getDuzina() == 0 && hasDuplicateWithNonZeroLength) {
                 continue;
             }
 
@@ -115,9 +115,9 @@ public class ListStationsBetweenCommand implements Command {
             Station station = withoutDuplicates.get(i - 1);
 
             if (i < withoutDuplicates.size()) {
-                distanceSum += withoutDuplicates.get(i).getduzina();
+                distanceSum += withoutDuplicates.get(i).getDuzina();
             }
-            table.addRow(station.getnaziv(), station.getvrstaStanice(), String.format("%.2f", distanceSum));
+            table.addRow(station.getNaziv(), station.getVrstaStanice(), String.format("%.2f", distanceSum));
         }
     }
 
@@ -127,14 +127,14 @@ public class ListStationsBetweenCommand implements Command {
 
         for (Map.Entry<Station, Double> entry : stationDistances.entrySet()) {
             Station currentStation = entry.getKey();
-            String stationName = currentStation.getnaziv();
+            String stationName = currentStation.getNaziv();
 
             if (!uniqueStations.containsKey(stationName)) {
                 uniqueStations.put(stationName, currentStation);
                 filteredMap.put(currentStation, entry.getValue());
             } else {
                 Station existingStation = uniqueStations.get(stationName);
-                if (currentStation.getduzina() > existingStation.getduzina()) {
+                if (currentStation.getDuzina() > existingStation.getDuzina()) {
                     uniqueStations.put(stationName, currentStation);
                     filteredMap.remove(existingStation);
                     filteredMap.put(currentStation, entry.getValue());
@@ -163,13 +163,13 @@ public class ListStationsBetweenCommand implements Command {
     }
 
     private boolean containsStations(Railway railway, String startStation, String endStation) {
-        return railway.getPopisSvihStanica().stream().anyMatch(station -> station.getnaziv().equals(startStation)) &&
-                railway.getPopisSvihStanica().stream().anyMatch(station -> station.getnaziv().equals(endStation));
+        return railway.getPopisSvihStanica().stream().anyMatch(station -> station.getNaziv().equals(startStation)) &&
+                railway.getPopisSvihStanica().stream().anyMatch(station -> station.getNaziv().equals(endStation));
     }
 
     private int findStationIndex(List<Station> stations, String stationName) {
         for (int i = 0; i < stations.size(); i++) {
-            if (stations.get(i).getnaziv().equals(stationName)) {
+            if (stations.get(i).getNaziv().equals(stationName)) {
                 return i;
             }
         }
@@ -178,6 +178,6 @@ public class ListStationsBetweenCommand implements Command {
 
     private boolean stationExists(String stationName) {
         return ConfigManager.getInstance().getStations().stream()
-                .anyMatch(station -> station.getnaziv().equals(stationName));
+                .anyMatch(station -> station.getNaziv().equals(stationName));
     }
 }
