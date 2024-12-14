@@ -1,4 +1,4 @@
-package org.uzdiz.reader;
+package org.uzdiz.readerFactory;
 
 import org.uzdiz.ConfigManager;
 import org.uzdiz.vehicle.Vehicle;
@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VehicleReader implements CsvReader {
+public class VehicleReaderProduct implements CsvReaderProduct {
     private List<Vehicle> vehicles = new ArrayList<>();
 
     @Override

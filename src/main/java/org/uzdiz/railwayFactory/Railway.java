@@ -1,4 +1,4 @@
-package org.uzdiz.railway;
+package org.uzdiz.railwayFactory;
 
 import org.uzdiz.station.Station;
 

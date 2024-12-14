@@ -1,6 +1,6 @@
 package org.uzdiz;
 
-import org.uzdiz.railway.Railway;
+import org.uzdiz.railwayFactory.Railway;
 import org.uzdiz.station.Station;
 import org.uzdiz.vehicle.Composition;
 import org.uzdiz.vehicle.Vehicle;

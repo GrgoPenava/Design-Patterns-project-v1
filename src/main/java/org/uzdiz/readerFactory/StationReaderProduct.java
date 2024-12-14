@@ -1,4 +1,4 @@
-package org.uzdiz.reader;
+package org.uzdiz.readerFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,14 +10,11 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import org.uzdiz.ConfigManager;
-import org.uzdiz.railway.Railway;
-import org.uzdiz.railway.RailwayFactory;
-import org.uzdiz.railway.RailwayFactoryImpl;
+import org.uzdiz.railwayFactory.*;
 import org.uzdiz.station.Station;
 import org.uzdiz.station.StationFactory;
 
-
-public class StationReader implements CsvReader {
+public class StationReaderProduct implements CsvReaderProduct {
     private List<Station> stations = new ArrayList<>();
 
     @Override
@@ -30,7 +27,6 @@ public class StationReader implements CsvReader {
             return;
         }
 
-        RailwayFactory factory = new RailwayFactoryImpl();
         List<Railway> railways = new ArrayList<>();
         Railway currentRailway = null;
         String currentRailwayType = null;
@@ -74,8 +70,7 @@ public class StationReader implements CsvReader {
                         if (currentRailway != null) {
                             railways.add(currentRailway);
                         }
-
-                        currentRailway = factory.createRailway(data[6], oznakaPruge);
+                        currentRailway = this.createRailway(data[6], oznakaPruge);
                         currentRailwayType = oznakaPruge;
                     }
 
@@ -93,6 +88,27 @@ public class StationReader implements CsvReader {
         } catch (IOException e) {
             System.out.println("Greška pri čitanju stanica datoteke: " + filePath);
         }
+    }
+
+    public Railway createRailway(String type, String oznakaPruge) {
+        RailwayCreator creator;
+
+        char railType = type.charAt(0);
+        switch (railType) {
+            case 'L':
+                creator = new LocalRailwayCreator();
+                break;
+            case 'R':
+                creator = new RegionalRailwayCreator();
+                break;
+            case 'M':
+                creator = new InternationalRailwayCreator();
+                break;
+            default:
+                throw new IllegalArgumentException("Nepoznat tip pruge: " + type);
+        }
+
+        return creator.createRailway(oznakaPruge);
     }
 
     private boolean validateData(String[] data) {

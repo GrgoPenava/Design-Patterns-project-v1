@@ -1,7 +1,7 @@
 package org.uzdiz.userInput;
 
 import org.uzdiz.ConfigManager;
-import org.uzdiz.railway.Railway;
+import org.uzdiz.railwayFactory.Railway;
 import org.uzdiz.station.Station;
 import org.uzdiz.table.TableBuilder;
 

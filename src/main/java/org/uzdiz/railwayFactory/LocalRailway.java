@@ -1,4 +1,4 @@
-package org.uzdiz.railway;
+package org.uzdiz.railwayFactory;
 
 public class LocalRailway extends Railway {
     public LocalRailway(String oznakaPruge) {

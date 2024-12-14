@@ -1,8 +1,6 @@
 package org.uzdiz;
 
-import org.uzdiz.reader.CompositionReader;
-import org.uzdiz.reader.VehicleReader;
-import org.uzdiz.reader.StationReader;
+import org.uzdiz.readerFactory.*;
 import org.uzdiz.userInput.*;
 
 import java.util.HashMap;
@@ -16,14 +14,12 @@ public class Main {
         parseCommandLineArgs(args, config);
 
         if (!validateConfig(config)) {
-            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Svi argumenti (--zs, --zps, --zk) su obavezni.");
             config.incrementErrorCount();
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Svi argumenti (--zs, --zps, --zk) su obavezni.");
             return;
         }
 
-        new StationReader().loadData(config.getStationFilePath());
-        new VehicleReader().loadData(config.getRailwayFilePath());
-        new CompositionReader().loadData(config.getCompositionFilePath());
+        loadDataFromCsv(config);
 
         Map<String, Command> commands = new HashMap<>();
         commands.put("IP", new ListRailwaysCommand());
@@ -93,5 +89,16 @@ public class Main {
         return config.getStationFilePath() != null &&
                 config.getRailwayFilePath() != null &&
                 config.getCompositionFilePath() != null;
+    }
+
+    private static void loadDataFromCsv(ConfigManager config) {
+        CsvReaderCreator stationReaderCreator = new StationReaderCreator();
+        stationReaderCreator.loadData(config.getStationFilePath());
+
+        CsvReaderCreator vehicleReaderCreator = new VehicleReaderCreator();
+        vehicleReaderCreator.loadData(config.getRailwayFilePath());
+
+        CsvReaderCreator compositionReaderCreator = new CompositionReaderCreator();
+        compositionReaderCreator.loadData(config.getCompositionFilePath());
     }
 }

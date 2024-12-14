@@ -2,7 +2,7 @@ package org.uzdiz.utils;
 
 import org.uzdiz.ConfigManager;
 import org.uzdiz.station.Station;
-import org.uzdiz.railway.Railway;
+import org.uzdiz.railwayFactory.Railway;
 
 import java.util.*;
 
@@ -39,7 +39,7 @@ public class GraphUtil {
             if (stations.size() > 1) {
                 for (int i = 0; i < stations.size(); i++) {
                     for (int j = i + 1; j < stations.size(); j++) {
-                        addEdge(stations.get(i), stations.get(j), 0);  // Dodavanje veze između pruga na zajedničkoj stanici
+                        addEdge(stations.get(i), stations.get(j), 0);
                     }
                 }
             }

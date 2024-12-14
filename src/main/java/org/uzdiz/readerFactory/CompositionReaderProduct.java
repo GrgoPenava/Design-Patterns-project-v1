@@ -1,4 +1,4 @@
-package org.uzdiz.reader;
+package org.uzdiz.readerFactory;
 
 import org.uzdiz.vehicle.Composition;
 import org.uzdiz.ConfigManager;
@@ -10,7 +10,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompositionReader implements CsvReader {
+public class CompositionReaderProduct implements CsvReaderProduct {
     private List<Composition> compositions = new ArrayList<>();
 
     @Override
