@@ -4,25 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="Napravio sam Station Builder, Dodao nove atribute u Station">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/DrivingDays.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/builder/TimeTable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/DrivingDaysReaderCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/DrivingDaysReaderProduct.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/TimeTableReaderCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/TimeTableReaderProduct.java" afterDir="false" />
+    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="Učitavanje datoteke oznaka_dana i vozni_red">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/timeTableComposite/Etapa.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/timeTableComposite/Station.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/timeTableComposite/TimeTableComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/timeTableComposite/TimeTableComposite.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/timeTableComposite/Train.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/timeTableComposite/VozniRed.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/DZ_1_kompozicije.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/podaci/DZ_1_kompozicije.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/DZ_1_stanice.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/podaci/DZ_1_stanice.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/DZ_1_vozila.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/podaci/DZ_1_vozila.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/DZ_2_kompozicije.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/podaci/DZ_2_kompozicije.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/DZ_2_oznake_dana.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/podaci/DZ_2_oznake_dana.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/DZ_2_stanice.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/podaci/DZ_2_stanice.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/DZ_2_vozila.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/podaci/DZ_2_vozila.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/DZ_2_vozni_red.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/podaci/DZ_2_vozni_red.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/builder/TimeTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/builder/TimeTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/TimeTableReaderProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/TimeTableReaderProduct.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,31 +60,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.Run.executor": "Run",
-    "Application.dobra komanda.executor": "Debug",
-    "Maven.gpenava_zadaca_1 [clean].executor": "Run",
-    "Maven.gpenava_zadaca_1 [install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Grgo/Uzdiz/uzdiz_1/src/main/java/org/uzdiz/readerFactory",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Run.executor&quot;: &quot;Run&quot;,
+    &quot;Application.dobra komanda.executor&quot;: &quot;Debug&quot;,
+    &quot;Maven.gpenava_zadaca_1 [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.gpenava_zadaca_1 [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Grgo/Uzdiz/uzdiz_1/src/main/java/org/uzdiz/readerFactory&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Grgo\Uzdiz\uzdiz_1\src\main\java\org\uzdiz\readerFactory" />
@@ -145,7 +138,8 @@
       <updated>1730401945725</updated>
       <workItem from="1734033077874" duration="5911000" />
       <workItem from="1734081137196" duration="23286000" />
-      <workItem from="1734175698437" duration="29498000" />
+      <workItem from="1734175698437" duration="30016000" />
+      <workItem from="1734260878128" duration="9358000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
@@ -347,14 +341,32 @@
       <option name="project" value="LOCAL" />
       <updated>1734205246232</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Učitavanje datoteke oznaka_dana i vozni_red">
+      <option name="closed" value="true" />
+      <created>1734220706829</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1734220706829</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="init project" />
     <MESSAGE value="korisnicki unos, pocetna struktura" />
     <MESSAGE value="citanje parametara" />
     <MESSAGE value="citanje datoteke za stanice i spremanje u listu" />
@@ -379,7 +391,8 @@
     <MESSAGE value="Maknuo sam toString koji mi ne treba" />
     <MESSAGE value="Ne treba mi RailwayProduct - ne koristi se nigdje" />
     <MESSAGE value="Napravio sam Station Builder, Dodao nove atribute u Station" />
-    <option name="LAST_COMMIT_MESSAGE" value="Napravio sam Station Builder, Dodao nove atribute u Station" />
+    <MESSAGE value="Učitavanje datoteke oznaka_dana i vozni_red" />
+    <option name="LAST_COMMIT_MESSAGE" value="Učitavanje datoteke oznaka_dana i vozni_red" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -393,26 +406,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListRailwaysCommand.java</url>
           <line>10</line>
           <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/TimeTableReaderProduct.java</url>
-          <line>102</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/TimeTableReaderProduct.java</url>
-          <line>96</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/TimeTableReaderProduct.java</url>
-          <line>118</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/TimeTableReaderProduct.java</url>
-          <line>124</line>
-          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

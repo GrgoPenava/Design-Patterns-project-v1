@@ -2,18 +2,25 @@ package org.uzdiz.readerFactory;
 
 import org.uzdiz.builder.TimeTable;
 import org.uzdiz.ConfigManager;
+import org.uzdiz.timeTableComposite.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TimeTableReaderProduct implements CsvReaderProduct {
     private List<TimeTable> timeTables = new ArrayList<>();
     private String path;
     private Integer fileErrorCounter = 0;
+
+    TimeTableComposite vozniRed = ConfigManager.getInstance().getVozniRed();
+
+    private Map<String, Train> trainMap = new HashMap<>();
 
     /*
      * Obavezni podaci su:
@@ -25,6 +32,12 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
     @Override
     public void loadData(String filePath) {
         this.path = filePath;
+
+        if (vozniRed == null) {
+            vozniRed = new VozniRed("Vozni red");
+            ConfigManager.getInstance().setVozniRed(vozniRed);
+        }
+
         try (BufferedReader br = new BufferedReader(new FileReader(filePath, StandardCharsets.UTF_8))) {
             String line;
             boolean isFirstLine = true;
@@ -53,14 +66,12 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
                     builder.setOdredisnaStanica(data[3]);
                 }
 
-                if (!data[5].isEmpty()) {
-                    String vrstaVlaka = switch (data[5]) {
-                        case "U" -> "Ubrzani";
-                        case "B" -> "Brzi";
-                        default -> "Normalni";
-                    };
-                    builder.setVrstaVlaka(vrstaVlaka);
-                }
+                String vrstaVlaka = switch (data[5]) {
+                    case "U" -> "U";
+                    case "B" -> "B";
+                    default -> "N";
+                };
+                builder.setVrstaVlaka(vrstaVlaka);
 
                 if (!data[7].isEmpty()) {
                     builder.setTrajanjeVoznje(data[7]);
@@ -71,6 +82,30 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
                 }
 
                 timeTables.add(builder.build());
+
+                String oznakaPruge = data[0];
+                String smjer = data[1];
+                String oznakaVlaka = data[4];
+                String polaznaStanica = data[2];
+                String odredisnaStanica = data[3];
+
+                Train train = trainMap.computeIfAbsent(oznakaVlaka, k -> new Train(oznakaVlaka));
+
+                Etapa etapa = new Etapa(oznakaPruge);
+
+                if (!polaznaStanica.isEmpty()) {
+                    etapa.add(new Station(polaznaStanica));
+                }
+
+                if (!odredisnaStanica.isEmpty()) {
+                    etapa.add(new Station(odredisnaStanica));
+                }
+
+                train.add(etapa);
+
+                if (!vozniRed.getChildren().contains(train)) {
+                    vozniRed.add(train);
+                }
             }
 
             ConfigManager.getInstance().setTimeTables(timeTables);
@@ -127,6 +162,18 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
             isValid = false;
         }
 
+        if (!data[2].isEmpty() && !isStationValid(data[2])) {
+            ConfigManager.getInstance().incrementErrorCount();
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Polazna stanica '" + data[2] + "' ne postoji u popisu svih stanica.");
+            isValid = false;
+        }
+
+        if (!data[3].isEmpty() && !isStationValid(data[3])) {
+            ConfigManager.getInstance().incrementErrorCount();
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Odredišna stanica '" + data[3] + "' ne postoji u popisu svih stanica.");
+            isValid = false;
+        }
+
         if (!isValid) {
             this.printFileError();
         }
@@ -141,5 +188,10 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
             }
         }
         return true;
+    }
+
+    private boolean isStationValid(String stationName) {
+        return ConfigManager.getInstance().getStations().stream()
+                .anyMatch(station -> station.getNaziv().equals(stationName));
     }
 }

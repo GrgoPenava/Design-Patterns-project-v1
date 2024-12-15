@@ -1,6 +1,7 @@
 package org.uzdiz;
 
 import org.uzdiz.readerFactory.*;
+import org.uzdiz.timeTableComposite.*;
 import org.uzdiz.userInput.*;
 
 import java.util.HashMap;
@@ -22,10 +23,8 @@ public class Main {
         loadDataFromCsv(config);
 
         Map<String, Command> commands = new HashMap<>();
-        commands.put("IP", new ListRailwaysCommand());
-        commands.put("ISP", new ListStationsCommand());
-        commands.put("ISI2S", new ListStationsBetweenCommand());
-        commands.put("IK", new ListCompositionsCommand());
+
+        loadCommands(commands);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -124,5 +123,13 @@ public class Main {
 
         CsvReaderCreator drivingDaysReaderCreator = new DrivingDaysReaderCreator();
         drivingDaysReaderCreator.loadData(config.getDrivingDaysFilePath());
+    }
+
+    private static void loadCommands(Map<String, Command> commands) {
+        commands.put("IP", new ListRailwaysCommand());
+        commands.put("ISP", new ListStationsCommand());
+        commands.put("ISI2S", new ListStationsBetweenCommand());
+        commands.put("IK", new ListCompositionsCommand());
+        /*commands.put("IV", new ());*/
     }
 }

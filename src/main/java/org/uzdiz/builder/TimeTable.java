@@ -62,13 +62,13 @@ public class TimeTable {
     public static class TimeTableBuilder {
         private String oznakaPruge;
         private String smjer;
-        private String polaznaStanica = "";
-        private String odredisnaStanica = "";
+        private String polaznaStanica;
+        private String odredisnaStanica;
         private String oznakaVlaka;
-        private String vrstaVlaka = "normalni";
+        private String vrstaVlaka;
         private String vrijemePolaska;
-        private String trajanjeVoznje = "";
-        private String oznakaDana = "";
+        private String trajanjeVoznje;
+        private String oznakaDana;
 
         public TimeTableBuilder(String oznakaPruge, String smjer, String oznakaVlaka, String vrijemePolaska) {
             this.oznakaPruge = oznakaPruge;
