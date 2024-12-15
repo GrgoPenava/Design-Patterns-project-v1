@@ -1,7 +1,9 @@
 package org.uzdiz.readerFactory;
 
+import org.uzdiz.builder.Station;
 import org.uzdiz.builder.TimeTable;
 import org.uzdiz.ConfigManager;
+import org.uzdiz.railwayFactory.Railway;
 import org.uzdiz.timeTableComposite.*;
 
 import java.io.BufferedReader;
@@ -82,33 +84,10 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
                 }
 
                 timeTables.add(builder.build());
-
-                String oznakaPruge = data[0];
-                String smjer = data[1];
-                String oznakaVlaka = data[4];
-                String polaznaStanica = data[2];
-                String odredisnaStanica = data[3];
-
-                Train train = trainMap.computeIfAbsent(oznakaVlaka, k -> new Train(oznakaVlaka));
-
-                Etapa etapa = new Etapa(oznakaPruge);
-
-                if (!polaznaStanica.isEmpty()) {
-                    etapa.add(new Station(polaznaStanica));
-                }
-
-                if (!odredisnaStanica.isEmpty()) {
-                    etapa.add(new Station(odredisnaStanica));
-                }
-
-                train.add(etapa);
-
-                if (!vozniRed.getChildren().contains(train)) {
-                    vozniRed.add(train);
-                }
             }
 
             ConfigManager.getInstance().setTimeTables(timeTables);
+            createVozniRed(timeTables);
         } catch (IOException e) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nije moguće učitati datoteku - " + filePath);
@@ -194,4 +173,106 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
         return ConfigManager.getInstance().getStations().stream()
                 .anyMatch(station -> station.getNaziv().equals(stationName));
     }
+
+    private void createVozniRed(List<TimeTable> timeTables) {
+        for (TimeTable timeTable : timeTables) {
+            String oznakaPruge = timeTable.getOznakaPruge();
+            String oznakaVlaka = timeTable.getOznakaVlaka();
+            String vrstaVlaka = timeTable.getVrstaVlaka();
+            String smjer = timeTable.getSmjer();
+            String polaznaStanica = timeTable.getPolaznaStanica();
+            String odredisnaStanica = timeTable.getOdredisnaStanica();
+            String vrijemePolaska = timeTable.getVrijemePolaska();
+            String trajanjeVoznje = timeTable.getTrajanjeVoznje();
+            String oznakaDana = timeTable.getOznakaDana();
+
+            Train train = trainMap.computeIfAbsent(oznakaVlaka, k -> new Train(oznakaVlaka, vrstaVlaka));
+
+            Railway railway = ConfigManager.getInstance().getRailwayByOznakaPruge(oznakaPruge);
+
+            if (railway == null) {
+                ConfigManager.getInstance().incrementErrorCount();
+                System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Pruga s oznakom '" + oznakaPruge + "' nije pronađena. Etapa se preskače.");
+                this.printFileError();
+                continue;
+            }
+
+            List<Station> popisStanica = railway.getPopisSvihStanica();
+
+            if (popisStanica.isEmpty()) {
+                ConfigManager.getInstance().incrementErrorCount();
+                System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nema dostupnih stanica za prugu '" + oznakaPruge + "'. Etapa se preskače.");
+                this.printFileError();
+                continue;
+            }
+
+            if ("O".equals(smjer)) {
+                if (polaznaStanica == null || polaznaStanica.isEmpty()) {
+                    polaznaStanica = popisStanica.get(popisStanica.size() - 1).getNaziv();
+                }
+                if (odredisnaStanica == null || odredisnaStanica.isEmpty()) {
+                    odredisnaStanica = popisStanica.get(0).getNaziv();
+                }
+            } else {
+                if (polaznaStanica == null || polaznaStanica.isEmpty()) {
+                    polaznaStanica = popisStanica.get(0).getNaziv();
+                }
+                if (odredisnaStanica == null || odredisnaStanica.isEmpty()) {
+                    odredisnaStanica = popisStanica.get(popisStanica.size() - 1).getNaziv();
+                }
+            }
+
+            Etapa etapa = new Etapa(
+                    oznakaVlaka,
+                    oznakaPruge,
+                    polaznaStanica,
+                    odredisnaStanica,
+                    vrijemePolaska,
+                    trajanjeVoznje,
+                    oznakaDana,
+                    smjer
+            );
+
+            if ("O".equals(smjer)) {
+                boolean addStations = false;
+                for (int i = popisStanica.size() - 1; i >= 0; i--) {
+                    Station currentStation = popisStanica.get(i);
+
+                    if (currentStation.getNaziv().equals(polaznaStanica)) {
+                        addStations = true;
+                    }
+
+                    if (addStations) {
+                        etapa.add(new StationComposite(currentStation.getNaziv(), currentStation.getId()));
+                    }
+
+                    if (currentStation.getNaziv().equals(odredisnaStanica)) {
+                        break;
+                    }
+                }
+            } else {
+                boolean addStations = false;
+                for (Station currentStation : popisStanica) {
+                    if (currentStation.getNaziv().equals(polaznaStanica)) {
+                        addStations = true;
+                    }
+
+                    if (addStations) {
+                        etapa.add(new StationComposite(currentStation.getNaziv(), currentStation.getId()));
+                    }
+
+                    if (currentStation.getNaziv().equals(odredisnaStanica)) {
+                        break;
+                    }
+                }
+            }
+
+            train.add(etapa);
+
+            if (!vozniRed.getChildren().contains(train)) {
+                vozniRed.add(train);
+            }
+        }
+    }
+
 }

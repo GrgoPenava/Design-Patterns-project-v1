@@ -1,5 +1,5 @@
 ﻿Oznaka pruge;Smjer;Polazna stanica;Odredišna stanica;Oznaka vlaka;Vrsta vlaka;Vrijeme polaska;Trajanje vožnje;Oznaka dana
-M501;N;;Čakovec;3301;;4:11;0:35;4
+M501a;N;;Čakovec;3301;;4:11;0:35;4
 M501;N;;Čakovec;3007;;5:43;0:47;
 M501;N;Čakovec;;3901;;6:34;0:12;3
 M501;N;;Čakovec;3303;;6:40;0:48;3

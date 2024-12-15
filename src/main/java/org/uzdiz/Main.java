@@ -130,6 +130,7 @@ public class Main {
         commands.put("ISP", new ListStationsCommand());
         commands.put("ISI2S", new ListStationsBetweenCommand());
         commands.put("IK", new ListCompositionsCommand());
-        /*commands.put("IV", new ());*/
+        commands.put("IV", new ListTrainsTableCommand());
+        commands.put("IEV", new ListEtapeTableCommand());
     }
 }

@@ -5,10 +5,10 @@ import java.util.List;
 
 public abstract class TimeTableComposite extends TimeTableComponent {
     protected List<TimeTableComponent> children = new ArrayList<>();
-    protected String name;
+    protected String oznaka;
 
-    public TimeTableComposite(String name) {
-        this.name = name;
+    public TimeTableComposite(String oznaka) {
+        this.oznaka = oznaka;
     }
 
     @Override
@@ -31,8 +31,8 @@ public abstract class TimeTableComposite extends TimeTableComponent {
         return this.children.get(i);
     }
 
-    public String getName() {
-        return this.name;
+    public String getOznaka() {
+        return this.oznaka;
     }
 
     public List<TimeTableComponent> getChildren() {

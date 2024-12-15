@@ -149,4 +149,16 @@ public class ConfigManager {
     public TimeTableComposite getVozniRed() {
         return vozniRed;
     }
+
+    public List<DrivingDays> getDrivingDays() {
+        return drivingDays;
+    }
+
+
+    public Railway getRailwayByOznakaPruge(String oznakaPruge) {
+        return railways.stream()
+                .filter(r -> r.getOznakaPruge().equals(oznakaPruge))
+                .findFirst()
+                .orElse(null);
+    }
 }

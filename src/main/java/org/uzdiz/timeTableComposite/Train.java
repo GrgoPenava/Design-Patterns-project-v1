@@ -1,8 +1,11 @@
 package org.uzdiz.timeTableComposite;
 
 public class Train extends TimeTableComposite {
-    public Train(String oznakaVlaka) {
+    private String vrstaVlaka;
+
+    public Train(String oznakaVlaka, String vrstaVlaka) {
         super(oznakaVlaka);
+        this.vrstaVlaka = vrstaVlaka;
     }
 
     @Override
