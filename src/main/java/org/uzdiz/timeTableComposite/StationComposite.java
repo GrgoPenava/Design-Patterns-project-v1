@@ -18,4 +18,7 @@ public class StationComposite extends TimeTableComponent {
         return idStanice;
     }
 
+    public String getNazivStanice() {
+        return nazivStanice;
+    }
 }

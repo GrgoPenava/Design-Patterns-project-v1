@@ -16,9 +16,9 @@ public class Station {
     private double DOPoDuznomM;
     private String statusPruge;
     private Integer duzina;
-    private Integer vrijemeNormalniVlak;
-    private Integer vrijemeUbrzaniVlak;
-    private Integer vrijemeBrziVlak;
+    private Integer vrijemeNormalniVlak; //Ako je vlak vrste N onda je normalni, vrijemeNormalniVlak označava koliko je vlaku potrebno da dođe do ove stanice s prethodne stanice koja ima vrijednost vrijemeNormalniVlak > 0
+    private Integer vrijemeUbrzaniVlak; //Ako je vlak vrste U onda je ubrzani,  vrijemeUbrzaniVlak označava koliko je vlaku potrebno da dođe do ove stanice s prethodne stanice koja ima vrijednost vrijemeUbrzaniVlak > 0
+    private Integer vrijemeBrziVlak; //Ako je vlak vrste B onda je brzi, vrijemeBrziVlak označava koliko je vlaku potrebno da dođe do ove stanice s prethodne stanice koja ima vrijednost vrijemeBrziVlak > 0
 
     private Station(StationBuilder builder) {
         this.id = builder.id;

@@ -67,6 +67,11 @@ public class TimeTableCommand implements Command {
 
         String currentTime = "00:00";
 
+        String previousStationName = "";
+        String previousOznakaPruge = "";
+        String previousTime = "";
+        int previousDistance = -1;
+
         for (TimeTableComponent etapaComponent : train.getChildren()) {
             if (etapaComponent instanceof Etapa) {
                 Etapa etapa = (Etapa) etapaComponent;
@@ -97,7 +102,6 @@ public class TimeTableCommand implements Command {
                         Station station = stations.get(i);
 
                         if (i == startIndex || i == endIndex || getVrijemeZaustavljanja(station, vrstaVlaka) > 0) {
-                            currentTime = findNextValidStopTime(currentTime, station, vrstaVlaka);
                             table.addRow(oznakaVlaka, oznakaPruge, station.getNaziv(), currentTime, String.valueOf(totalDistance));
                         }
 
@@ -111,13 +115,12 @@ public class TimeTableCommand implements Command {
                         Station station = stations.get(i);
 
                         if (i == startIndex || i == endIndex || getVrijemeZaustavljanja(station, vrstaVlaka) > 0) {
-                            currentTime = findNextValidStopTime(currentTime, station, vrstaVlaka);
                             table.addRow(oznakaVlaka, oznakaPruge, station.getNaziv(), currentTime, String.valueOf(totalDistance));
                         }
 
                         if (i < endIndex) {
                             totalDistance += stations.get(i + 1).getDuzina();
-                            currentTime = calculateNewTime(currentTime, getVrijemeZaustavljanja(stations.get(i + 1), vrstaVlaka));
+                            currentTime = calculateNewTime(currentTime, stations.get(i + 1).getVrijemeNormalniVlak());
                         }
                     }
                 }
@@ -125,7 +128,8 @@ public class TimeTableCommand implements Command {
         }
     }
 
-    private String findNextValidStopTime(String currentTime, Station currentStation, String vrstaVlaka) {
+
+    /*private String findNextValidStopTime(String currentTime, Station currentStation, String vrstaVlaka) {
         List<Station> allStations = ConfigManager.getInstance().getStations();
         boolean found = false;
 
@@ -142,7 +146,7 @@ public class TimeTableCommand implements Command {
         }
 
         return currentTime;
-    }
+    }*/
 
 
     private int getVrijemeZaustavljanja(Station station, String vrstaVlaka) {
