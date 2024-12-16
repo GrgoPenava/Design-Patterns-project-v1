@@ -12,4 +12,8 @@ public class Train extends TimeTableComposite {
     public boolean add(TimeTableComponent component) {
         return super.add(component);
     }
+
+    public String getVrstaVlaka() {
+        return vrstaVlaka;
+    }
 }

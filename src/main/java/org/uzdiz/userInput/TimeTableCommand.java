@@ -14,9 +14,7 @@ import java.util.List;
 public class TimeTableCommand implements Command {
     @Override
     public void execute(String input) {
-        //TODO
-    }
-        /*ConfigManager config = ConfigManager.getInstance();
+        ConfigManager config = ConfigManager.getInstance();
 
         if (!validateInput(input)) {
             config.incrementErrorCount();
@@ -25,6 +23,7 @@ public class TimeTableCommand implements Command {
         }
 
         String oznakaVlaka = input.substring(5).trim();
+
         TimeTableComposite vozniRed = config.getVozniRed();
 
         if (vozniRed == null || vozniRed.getChildren().isEmpty()) {
@@ -50,7 +49,7 @@ public class TimeTableCommand implements Command {
     }
 
     private boolean validateInput(String input) {
-        return input.matches("^IVRV \\S+$");
+        return input.matches("^IVRV\\s+[A-Za-zČčĆćŠšŽž]*\\s*\\d+$");
     }
 
     private Train findTrainByOznaka(TimeTableComposite vozniRed, String oznakaVlaka) {
@@ -66,10 +65,13 @@ public class TimeTableCommand implements Command {
         String oznakaVlaka = train.getOznaka();
         int totalDistance = 0;
 
+        String currentTime = "00:00";
+
         for (TimeTableComponent etapaComponent : train.getChildren()) {
             if (etapaComponent instanceof Etapa) {
                 Etapa etapa = (Etapa) etapaComponent;
                 String oznakaPruge = etapa.getOznakaPruge();
+                currentTime = etapa.getVrijemePolaska();
 
                 Railway railway = ConfigManager.getInstance().getRailwayByOznakaPruge(oznakaPruge);
                 if (railway == null) {
@@ -88,21 +90,67 @@ public class TimeTableCommand implements Command {
                     continue;
                 }
 
+                String vrstaVlaka = train.getVrstaVlaka();
+
                 if ("O".equals(etapa.getSmjer())) {
                     for (int i = startIndex; i >= endIndex; i--) {
                         Station station = stations.get(i);
-                        table.addRow(oznakaVlaka, oznakaPruge, station.getNaziv(), etapa.getVrijemePolaska(), String.valueOf(totalDistance));
-                        totalDistance += station.getDuzina();
+
+                        if (i == startIndex || i == endIndex || getVrijemeZaustavljanja(station, vrstaVlaka) > 0) {
+                            currentTime = findNextValidStopTime(currentTime, station, vrstaVlaka);
+                            table.addRow(oznakaVlaka, oznakaPruge, station.getNaziv(), currentTime, String.valueOf(totalDistance));
+                        }
+
+                        if (i > endIndex) {
+                            totalDistance += stations.get(i - 1).getDuzina();
+                            currentTime = calculateNewTime(currentTime, getVrijemeZaustavljanja(stations.get(i - 1), vrstaVlaka));
+                        }
                     }
                 } else {
                     for (int i = startIndex; i <= endIndex; i++) {
                         Station station = stations.get(i);
-                        table.addRow(oznakaVlaka, oznakaPruge, station.getNaziv(), etapa.getVrijemePolaska(), String.valueOf(totalDistance));
-                        totalDistance += station.getDuzina();
+
+                        if (i == startIndex || i == endIndex || getVrijemeZaustavljanja(station, vrstaVlaka) > 0) {
+                            currentTime = findNextValidStopTime(currentTime, station, vrstaVlaka);
+                            table.addRow(oznakaVlaka, oznakaPruge, station.getNaziv(), currentTime, String.valueOf(totalDistance));
+                        }
+
+                        if (i < endIndex) {
+                            totalDistance += stations.get(i + 1).getDuzina();
+                            currentTime = calculateNewTime(currentTime, getVrijemeZaustavljanja(stations.get(i + 1), vrstaVlaka));
+                        }
                     }
                 }
             }
         }
+    }
+
+    private String findNextValidStopTime(String currentTime, Station currentStation, String vrstaVlaka) {
+        List<Station> allStations = ConfigManager.getInstance().getStations();
+        boolean found = false;
+
+        for (int i = 0; i < allStations.size(); i++) {
+            if (found && allStations.get(i).getNaziv().equals(currentStation.getNaziv())) {
+                int vrijemeZaustavljanja = getVrijemeZaustavljanja(allStations.get(i), vrstaVlaka);
+                if (vrijemeZaustavljanja > 0) {
+                    return calculateNewTime(currentTime, vrijemeZaustavljanja);
+                }
+            }
+            if (allStations.get(i).equals(currentStation)) {
+                found = true;
+            }
+        }
+
+        return currentTime;
+    }
+
+
+    private int getVrijemeZaustavljanja(Station station, String vrstaVlaka) {
+        return switch (vrstaVlaka) {
+            case "U" -> station.getVrijemeUbrzaniVlak() != null ? station.getVrijemeUbrzaniVlak() : 0;
+            case "B" -> station.getVrijemeBrziVlak() != null ? station.getVrijemeBrziVlak() : 0;
+            default -> station.getVrijemeNormalniVlak() != null ? station.getVrijemeNormalniVlak() : 0;
+        };
     }
 
     private int findStationIndex(List<Station> stations, String stationName) {
@@ -112,5 +160,23 @@ public class TimeTableCommand implements Command {
             }
         }
         return -1;
-    }*/
+    }
+
+    private String calculateNewTime(String currentTime, int dodatneMinute) {
+        try {
+            String[] parts = currentTime.split(":");
+            int sati = Integer.parseInt(parts[0]);
+            int minute = Integer.parseInt(parts[1]);
+
+            minute += dodatneMinute;
+            sati += minute / 60;
+            minute %= 60;
+            sati %= 24;
+
+            return String.format("%02d:%02d", sati, minute);
+        } catch (Exception e) {
+            return "//";
+        }
+    }
+
 }

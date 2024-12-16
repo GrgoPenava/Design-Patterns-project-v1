@@ -269,7 +269,18 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
                 }
             }
 
-            train.add(etapa);
+            List<TimeTableComponent> existingEtape = train.getChildren();
+            if (!existingEtape.isEmpty()) {
+                Etapa lastEtapa = (Etapa) existingEtape.get(existingEtape.size() - 1);
+                if (etapa.getVrijemePolaska().compareTo(lastEtapa.getVrijemePolaska()) < 0) {
+                    existingEtape.add(existingEtape.size() - 1, etapa);
+                } else {
+                    train.add(etapa);
+                }
+            } else {
+                train.add(etapa);
+            }
+
 
             if (!vozniRed.getChildren().contains(train)) {
                 vozniRed.add(train);
