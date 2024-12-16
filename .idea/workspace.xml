@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="IV IEV gotove">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/user/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/AddUserCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListUsersCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/TimeTableCommand.java" afterDir="false" />
+    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="Dodane komande za korisnika">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListByDaysCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListEtapeTableCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListEtapeTableCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListTrainsTableCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListTrainsTableCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +133,7 @@
       <workItem from="1734033077874" duration="5911000" />
       <workItem from="1734081137196" duration="23286000" />
       <workItem from="1734175698437" duration="30016000" />
-      <workItem from="1734260878128" duration="36156000" />
+      <workItem from="1734260878128" duration="39370000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
@@ -365,7 +359,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734305730599</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Dodane komande za korisnika">
+      <option name="closed" value="true" />
+      <created>1734307598743</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1734307598743</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,7 +385,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="citanje datoteke za stanice i spremanje u listu" />
     <MESSAGE value="dodana medunarodna pruga" />
     <MESSAGE value="IP naredba" />
     <MESSAGE value="validacija, tablica" />
@@ -408,14 +409,15 @@
     <MESSAGE value="Učitavanje datoteke oznaka_dana i vozni_red" />
     <MESSAGE value="Composit (nije dovrsen)" />
     <MESSAGE value="IV IEV gotove" />
-    <option name="LAST_COMMIT_MESSAGE" value="IV IEV gotove" />
+    <MESSAGE value="Dodane komande za korisnika" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodane komande za korisnika" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListStationsBetweenCommand.java</url>
-          <line>112</line>
+          <line>111</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -425,5 +427,10 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="org.uzdiz.timeTableComposite.Train" memberName="oznaka" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>

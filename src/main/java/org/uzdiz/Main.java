@@ -136,5 +136,6 @@ public class Main {
         commands.put("IVRV", new TimeTableCommand());
         commands.put("DK", new AddUserCommand());
         commands.put("PK", new ListUsersCommand());
+        commands.put("IEVD", new ListByDaysCommand());
     }
 }
