@@ -67,11 +67,6 @@ public class TimeTableCommand implements Command {
 
         String currentTime = "00:00";
 
-        String previousStationName = "";
-        String previousOznakaPruge = "";
-        String previousTime = "";
-        int previousDistance = -1;
-
         for (TimeTableComponent etapaComponent : train.getChildren()) {
             if (etapaComponent instanceof Etapa) {
                 Etapa etapa = (Etapa) etapaComponent;
