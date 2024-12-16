@@ -86,6 +86,8 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
                 timeTables.add(builder.build());
             }
 
+            removeInvalidTrains();
+
             ConfigManager.getInstance().setTimeTables(timeTables);
             createVozniRed(timeTables);
         } catch (IOException e) {
@@ -274,5 +276,37 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
             }
         }
     }
+
+    private void removeInvalidTrains() {
+        Map<String, String> trainTypes = new HashMap<>();
+        List<String> invalidTrainOznake = new ArrayList<>();
+        List<String> alreadyLogged = new ArrayList<>();
+
+        for (TimeTable tt : timeTables) {
+            String oznakaVlaka = tt.getOznakaVlaka();
+            String vrstaVlaka = tt.getVrstaVlaka();
+
+            if (trainTypes.containsKey(oznakaVlaka)) {
+                if (!trainTypes.get(oznakaVlaka).equals(vrstaVlaka)) {
+                    invalidTrainOznake.add(oznakaVlaka);
+                }
+            } else {
+                trainTypes.put(oznakaVlaka, vrstaVlaka);
+            }
+        }
+
+        for (String oznaka : invalidTrainOznake) {
+            if (!alreadyLogged.contains(oznaka)) {
+                ConfigManager.getInstance().incrementErrorCount();
+                System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() +
+                        ": Vlak s oznakom '" + oznaka + "' ima različite vrste vlaka. Svi zapisi za taj vlak su obrisani.");
+                alreadyLogged.add(oznaka);
+                this.printFileError();
+            }
+        }
+
+        timeTables.removeIf(tt -> invalidTrainOznake.contains(tt.getOznakaVlaka()));
+    }
+
 
 }
