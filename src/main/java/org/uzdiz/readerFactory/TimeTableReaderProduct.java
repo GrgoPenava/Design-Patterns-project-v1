@@ -58,7 +58,9 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
                     continue;
                 }
 
-                TimeTable.TimeTableBuilder builder = new TimeTable.TimeTableBuilder(data[0], data[1], data[4], data[6]);
+                String formattedTime = formatTime(data[6]);
+
+                TimeTable.TimeTableBuilder builder = new TimeTable.TimeTableBuilder(data[0], data[1], data[4], formattedTime);
 
                 if (!data[2].isEmpty()) {
                     builder.setPolaznaStanica(data[2]);
@@ -319,5 +321,10 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
         timeTables.removeIf(tt -> invalidTrainOznake.contains(tt.getOznakaVlaka()));
     }
 
-
+    private String formatTime(String time) {
+        if (time.matches("^\\d{1}:\\d{2}$")) {
+            return "0" + time;
+        }
+        return time;
+    }
 }
