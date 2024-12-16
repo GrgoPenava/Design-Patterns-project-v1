@@ -120,7 +120,14 @@ public class TimeTableCommand implements Command {
 
                         if (i < endIndex) {
                             totalDistance += stations.get(i + 1).getDuzina();
-                            currentTime = calculateNewTime(currentTime, stations.get(i + 1).getVrijemeNormalniVlak());
+                            int dodatneMinute = getVrijemeZaustavljanja(stations.get(i + 1), vrstaVlaka);
+
+                            if (dodatneMinute == 0) {
+                                dodatneMinute = findNextStationTimeWithSameName(stations.get(i + 1), vrstaVlaka);
+                            }
+
+                            currentTime = calculateNewTime(currentTime, dodatneMinute);
+
                         }
                     }
                 }
@@ -129,24 +136,21 @@ public class TimeTableCommand implements Command {
     }
 
 
-    /*private String findNextValidStopTime(String currentTime, Station currentStation, String vrstaVlaka) {
+    private int findNextStationTimeWithSameName(Station currentStation, String vrstaVlaka) {
         List<Station> allStations = ConfigManager.getInstance().getStations();
         boolean found = false;
 
-        for (int i = 0; i < allStations.size(); i++) {
-            if (found && allStations.get(i).getNaziv().equals(currentStation.getNaziv())) {
-                int vrijemeZaustavljanja = getVrijemeZaustavljanja(allStations.get(i), vrstaVlaka);
-                if (vrijemeZaustavljanja > 0) {
-                    return calculateNewTime(currentTime, vrijemeZaustavljanja);
-                }
+        for (Station station : allStations) {
+            if (found && station.getNaziv().equals(currentStation.getNaziv())) {
+                return getVrijemeZaustavljanja(station, vrstaVlaka);
             }
-            if (allStations.get(i).equals(currentStation)) {
+            if (station.getId().equals(currentStation.getId())) {
                 found = true;
             }
         }
 
-        return currentTime;
-    }*/
+        return 0;
+    }
 
 
     private int getVrijemeZaustavljanja(Station station, String vrstaVlaka) {
