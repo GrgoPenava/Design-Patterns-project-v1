@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="IVRV radi normalni smjer, napravljeno sortiranje etapa po pocetnom vremenu">
+    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="Normalni redosljed radi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/builder/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/builder/Station.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/podaci/DZ_2_stanice.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/podaci/DZ_2_stanice.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/timeTableComposite/StationComposite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/timeTableComposite/StationComposite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/TimeTableCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/TimeTableCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,7 +133,7 @@
       <workItem from="1734081137196" duration="23286000" />
       <workItem from="1734175698437" duration="30016000" />
       <workItem from="1734260878128" duration="39591000" />
-      <workItem from="1734346462366" duration="28836000" />
+      <workItem from="1734346462366" duration="32431000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
@@ -395,7 +391,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734371903000</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Normalni redosljed radi">
+      <option name="closed" value="true" />
+      <created>1734386527067</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1734386527067</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Normalni redosljed radi">
+      <option name="closed" value="true" />
+      <created>1734390237844</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1734390237844</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -413,7 +425,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ISP komande" />
     <MESSAGE value="ISI2S, ali treba ispraviti ispis duplih stanica za ISI2S" />
     <MESSAGE value="ISI2S obrnuti redosljed ispravljen" />
     <MESSAGE value="nesta" />
@@ -438,7 +449,8 @@
     <MESSAGE value="Dodana komanda po danima" />
     <MESSAGE value="Izbacujem vlakove iz voznog reda ako imaju razlicite oznake" />
     <MESSAGE value="IVRV radi normalni smjer, napravljeno sortiranje etapa po pocetnom vremenu" />
-    <option name="LAST_COMMIT_MESSAGE" value="IVRV radi normalni smjer, napravljeno sortiranje etapa po pocetnom vremenu" />
+    <MESSAGE value="Normalni redosljed radi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Normalni redosljed radi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -452,30 +464,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListRailwaysCommand.java</url>
           <line>10</line>
           <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/TimeTableCommand.java</url>
-          <line>151</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/TimeTableCommand.java</url>
-          <line>168</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/TimeTableCommand.java</url>
-          <line>132</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/TimeTableCommand.java</url>
-          <line>197</line>
-          <properties class="org.uzdiz.userInput.TimeTableCommand" method="calculateNewTime">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

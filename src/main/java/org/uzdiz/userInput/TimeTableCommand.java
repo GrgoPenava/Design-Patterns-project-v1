@@ -106,8 +106,11 @@ public class TimeTableCommand implements Command {
                         }
 
                         if (i > endIndex) {
-                            totalDistance += stations.get(i - 1).getDuzina();
-                            currentTime = calculateNewTime(currentTime, getVrijemeZaustavljanja(stations.get(i - 1), vrstaVlaka));
+                            int duzinaDoPrethodneStanice = stations.get(i).getDuzina();
+                            int vrijemeZaustavljanja = getVrijemeZaustavljanja(station, vrstaVlaka);
+
+                            totalDistance += duzinaDoPrethodneStanice;
+                            currentTime = calculateNewTime(currentTime, vrijemeZaustavljanja);
                         }
                     }
                 } else {
