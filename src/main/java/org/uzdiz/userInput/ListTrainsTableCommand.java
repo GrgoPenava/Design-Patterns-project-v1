@@ -12,10 +12,12 @@ public class ListTrainsTableCommand implements Command {
 
     @Override
     public void execute(String input) {
+        ConfigManager config = ConfigManager.getInstance();
         TimeTableComposite vozniRed = ConfigManager.getInstance().getVozniRed();
 
         if (vozniRed == null || vozniRed.getChildren().isEmpty()) {
-            System.out.println("Nema dostupnih podataka o vlakovima.");
+            config.incrementErrorCount();
+            System.out.println("Greška br. " + config.getErrorCount() + ": Nema dostupnih podataka o vlakovima.");
             return;
         }
 
@@ -45,6 +47,12 @@ public class ListTrainsTableCommand implements Command {
                 String vrijemeDolaska = calculateArrivalTime(vrijemePolaska, etapa.getTrajanjeVoznje());
                 int ukupanBrojKm = calculateTotalDistance(etapa);
 
+                if (polaznaStanica == null || odredisnaStanica == null) {
+                    ConfigManager.getInstance().incrementErrorCount();
+                    System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nedostaje polazna ili odredišna stanica za etapu vlaka '" + oznakaVlaka + "'.");
+                    continue;
+                }
+
                 table.addRow(oznakaVlaka, polaznaStanica, odredisnaStanica, vrijemePolaska, vrijemeDolaska, String.valueOf(ukupanBrojKm));
             }
         }
@@ -69,6 +77,8 @@ public class ListTrainsTableCommand implements Command {
 
             return String.format("%02d:%02d", ukupnoSati, ukupnoMinute);
         } catch (Exception e) {
+            ConfigManager.getInstance().incrementErrorCount();
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Neispravan format vremena polaska ili trajanja vožnje.");
             return "//";
         }
     }
@@ -78,6 +88,8 @@ public class ListTrainsTableCommand implements Command {
 
         Railway railway = ConfigManager.getInstance().getRailwayByOznakaPruge(etapa.getOznakaPruge());
         if (railway == null) {
+            ConfigManager.getInstance().incrementErrorCount();
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Pruga s oznakom '" + etapa.getOznakaPruge() + "' nije pronađena.");
             return 0;
         }
 
@@ -85,17 +97,23 @@ public class ListTrainsTableCommand implements Command {
         int startIndex = findStationIndex(stations, etapa.getPocetnaStanica());
         int endIndex = findStationIndex(stations, etapa.getOdredisnaStanica());
 
-        if (startIndex == -1 || endIndex == -1) {
+        if (startIndex == -1) {
+            ConfigManager.getInstance().incrementErrorCount();
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Polazna stanica '" + etapa.getPocetnaStanica() + "' nije pronađena na pruzi.");
+            return 0;
+        }
+
+        if (endIndex == -1) {
+            ConfigManager.getInstance().incrementErrorCount();
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Odredišna stanica '" + etapa.getOdredisnaStanica() + "' nije pronađena na pruzi.");
             return 0;
         }
 
         if ("O".equals(etapa.getSmjer())) {
-            // Obrnuti smjer
             for (int i = startIndex; i > endIndex; i--) {
                 totalDistance += stations.get(i).getDuzina();
             }
         } else {
-            // Normalan smjer
             for (int i = startIndex + 1; i <= endIndex; i++) {
                 totalDistance += stations.get(i).getDuzina();
             }

@@ -1,0 +1,39 @@
+package org.uzdiz.userInput;
+
+import org.uzdiz.ConfigManager;
+import org.uzdiz.user.User;
+import org.uzdiz.utils.TableBuilder;
+
+import java.util.List;
+
+public class ListUsersCommand implements Command {
+
+    @Override
+    public void execute(String input) {
+        if (!validateInput(input)) {
+            ConfigManager.getInstance().incrementErrorCount();
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Neispravan format naredbe. Očekuje se 'PK'.");
+            return;
+        }
+
+        List<User> users = ConfigManager.getInstance().getUsers();
+
+        if (users.isEmpty()) {
+            System.out.println("Nema registriranih korisnika.");
+            return;
+        }
+
+        TableBuilder table = new TableBuilder();
+        table.setHeaders("ID", "Ime", "Prezime");
+
+        for (User user : users) {
+            table.addRow(String.valueOf(user.getId()), user.getIme(), user.getPrezime());
+        }
+
+        table.build();
+    }
+
+    private boolean validateInput(String input) {
+        return input.trim().equals("PK");
+    }
+}

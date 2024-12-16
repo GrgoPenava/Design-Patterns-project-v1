@@ -14,7 +14,11 @@ public class ListEtapeTableCommand implements Command {
 
     @Override
     public void execute(String input) {
+        ConfigManager config = ConfigManager.getInstance();
+
         if (!validateInput(input)) {
+            config.incrementErrorCount();
+            System.out.println("Greška br. " + config.getErrorCount() + ": Neispravna sintaksa. Ispravan oblik: IEV oznaka (npr. 'IEV broj').");
             return;
         }
 
@@ -23,11 +27,18 @@ public class ListEtapeTableCommand implements Command {
         TimeTableComposite vozniRed = ConfigManager.getInstance().getVozniRed();
 
         if (vozniRed == null || vozniRed.getChildren().isEmpty()) {
-            System.out.println("Nema dostupnih podataka o voznom redu.");
+            config.incrementErrorCount();
+            System.out.println("Greška br. " + config.getErrorCount() + ": Nema dostupnih podataka o voznom redu.");
             return;
         }
 
         Train train = findTrainByOznaka(vozniRed, oznakaVlaka);
+
+        if (train == null) {
+            config.incrementErrorCount();
+            System.out.println("Greška br. " + config.getErrorCount() + ": Vlak s oznakom '" + oznakaVlaka + "' nije pronađen.");
+            return;
+        }
 
         TableBuilder table = new TableBuilder();
         table.setHeaders("Oznaka vlaka", "Oznaka pruge", "Polazišna stanica", "Odredišna stanica",
@@ -39,11 +50,7 @@ public class ListEtapeTableCommand implements Command {
     }
 
     private boolean validateInput(String input) {
-        if (!input.startsWith("IEV") || input.length() <= 4) {
-            System.out.println("Neispravna sintaksa. Ispravan oblik: IEV oznaka (npr. 'IEV 3609').");
-            return false;
-        }
-        return true;
+        return input.startsWith("IEV") && input.length() > 4;
     }
 
     private Train findTrainByOznaka(TimeTableComposite vozniRed, String oznakaVlaka) {
@@ -104,6 +111,8 @@ public class ListEtapeTableCommand implements Command {
 
         Railway railway = ConfigManager.getInstance().getRailwayByOznakaPruge(etapa.getOznakaPruge());
         if (railway == null) {
+            ConfigManager.getInstance().incrementErrorCount();
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Pruga s oznakom '" + etapa.getOznakaPruge() + "' nije pronađena.");
             return 0;
         }
 
@@ -112,6 +121,8 @@ public class ListEtapeTableCommand implements Command {
         int endIndex = findStationIndex(stations, etapa.getOdredisnaStanica());
 
         if (startIndex == -1 || endIndex == -1) {
+            ConfigManager.getInstance().incrementErrorCount();
+            System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Stanica nije pronađena na pruzi.");
             return 0;
         }
 

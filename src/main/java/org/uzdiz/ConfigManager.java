@@ -6,6 +6,7 @@ import org.uzdiz.builder.TimeTable;
 import org.uzdiz.builder.Vehicle;
 import org.uzdiz.railwayFactory.Railway;
 import org.uzdiz.timeTableComposite.TimeTableComposite;
+import org.uzdiz.user.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class ConfigManager {
     private List<Vehicle> vehicles = new ArrayList<>();
     private List<TimeTable> timeTables = new ArrayList<>();
     private List<DrivingDays> drivingDays = new ArrayList<>();
+    private List<User> users = new ArrayList<>();
 
     private TimeTableComposite vozniRed;
 
@@ -152,6 +154,14 @@ public class ConfigManager {
 
     public List<DrivingDays> getDrivingDays() {
         return drivingDays;
+    }
+
+    public void addUser(User user) {
+        users.add(user);
+    }
+
+    public List<User> getUsers() {
+        return users;
     }
 
 

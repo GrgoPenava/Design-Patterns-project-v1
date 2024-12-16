@@ -32,7 +32,6 @@ public class ListStationsBetweenCommand implements Command {
                 .findFirst();
 
         if (railwayOptional.isEmpty()) {
-            //ISI2S na različitim prugama
             Map<Station, Double> path = graphUtil.findShortestPath(startStation, endStation);
             Map<Station, Double> filteredPath = filterDuplicateStations(path);
 
