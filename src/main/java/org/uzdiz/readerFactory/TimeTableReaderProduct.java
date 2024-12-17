@@ -92,6 +92,7 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
 
             ConfigManager.getInstance().setTimeTables(timeTables);
             createVozniRed(timeTables);
+            validateAndRemoveInvalidTrains(vozniRed);
         } catch (IOException e) {
             ConfigManager.getInstance().incrementErrorCount();
             System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nije moguće učitati datoteku - " + filePath);
@@ -288,6 +289,7 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
                 vozniRed.add(train);
             }
         }
+        sortEtapeByDepartureTime();
     }
 
     private void removeInvalidTrains() {
@@ -326,5 +328,73 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
             return "0" + time;
         }
         return time;
+    }
+
+    private void validateAndRemoveInvalidTrains(TimeTableComposite vozniRed) {
+        List<TimeTableComponent> trainsToRemove = new ArrayList<>();
+
+        for (TimeTableComponent component : vozniRed.getChildren()) {
+            if (component instanceof Train train) {
+                List<TimeTableComponent> etape = train.getChildren();
+                boolean valid = true;
+
+                for (int i = 0; i < etape.size() - 1; i++) {
+                    Etapa currentEtapa = (Etapa) etape.get(i);
+                    Etapa nextEtapa = (Etapa) etape.get(i + 1);
+
+                    String lastStationCurrentEtapa = getLastStationName(currentEtapa);
+                    String firstStationNextEtapa = getFirstStationName(nextEtapa);
+
+                    if (!isValidTransition(lastStationCurrentEtapa, firstStationNextEtapa, currentEtapa, nextEtapa)) {
+                        valid = false;
+                        break;
+                    }
+                }
+
+                if (!valid) {
+                    trainsToRemove.add(train);
+                    ConfigManager.getInstance().incrementErrorCount();
+                    System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() +
+                            ": Vlak s oznakom '" + train.getOznaka() + "' ima neispravnu tranziciju između etapa i bit će obrisan.");
+                    this.printFileError();
+                }
+            }
+        }
+
+        vozniRed.getChildren().removeAll(trainsToRemove);
+    }
+
+    private String getLastStationName(Etapa etapa) {
+        List<TimeTableComponent> stations = etapa.getChildren();
+        return ((StationComposite) stations.get(stations.size() - 1)).getNazivStanice();
+    }
+
+    private String getFirstStationName(Etapa etapa) {
+        List<TimeTableComponent> stations = etapa.getChildren();
+        return ((StationComposite) stations.get(0)).getNazivStanice();
+    }
+
+    private void sortEtapeByDepartureTime() {
+        for (TimeTableComponent component : vozniRed.getChildren()) {
+            if (component instanceof Train train) {
+                train.getChildren().sort((etapa1, etapa2) -> {
+                    String vrijeme1 = ((Etapa) etapa1).getVrijemePolaska();
+                    String vrijeme2 = ((Etapa) etapa2).getVrijemePolaska();
+                    return vrijeme1.compareTo(vrijeme2);
+                });
+            }
+        }
+    }
+
+    private boolean isValidTransition(String lastStation, String firstStation, Etapa currentEtapa, Etapa nextEtapa) {
+        if ("N".equals(currentEtapa.getSmjer()) && "N".equals(nextEtapa.getSmjer())) {
+            return lastStation.equals(firstStation);
+        } else if ("N".equals(currentEtapa.getSmjer()) && "O".equals(nextEtapa.getSmjer())) {
+            return lastStation.equals(firstStation);
+        } else if ("O".equals(currentEtapa.getSmjer()) && "N".equals(nextEtapa.getSmjer())) {
+            return lastStation.equals(firstStation);
+        } else {
+            return lastStation.equals(firstStation);
+        }
     }
 }
