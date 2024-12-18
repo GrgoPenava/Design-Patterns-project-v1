@@ -24,13 +24,6 @@ public class TimeTableReaderProduct implements CsvReaderProduct {
 
     private Map<String, Train> trainMap = new HashMap<>();
 
-    /*
-     * Obavezni podaci su:
-     * 0  Oznaka pruge
-     * 1  Smjer (N ili O)
-     * 4  Oznaka vlaka
-     * 6  Vrijeme polaska*/
-
     @Override
     public void loadData(String filePath) {
         this.path = filePath;

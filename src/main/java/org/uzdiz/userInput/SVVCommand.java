@@ -239,15 +239,14 @@ public class SVVCommand implements Command {
             }
 
             StationInfo currentStation = schedule.get(i);
-            String stationKey = currentStation.stationName + "_" + currentStation.time;
 
             if (!visitedStations.contains(currentStation.stationName)) {
-                System.out.println("Vlak je došao na stanicu " + currentStation.stationName + " (Pruga - " + currentStation.oznakaPruge + ") u " + virtualTime);
-                train.notifyObservers("Vlak " + train.getOznaka() + " je stigao na stanicu " + currentStation.stationName + " u " + virtualTime);
+                System.out.println("Vlak je na stanici " + currentStation.stationName + " (Pruga - " + currentStation.oznakaPruge + ") u " + virtualTime);
+                train.notifyObservers("Vlak " + train.getOznaka() + " je na stanici " + currentStation.stationName + " u " + virtualTime);
 
                 StationComposite station = findStationInTrain(train, currentStation.stationName);
                 if (station != null) {
-                    station.notifyObservers("Vlak " + train.getOznaka() + " je stigao na vašu pretplaćenu stanicu " + currentStation.stationName + " u " + virtualTime);
+                    station.notifyObservers("Vlak " + train.getOznaka() + " je na stanici na koju ste se pretplatili: " + currentStation.stationName + " u " + virtualTime);
                 }
 
                 visitedStations.add(currentStation.stationName);

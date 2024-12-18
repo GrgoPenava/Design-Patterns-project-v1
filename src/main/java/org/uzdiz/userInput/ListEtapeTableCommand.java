@@ -156,6 +156,10 @@ public class ListEtapeTableCommand implements Command {
 
 
     private String getDrivingDays(String oznakaDana) {
+        if (oznakaDana == null) {
+            return "Po, U, Sr, Č, Pe, Su, N";
+        }
+
         Optional<DrivingDays> drivingDays = ConfigManager.getInstance().getDrivingDays().stream()
                 .filter(days -> days.getOznaka().equals(oznakaDana))
                 .findFirst();

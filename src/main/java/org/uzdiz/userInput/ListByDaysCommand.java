@@ -5,8 +5,7 @@ import org.uzdiz.DrivingDays;
 import org.uzdiz.timeTableComposite.*;
 import org.uzdiz.utils.TableBuilder;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ListByDaysCommand implements Command {
 
@@ -38,40 +37,43 @@ public class ListByDaysCommand implements Command {
         TableBuilder table = new TableBuilder();
         table.setHeaders("Oznaka vlaka", "Oznaka pruge", "Polazišna stanica", "Odredišna stanica", "Vrijeme polaska", "Vrijeme dolaska", "Dani u tjednu");
 
+        Map<String, List<Etapa>> trainEtapasMap = new HashMap<>();
+
         for (TimeTableComponent trainComponent : vozniRed.getChildren()) {
             if (trainComponent instanceof Train) {
                 Train train = (Train) trainComponent;
-                processTrain(train, dani, table);
-            }
-        }
+                List<Etapa> etapas = train.getChildren().stream()
+                        .filter(c -> c instanceof Etapa)
+                        .map(c -> (Etapa) c)
+                        .filter(etapa -> isMatchingDays(etapa.getOznakaDana(), dani))
+                        .toList();
 
-        table.build();
-    }
-
-    private boolean validateInput(String input) {
-        return input.matches("^IEVD\\s+[A-Za-zČčĆćŠšŽž]+$");
-    }
-
-    private void processTrain(Train train, String dani, TableBuilder table) {
-        String oznakaVlaka = train.getOznaka();
-
-        for (TimeTableComponent etapaComponent : train.getChildren()) {
-            if (etapaComponent instanceof Etapa) {
-                Etapa etapa = (Etapa) etapaComponent;
-
-                String oznakaDana = etapa.getOznakaDana();
-                if (isMatchingDays(oznakaDana, dani)) {
-                    String oznakaPruge = etapa.getOznakaPruge();
-                    String polaznaStanica = etapa.getPocetnaStanica();
-                    String odredisnaStanica = etapa.getOdredisnaStanica();
-                    String vrijemePolaska = etapa.getVrijemePolaska();
-                    String vrijemeDolaska = calculateArrivalTime(vrijemePolaska, etapa.getTrajanjeVoznje());
-                    String daniUTjednu = getDrivingDays(oznakaDana);
-
-                    table.addRow(oznakaVlaka, oznakaPruge, polaznaStanica, odredisnaStanica, vrijemePolaska, vrijemeDolaska, daniUTjednu);
+                if (!etapas.isEmpty()) {
+                    trainEtapasMap.put(train.getOznaka(), etapas);
                 }
             }
         }
+
+        List<String> sortedTrainOznake = trainEtapasMap.keySet().stream()
+                .sorted(Comparator.comparing(oznaka -> trainEtapasMap.get(oznaka).get(0).getVrijemePolaska()))
+                .toList();
+
+
+        for (String oznakaVlaka : sortedTrainOznake) {
+            List<Etapa> etape = trainEtapasMap.get(oznakaVlaka);
+            for (Etapa etapa : etape) {
+                table.addRow(oznakaVlaka, etapa.getOznakaPruge(), etapa.getPocetnaStanica(),
+                        etapa.getOdredisnaStanica(), etapa.getVrijemePolaska(),
+                        calculateArrivalTime(etapa.getVrijemePolaska(), etapa.getTrajanjeVoznje()),
+                        getDrivingDays(etapa.getOznakaDana()));
+            }
+        }
+        table.build();
+    }
+
+
+    private boolean validateInput(String input) {
+        return input.matches("^IEVD\\s+[A-Za-zČčĆćŠšŽž]+$");
     }
 
     private boolean isMatchingDays(String oznakaDana, String dani) {
@@ -137,15 +139,24 @@ public class ListByDaysCommand implements Command {
     private boolean areValidDays(String dani) {
         List<String> validDays = List.of("Po", "U", "Sr", "Č", "Pe", "Su", "N");
 
-        for (int i = 0; i < dani.length(); ) {
-            String dan = (i + 2 <= dani.length()) ? dani.substring(i, i + 2) : dani.substring(i);
-            i += dan.length();
+        int i = 0;
+        while (i < dani.length()) {
+            boolean found = false;
 
-            if (!validDays.contains(dan)) {
+            if (i + 2 <= dani.length() && validDays.contains(dani.substring(i, i + 2))) {
+                i += 2;
+                found = true;
+            } else if (validDays.contains(dani.substring(i, i + 1))) {
+                i += 1;
+                found = true;
+            }
+
+            if (!found) {
                 return false;
             }
         }
 
         return true;
     }
+
 }

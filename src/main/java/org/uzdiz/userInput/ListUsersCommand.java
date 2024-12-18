@@ -24,10 +24,10 @@ public class ListUsersCommand implements Command {
         }
 
         TableBuilder table = new TableBuilder();
-        table.setHeaders("ID", "Ime", "Prezime");
+        table.setHeaders("Ime i Prezime");
 
         for (User user : users) {
-            table.addRow(String.valueOf(user.getId()), user.getIme(), user.getPrezime());
+            table.addRow(user.getIme() + " " + user.getPrezime());
         }
 
         table.build();

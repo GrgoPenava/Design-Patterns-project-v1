@@ -8,8 +8,11 @@ public class DPKCommand implements Command {
 
     @Override
     public void execute(String input) {
+        ConfigManager config = ConfigManager.getInstance();
+
         if (!validateInput(input)) {
-            System.out.println("Greška: Neispravan format naredbe. Očekuje se 'DPK ime prezime - oznakaVlaka [- stanica]'.");
+            config.incrementErrorCount();
+            System.out.println("Greška br. " + config.getErrorCount() + ": Neispravan format naredbe. Očekuje se 'DPK ime prezime - oznakaVlaka [- stanica]'.");
             return;
         }
 
@@ -22,18 +25,19 @@ public class DPKCommand implements Command {
 
         User user = findUserByName(ime, prezime);
         if (user == null) {
-            System.out.println("Greška: Korisnik '" + ime + " " + prezime + "' nije pronađen.");
+            config.incrementErrorCount();
+            System.out.println("Greška br. " + config.getErrorCount() + ": Korisnik '" + ime + " " + prezime + "' nije pronađen.");
             return;
         }
 
         Train train = findTrainByOznaka(oznakaVlaka);
         if (train == null) {
-            System.out.println("Greška: Vlak s oznakom '" + oznakaVlaka + "' ne postoji.");
+            config.incrementErrorCount();
+            System.out.println("Greška br. " + config.getErrorCount() + ": Vlak s oznakom '" + oznakaVlaka + "' ne postoji.");
             return;
         }
 
         if (stanica == null) {
-            // Pretplata korisnika na vlak
             if (train.hasObserver(user)) {
                 System.out.println("Korisnik je već pretplaćen na vlak " + oznakaVlaka + ".");
             } else {
@@ -41,17 +45,17 @@ public class DPKCommand implements Command {
                 System.out.println("Korisnik " + ime + " " + prezime + " dodan za praćenje vlaka " + oznakaVlaka + ".");
             }
         } else {
-            // Pretplata korisnika na specifičnu stanicu
             if (!stationExistsForTrain(oznakaVlaka, stanica)) {
-                ConfigManager.getInstance().incrementErrorCount();
-                System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() +
+                config.incrementErrorCount();
+                System.out.println("Greška br. " + config.getErrorCount() +
                         ": Vlak '" + oznakaVlaka + "' ne prolazi kroz stanicu '" + stanica + "'.");
                 return;
             }
             StationComposite station = findStationInTrain(train, stanica);
 
             if (station.hasObserver(user)) {
-                System.out.println("Korisnik je već pretplaćen na vlak " + oznakaVlaka + " za stanicu " + stanica + ".");
+                config.incrementErrorCount();
+                System.out.println("Greška br. " + config.getErrorCount() + ": Korisnik je već pretplaćen na vlak " + oznakaVlaka + " za stanicu " + stanica + ".");
             } else {
                 station.attachObserver(user);
                 System.out.println("Korisnik " + ime + " " + prezime + " dodan za praćenje vlaka " + oznakaVlaka + " za stanicu " + stanica + ".");
@@ -85,14 +89,12 @@ public class DPKCommand implements Command {
             if (component instanceof Etapa) {
                 Etapa etapa = (Etapa) component;
 
-                // Provjera za početnu stanicu
                 for (TimeTableComponent child : etapa.getChildren()) {
                     if (child instanceof StationComposite && ((StationComposite) child).getNazivStanice().equals(stanica)) {
                         return (StationComposite) child;
                     }
                 }
 
-                // Provjera za odredišnu stanicu
                 for (TimeTableComponent child : etapa.getChildren()) {
                     if (child instanceof StationComposite && ((StationComposite) child).getNazivStanice().equals(stanica)) {
                         return (StationComposite) child;

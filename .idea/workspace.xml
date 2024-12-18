@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="IV ispravljen">
+    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="maknuo IVI2S, ispravio simulaciju i promijenio regex za simulacije">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/builder/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/builder/Station.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/TimeTableReaderProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/readerFactory/TimeTableReaderProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/DPKCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/DPKCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListByDaysCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListByDaysCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListEtapeTableCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListEtapeTableCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListUsersCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/ListUsersCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/SVVCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/SVVCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/TimeTableCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/TimeTableCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +140,7 @@
       <workItem from="1734175698437" duration="30016000" />
       <workItem from="1734260878128" duration="39591000" />
       <workItem from="1734346462366" duration="66671000" />
-      <workItem from="1734515638853" duration="13275000" />
+      <workItem from="1734515638853" duration="22580000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
@@ -473,7 +478,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734524106886</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="maknuo IVI2S, ispravio simulaciju i promijenio regex za simulacije">
+      <option name="closed" value="true" />
+      <created>1734535611772</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1734535611772</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -491,7 +504,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Remove redundant comments in ListStationsBetweenCommand&#10;&#10;Eliminated unnecessary comments that provided no additional value or context in the code. This improves code readability and reduces clutter without affecting functionality." />
     <MESSAGE value="Dijsktra donekle" />
     <MESSAGE value="Dijsktra gotova" />
     <MESSAGE value="Remove redundant comments and unused methods in codebase&#10;&#10;Cleaned up unnecessary comments and removed unused methods to improve code readability and maintainability. This ensures the code is less cluttered and easier to understand without affecting its functionality. Minor adjustments were also made to related metadata files." />
@@ -516,7 +528,8 @@
     <MESSAGE value="SVV komanda, treba dodat provjeru za dan jos" />
     <MESSAGE value="Observer i obavijest na simulaciji" />
     <MESSAGE value="IV ispravljen" />
-    <option name="LAST_COMMIT_MESSAGE" value="IV ispravljen" />
+    <MESSAGE value="maknuo IVI2S, ispravio simulaciju i promijenio regex za simulacije" />
+    <option name="LAST_COMMIT_MESSAGE" value="maknuo IVI2S, ispravio simulaciju i promijenio regex za simulacije" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
