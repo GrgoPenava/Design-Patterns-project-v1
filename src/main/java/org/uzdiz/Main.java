@@ -1,5 +1,6 @@
 package org.uzdiz;
 
+import org.uzdiz.mediator.NotificationMediator;
 import org.uzdiz.readerFactory.*;
 import org.uzdiz.timeTableComposite.*;
 import org.uzdiz.userInput.*;
@@ -24,7 +25,7 @@ public class Main {
 
         Map<String, Command> commands = new HashMap<>();
 
-        loadCommands(commands);
+        loadCommands(commands, config);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -125,7 +126,7 @@ public class Main {
         drivingDaysReaderCreator.loadData(config.getDrivingDaysFilePath());
     }
 
-    private static void loadCommands(Map<String, Command> commands) {
+    private static void loadCommands(Map<String, Command> commands, ConfigManager configManager) {
         commands.put("IP", new ListRailwaysCommand());
         commands.put("ISP", new ListStationsCommand());
         commands.put("ISI2S", new ListStationsBetweenCommand());
@@ -138,5 +139,6 @@ public class Main {
         commands.put("IEVD", new ListByDaysCommand());
         commands.put("DPK", new DPKCommand());
         commands.put("SVV", new SVVCommand());
+        commands.put("NOT", new NotifyCommand(configManager.getMediator()));
     }
 }

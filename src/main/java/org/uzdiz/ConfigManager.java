@@ -4,6 +4,7 @@ import org.uzdiz.builder.Composition;
 import org.uzdiz.builder.Station;
 import org.uzdiz.builder.TimeTable;
 import org.uzdiz.builder.Vehicle;
+import org.uzdiz.mediator.NotificationMediator;
 import org.uzdiz.railwayFactory.Railway;
 import org.uzdiz.timeTableComposite.TimeTableComposite;
 import org.uzdiz.user.User;
@@ -15,6 +16,8 @@ import java.util.Map;
 
 public class ConfigManager {
     private static volatile ConfigManager instance;
+
+    private NotificationMediator mediator = new NotificationMediator();
 
     private String stationFilePath;
     private String railwayFilePath;
@@ -143,6 +146,10 @@ public class ConfigManager {
 
     public List<TimeTable> getTimeTables() {
         return timeTables;
+    }
+
+    public NotificationMediator getMediator() {
+        return mediator;
     }
 
     public void setVozniRed(TimeTableComposite vozniRed) {
