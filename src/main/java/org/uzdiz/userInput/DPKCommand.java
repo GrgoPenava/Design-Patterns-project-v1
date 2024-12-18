@@ -1,10 +1,12 @@
 package org.uzdiz.userInput;
 
+import org.uzdiz.mediator.NotificationMediator;
 import org.uzdiz.timeTableComposite.*;
 import org.uzdiz.user.User;
 import org.uzdiz.ConfigManager;
 
 public class DPKCommand implements Command {
+    private NotificationMediator notificationMediator = ConfigManager.getInstance().getMediator();
 
     @Override
     public void execute(String input) {
@@ -42,6 +44,7 @@ public class DPKCommand implements Command {
                 System.out.println("Korisnik je već pretplaćen na vlak " + oznakaVlaka + ".");
             } else {
                 train.attachObserver(user);
+                notificationMediator.registerSubscription(oznakaVlaka, user);
                 System.out.println("Korisnik " + ime + " " + prezime + " dodan za praćenje vlaka " + oznakaVlaka + ".");
             }
         } else {

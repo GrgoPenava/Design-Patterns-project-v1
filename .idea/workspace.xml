@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="Maknuo komentare, ispravio sortiranje">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/mediator/INotificationMediator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/mediator/NotificationMediator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/NotifyCommand.java" afterDir="false" />
+    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="Neki Mediator da radi">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/mediator/NotificationMediatorImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/mediator/NotificationTower.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/mediator/INotificationMediator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/mediator/NotificationMediator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/mediator/NotificationMediator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/timeTableComposite/Train.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/timeTableComposite/Train.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/DPKCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/DPKCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/NotifyCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/mediator/NotifyCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -139,7 +142,7 @@
       <workItem from="1734175698437" duration="30016000" />
       <workItem from="1734260878128" duration="39591000" />
       <workItem from="1734346462366" duration="66671000" />
-      <workItem from="1734515638853" duration="29920000" />
+      <workItem from="1734515638853" duration="32624000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
@@ -493,7 +496,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734546514992</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Neki Mediator da radi">
+      <option name="closed" value="true" />
+      <created>1734554088611</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1734554088611</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -511,7 +522,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Dijsktra gotova" />
     <MESSAGE value="Remove redundant comments and unused methods in codebase&#10;&#10;Cleaned up unnecessary comments and removed unused methods to improve code readability and maintainability. This ensures the code is less cluttered and easier to understand without affecting its functionality. Minor adjustments were also made to related metadata files." />
     <MESSAGE value="Filter out railways with fewer than two stations.&#10;&#10;This change ensures that only railways with at least two stations are included in the table output. It prevents incomplete or invalid railway data from being displayed, improving the integrity of the command’s results." />
     <MESSAGE value="novi podaci dz2" />
@@ -536,7 +546,8 @@
     <MESSAGE value="IV ispravljen" />
     <MESSAGE value="maknuo IVI2S, ispravio simulaciju i promijenio regex za simulacije" />
     <MESSAGE value="Maknuo komentare, ispravio sortiranje" />
-    <option name="LAST_COMMIT_MESSAGE" value="Maknuo komentare, ispravio sortiranje" />
+    <MESSAGE value="Neki Mediator da radi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Neki Mediator da radi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

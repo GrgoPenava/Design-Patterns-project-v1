@@ -1,7 +1,5 @@
 package org.uzdiz.timeTableComposite;
 
-import org.uzdiz.ConfigManager;
-import org.uzdiz.mediator.INotificationMediator;
 import org.uzdiz.observer.Observer;
 import org.uzdiz.observer.Subject;
 
@@ -11,12 +9,10 @@ import java.util.List;
 public class Train extends TimeTableComposite implements Subject {
     private String vrstaVlaka;
     private List<Observer> observers = new ArrayList<>();
-    private INotificationMediator mediator;
 
     public Train(String oznakaVlaka, String vrstaVlaka) {
         super(oznakaVlaka);
         this.vrstaVlaka = vrstaVlaka;
-        this.mediator = ConfigManager.getInstance().getMediator();
     }
 
     @Override
@@ -31,7 +27,6 @@ public class Train extends TimeTableComposite implements Subject {
     @Override
     public void attachObserver(Observer observer) {
         this.observers.add(observer);
-        mediator.registerTrain(this);
     }
 
     @Override

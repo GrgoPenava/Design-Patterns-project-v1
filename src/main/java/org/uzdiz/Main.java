@@ -1,8 +1,7 @@
 package org.uzdiz;
 
-import org.uzdiz.mediator.NotificationMediator;
+import org.uzdiz.mediator.NotifyCommand;
 import org.uzdiz.readerFactory.*;
-import org.uzdiz.timeTableComposite.*;
 import org.uzdiz.userInput.*;
 
 import java.util.HashMap;
