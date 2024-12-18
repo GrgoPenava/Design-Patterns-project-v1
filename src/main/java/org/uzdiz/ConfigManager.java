@@ -30,8 +30,6 @@ public class ConfigManager {
     private List<DrivingDays> drivingDays = new ArrayList<>();
     private List<User> users = new ArrayList<>();
 
-    private Map<Integer, Map<String, List<String>>> userSubscriptions = new HashMap<>();
-
     private TimeTableComposite vozniRed;
 
     private int errorCount;
@@ -165,41 +163,6 @@ public class ConfigManager {
 
     public List<User> getUsers() {
         return users;
-    }
-
-    public boolean addSubscription(Integer userId, String train, String station) {
-        userSubscriptions.putIfAbsent(userId, new HashMap<>());
-        Map<String, List<String>> trainSubscriptions = userSubscriptions.get(userId);
-
-        if (!trainSubscriptions.containsKey(train)) {
-            trainSubscriptions.put(train, new ArrayList<>());
-        }
-
-        List<String> stationList = trainSubscriptions.get(train);
-
-        if (station != null && stationList.contains(station)) {
-            return false;
-        }
-
-        if (station != null) {
-            stationList.add(station);
-        }
-
-        return true;
-    }
-
-    public boolean isUserSubscribedToTrain(Integer userId, String train) {
-        return userSubscriptions.containsKey(userId) && userSubscriptions.get(userId).containsKey(train);
-    }
-
-    public boolean isUserSubscribedToStation(Integer userId, String train, String station) {
-        return userSubscriptions.containsKey(userId) &&
-                userSubscriptions.get(userId).containsKey(train) &&
-                userSubscriptions.get(userId).get(train).contains(station);
-    }
-
-    private Map<Integer, Map<String, List<String>>> getUserSubscriptions() {
-        return userSubscriptions;
     }
 
     public Railway getRailwayByOznakaPruge(String oznakaPruge) {

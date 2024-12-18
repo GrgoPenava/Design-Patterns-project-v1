@@ -1,6 +1,8 @@
 package org.uzdiz.user;
 
-public class User {
+import org.uzdiz.observer.Observer;
+
+public class User implements Observer {
     private static Integer counter = 0;
     private Integer id = 0;
     private String ime;
@@ -22,5 +24,10 @@ public class User {
 
     public Integer getId() {
         return id;
+    }
+
+    @Override
+    public void update(String message) {
+        System.out.println("--> Obavijest za korisnika " + ime + " " + prezime + ": " + message);
     }
 }

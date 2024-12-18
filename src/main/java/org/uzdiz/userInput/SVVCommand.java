@@ -5,6 +5,9 @@ import org.uzdiz.builder.Station;
 import org.uzdiz.railwayFactory.Railway;
 import org.uzdiz.timeTableComposite.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -58,7 +61,7 @@ public class SVVCommand implements Command {
         }
 
         processTrainSchedule(train);
-        runSimulation(koeficijent);
+        runSimulation(train, koeficijent);
     }
 
     private boolean validateInput(String input) {
@@ -197,7 +200,8 @@ public class SVVCommand implements Command {
         }
     }
 
-    private void runSimulation(int koeficijent) {
+
+    private void runSimulation(Train train, int koeficijent) {
         if (schedule.isEmpty()) {
             config.incrementErrorCount();
             System.out.println("Greška br. " + config.getErrorCount() + ": Nema stanica za odabrani put.");
@@ -205,14 +209,21 @@ public class SVVCommand implements Command {
         }
 
         final boolean[] stopSimulation = {false};
-        Scanner scanner = new Scanner(System.in);
 
         Thread inputThread = new Thread(() -> {
-            while (true) {
-                if (scanner.hasNextLine() && scanner.nextLine().trim().equalsIgnoreCase("X")) {
-                    stopSimulation[0] = true;
-                    break;
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            try {
+                while (!stopSimulation[0]) {
+                    if (reader.ready()) {
+                        String input = reader.readLine().trim();
+                        if (input.equalsIgnoreCase("X")) {
+                            stopSimulation[0] = true;
+                            break;
+                        }
+                    }
                 }
+            } catch (IOException e) {
+                System.out.println("Greška u unosu: " + e.getMessage());
             }
         });
 
@@ -221,6 +232,7 @@ public class SVVCommand implements Command {
         System.out.println("Počela je simulacija vožnje vlaka...");
 
         String virtualTime = schedule.get(0).time;
+        String previousStationName = null;
 
         for (int i = 0; i < schedule.size(); i++) {
             if (stopSimulation[0]) {
@@ -229,7 +241,20 @@ public class SVVCommand implements Command {
             }
 
             StationInfo currentStation = schedule.get(i);
+            if (currentStation.stationName.equals(previousStationName)) {
+                continue;
+            }
+
             System.out.println("Vlak je došao na stanicu " + currentStation.stationName + " (Pruga - " + currentStation.oznakaPruge + ") u " + virtualTime);
+
+            train.notifyObservers("Vlak " + train.getOznaka() + " je stigao na stanicu " + currentStation.stationName + " u " + virtualTime);
+
+            StationComposite station = findStationInTrain(train, currentStation.stationName);
+            if (station != null) {
+                station.notifyObservers("Vlak " + train.getOznaka() + " je stigao na vašu pretplaćenu stanicu " + currentStation.stationName + " u " + virtualTime);
+            }
+
+            previousStationName = currentStation.stationName;
 
             if (i == schedule.size() - 1) {
                 break;
@@ -239,7 +264,8 @@ public class SVVCommand implements Command {
             int timeDifference = calculateTimeDifference(currentStation.time, nextStation.time);
 
             if (timeDifference < 0) {
-                System.out.println("Greška: Negativna razlika vremena između stanica.");
+                config.incrementErrorCount();
+                System.out.println("Greška br. " + config.getErrorCount() + ": Negativna razlika vremena između stanica.");
                 stopSimulation[0] = true;
                 break;
             }
@@ -250,7 +276,6 @@ public class SVVCommand implements Command {
                 for (long remainingTime = sleepTime; remainingTime > 0; remainingTime -= 1000) {
                     if (stopSimulation[0]) {
                         System.out.println("Simulacija je prekinuta u sljedećoj virtualnoj minuti.");
-                        stopSimulation[0] = true;
                         return;
                     }
                     Thread.sleep(Math.min(1000, remainingTime));
@@ -258,7 +283,7 @@ public class SVVCommand implements Command {
             } catch (InterruptedException e) {
                 System.out.println("Simulacija vožnje vlaka je prekinuta zbog greške.");
                 stopSimulation[0] = true;
-                return;
+                break;
             }
 
             virtualTime = nextStation.time;
@@ -284,5 +309,22 @@ public class SVVCommand implements Command {
         int endTotalMinutes = endHours * 60 + endMinutes;
 
         return endTotalMinutes - startTotalMinutes;
+    }
+
+    private StationComposite findStationInTrain(Train train, String stanica) {
+        for (TimeTableComponent component : train.getChildren()) {
+            if (component instanceof Etapa) {
+                Etapa etapa = (Etapa) component;
+                for (TimeTableComponent stationComponent : etapa.getChildren()) {
+                    if (stationComponent instanceof StationComposite) {
+                        StationComposite station = (StationComposite) stationComponent;
+                        if (station.getNazivStanice().equals(stanica)) {
+                            return station;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
     }
 }
