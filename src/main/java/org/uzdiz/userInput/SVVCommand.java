@@ -8,9 +8,7 @@ import org.uzdiz.timeTableComposite.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class SVVCommand implements Command {
 
@@ -65,7 +63,7 @@ public class SVVCommand implements Command {
     }
 
     private boolean validateInput(String input) {
-        return input.matches("^SVV\\s+\\d+\\s+-\\s+[A-Za-zČčĆćŠšŽž]+\\s+-\\s+\\d+$");
+        return input.matches("^SVV\\s+[A-Za-zČčĆćŠšŽž]*\\s*\\d*\\s+-\\s+[A-Za-zČčĆćŠšŽž]+\\s+-\\s+\\d+$");
     }
 
     private Train findTrainByOznaka(TimeTableComposite vozniRed, String oznakaVlaka) {
@@ -209,6 +207,7 @@ public class SVVCommand implements Command {
         }
 
         final boolean[] stopSimulation = {false};
+        Set<String> visitedStations = new HashSet<>();
 
         Thread inputThread = new Thread(() -> {
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -232,7 +231,6 @@ public class SVVCommand implements Command {
         System.out.println("Počela je simulacija vožnje vlaka...");
 
         String virtualTime = schedule.get(0).time;
-        String previousStationName = null;
 
         for (int i = 0; i < schedule.size(); i++) {
             if (stopSimulation[0]) {
@@ -241,20 +239,19 @@ public class SVVCommand implements Command {
             }
 
             StationInfo currentStation = schedule.get(i);
-            if (currentStation.stationName.equals(previousStationName)) {
-                continue;
+            String stationKey = currentStation.stationName + "_" + currentStation.time;
+
+            if (!visitedStations.contains(currentStation.stationName)) {
+                System.out.println("Vlak je došao na stanicu " + currentStation.stationName + " (Pruga - " + currentStation.oznakaPruge + ") u " + virtualTime);
+                train.notifyObservers("Vlak " + train.getOznaka() + " je stigao na stanicu " + currentStation.stationName + " u " + virtualTime);
+
+                StationComposite station = findStationInTrain(train, currentStation.stationName);
+                if (station != null) {
+                    station.notifyObservers("Vlak " + train.getOznaka() + " je stigao na vašu pretplaćenu stanicu " + currentStation.stationName + " u " + virtualTime);
+                }
+
+                visitedStations.add(currentStation.stationName);
             }
-
-            System.out.println("Vlak je došao na stanicu " + currentStation.stationName + " (Pruga - " + currentStation.oznakaPruge + ") u " + virtualTime);
-
-            train.notifyObservers("Vlak " + train.getOznaka() + " je stigao na stanicu " + currentStation.stationName + " u " + virtualTime);
-
-            StationComposite station = findStationInTrain(train, currentStation.stationName);
-            if (station != null) {
-                station.notifyObservers("Vlak " + train.getOznaka() + " je stigao na vašu pretplaćenu stanicu " + currentStation.stationName + " u " + virtualTime);
-            }
-
-            previousStationName = currentStation.stationName;
 
             if (i == schedule.size() - 1) {
                 break;

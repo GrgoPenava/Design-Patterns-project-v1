@@ -136,8 +136,6 @@ public class Main {
         commands.put("DK", new AddUserCommand());
         commands.put("PK", new ListUsersCommand());
         commands.put("IEVD", new ListByDaysCommand());
-        // TODO IVI2S treba napraviti
-        commands.put("IVI2S", new IVI2SCommand());
         commands.put("DPK", new DPKCommand());
         commands.put("SVV", new SVVCommand());
     }

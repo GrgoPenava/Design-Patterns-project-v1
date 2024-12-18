@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="SVV komanda, treba dodat provjeru za dan jos">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/observer/Observer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/observer/Subject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/IVI2SCommand.java" afterDir="false" />
+    <list default="true" id="7ef4a3ec-61b0-4867-afc5-dc1440b83746" name="Changes" comment="IV ispravljen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/ConfigManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/timeTableComposite/StationComposite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/timeTableComposite/StationComposite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/timeTableComposite/Train.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/timeTableComposite/Train.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/DPKCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/DPKCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/SVVCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/SVVCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/TimeTableCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/uzdiz/userInput/TimeTableCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,31 +52,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.Run.executor": "Debug",
-    "Application.dobra komanda.executor": "Debug",
-    "Maven.gpenava_zadaca_1 [clean].executor": "Run",
-    "Maven.gpenava_zadaca_1 [install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Grgo/Desktop",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Run.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.dobra komanda.executor&quot;: &quot;Debug&quot;,
+    &quot;Maven.gpenava_zadaca_1 [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.gpenava_zadaca_1 [install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Grgo/Desktop&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Grgo\Uzdiz\uzdiz_1\src\main\java\org\uzdiz\readerFactory" />
@@ -141,7 +134,8 @@
       <workItem from="1734081137196" duration="23286000" />
       <workItem from="1734175698437" duration="30016000" />
       <workItem from="1734260878128" duration="39591000" />
-      <workItem from="1734346462366" duration="66583000" />
+      <workItem from="1734346462366" duration="66671000" />
+      <workItem from="1734515638853" duration="13275000" />
     </task>
     <task id="LOCAL-00001" summary="init project">
       <option name="closed" value="true" />
@@ -463,7 +457,23 @@
       <option name="project" value="LOCAL" />
       <updated>1734467924311</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Observer i obavijest na simulaciji">
+      <option name="closed" value="true" />
+      <created>1734480128291</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1734480128291</updated>
+    </task>
+    <task id="LOCAL-00042" summary="IV ispravljen">
+      <option name="closed" value="true" />
+      <created>1734524106886</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1734524106886</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,8 +491,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="promjene" />
-    <MESSAGE value="Ispravljen ISI2S ispis" />
     <MESSAGE value="Remove redundant comments in ListStationsBetweenCommand&#10;&#10;Eliminated unnecessary comments that provided no additional value or context in the code. This improves code readability and reduces clutter without affecting functionality." />
     <MESSAGE value="Dijsktra donekle" />
     <MESSAGE value="Dijsktra gotova" />
@@ -506,7 +514,9 @@
     <MESSAGE value="DPK napravljen" />
     <MESSAGE value="Nova provjera prelaska vlaka s etape na drugu etapu" />
     <MESSAGE value="SVV komanda, treba dodat provjeru za dan jos" />
-    <option name="LAST_COMMIT_MESSAGE" value="SVV komanda, treba dodat provjeru za dan jos" />
+    <MESSAGE value="Observer i obavijest na simulaciji" />
+    <MESSAGE value="IV ispravljen" />
+    <option name="LAST_COMMIT_MESSAGE" value="IV ispravljen" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -14,6 +14,7 @@ import java.util.List;
 public class TimeTableCommand implements Command {
     @Override
     public void execute(String input) {
+
         ConfigManager config = ConfigManager.getInstance();
 
         if (!validateInput(input)) {
@@ -184,5 +185,6 @@ public class TimeTableCommand implements Command {
             return "//";
         }
     }
+
 
 }
