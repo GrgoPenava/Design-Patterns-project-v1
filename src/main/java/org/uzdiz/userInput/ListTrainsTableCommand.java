@@ -37,26 +37,32 @@ public class ListTrainsTableCommand implements Command {
     private void processTrain(Train train, TableBuilder table) {
         String oznakaVlaka = train.getOznaka();
 
+        String polaznaStanica = null;
+        String odredisnaStanica = null;
+        String vrijemePolaska = null;
+        String vrijemeDolaska = null;
+        int ukupnoKm = 0;
+
         for (TimeTableComponent etapaComponent : train.getChildren()) {
             if (etapaComponent instanceof Etapa) {
                 Etapa etapa = (Etapa) etapaComponent;
 
-                String polaznaStanica = etapa.getPocetnaStanica();
-                String odredisnaStanica = etapa.getOdredisnaStanica();
-                String vrijemePolaska = etapa.getVrijemePolaska();
-                String vrijemeDolaska = calculateArrivalTime(vrijemePolaska, etapa.getTrajanjeVoznje());
-                int ukupanBrojKm = calculateTotalDistance(etapa);
-
-                if (polaznaStanica == null || odredisnaStanica == null) {
-                    ConfigManager.getInstance().incrementErrorCount();
-                    System.out.println("Greška br. " + ConfigManager.getInstance().getErrorCount() + ": Nedostaje polazna ili odredišna stanica za etapu vlaka '" + oznakaVlaka + "'.");
-                    continue;
+                if (polaznaStanica == null) {
+                    polaznaStanica = etapa.getPocetnaStanica();
+                    vrijemePolaska = etapa.getVrijemePolaska();
                 }
 
-                table.addRow(oznakaVlaka, polaznaStanica, odredisnaStanica, vrijemePolaska, vrijemeDolaska, String.valueOf(ukupanBrojKm));
+                odredisnaStanica = etapa.getOdredisnaStanica();
+                vrijemeDolaska = calculateArrivalTime(etapa.getVrijemePolaska(), etapa.getTrajanjeVoznje());
+                ukupnoKm += calculateTotalDistance(etapa);
             }
         }
+
+        if (polaznaStanica != null && odredisnaStanica != null) {
+            table.addRow(oznakaVlaka, polaznaStanica, odredisnaStanica, vrijemePolaska, vrijemeDolaska, String.valueOf(ukupnoKm));
+        }
     }
+
 
     private String calculateArrivalTime(String vrijemePolaska, String trajanjeVoznje) {
         try {
