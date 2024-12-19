@@ -3,7 +3,7 @@ package org.uzdiz.userInput;
 import org.uzdiz.ConfigManager;
 import org.uzdiz.user.User;
 
-public class AddUserCommand implements Command {
+public class DKCommand implements Command {
 
     @Override
     public void execute(String input) {

@@ -5,7 +5,7 @@ import org.uzdiz.railwayFactory.Railway;
 import org.uzdiz.builder.Station;
 import org.uzdiz.utils.TableBuilder;
 
-public class ListRailwaysCommand implements Command {
+public class IPCommand implements Command {
     public void execute(String input) {
         TableBuilder table = new TableBuilder();
         table.setHeaders("Oznaka", "Početna stanica", "Završna stanica", "Duljina (km)");

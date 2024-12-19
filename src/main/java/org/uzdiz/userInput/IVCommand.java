@@ -8,7 +8,7 @@ import org.uzdiz.railwayFactory.Railway;
 
 import java.util.List;
 
-public class ListTrainsTableCommand implements Command {
+public class IVCommand implements Command {
 
     @Override
     public void execute(String input) {

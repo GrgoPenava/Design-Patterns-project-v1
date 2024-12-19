@@ -8,7 +8,7 @@ import org.uzdiz.builder.Vehicle;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ListCompositionsCommand implements Command {
+public class IKCommand implements Command {
 
     @Override
     public void execute(String input) {

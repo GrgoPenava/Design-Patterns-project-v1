@@ -6,7 +6,7 @@ import org.uzdiz.utils.TableBuilder;
 
 import java.util.List;
 
-public class ListUsersCommand implements Command {
+public class PKCommand implements Command {
 
     @Override
     public void execute(String input) {

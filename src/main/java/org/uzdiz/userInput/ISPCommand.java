@@ -8,7 +8,7 @@ import org.uzdiz.utils.TableBuilder;
 import java.util.List;
 
 
-public class ListStationsCommand implements Command {
+public class ISPCommand implements Command {
     public void execute(String input) {
         if (!validateInput(input)) {
             ConfigManager.getInstance().incrementErrorCount();

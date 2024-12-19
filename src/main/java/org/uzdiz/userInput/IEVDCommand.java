@@ -7,7 +7,7 @@ import org.uzdiz.utils.TableBuilder;
 
 import java.util.*;
 
-public class ListByDaysCommand implements Command {
+public class IEVDCommand implements Command {
 
     @Override
     public void execute(String input) {

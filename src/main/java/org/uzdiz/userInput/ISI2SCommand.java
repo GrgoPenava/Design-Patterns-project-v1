@@ -8,7 +8,7 @@ import org.uzdiz.utils.GraphUtil;
 
 import java.util.*;
 
-public class ListStationsBetweenCommand implements Command {
+public class ISI2SCommand implements Command {
     private GraphUtil graphUtil = new GraphUtil();
 
     public void execute(String input) {

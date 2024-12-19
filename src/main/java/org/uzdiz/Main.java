@@ -1,6 +1,6 @@
 package org.uzdiz;
 
-import org.uzdiz.mediator.NotifyCommand;
+import org.uzdiz.mediator.NOTCommand;
 import org.uzdiz.readerFactory.*;
 import org.uzdiz.userInput.*;
 
@@ -126,18 +126,18 @@ public class Main {
     }
 
     private static void loadCommands(Map<String, Command> commands, ConfigManager configManager) {
-        commands.put("IP", new ListRailwaysCommand());
-        commands.put("ISP", new ListStationsCommand());
-        commands.put("ISI2S", new ListStationsBetweenCommand());
-        commands.put("IK", new ListCompositionsCommand());
-        commands.put("IV", new ListTrainsTableCommand());
-        commands.put("IEV", new ListEtapeTableCommand());
-        commands.put("IVRV", new TimeTableCommand());
-        commands.put("DK", new AddUserCommand());
-        commands.put("PK", new ListUsersCommand());
-        commands.put("IEVD", new ListByDaysCommand());
+        commands.put("IP", new IPCommand());
+        commands.put("ISP", new ISPCommand());
+        commands.put("ISI2S", new ISI2SCommand());
+        commands.put("IK", new IKCommand());
+        commands.put("IV", new IVCommand());
+        commands.put("IEV", new IEVCommand());
+        commands.put("IVRV", new IVRVCommand());
+        commands.put("DK", new DKCommand());
+        commands.put("PK", new PKCommand());
+        commands.put("IEVD", new IEVDCommand());
         commands.put("DPK", new DPKCommand());
         commands.put("SVV", new SVVCommand());
-        commands.put("NOT", new NotifyCommand(configManager.getMediator()));
+        commands.put("NOT", new NOTCommand(configManager.getMediator()));
     }
 }

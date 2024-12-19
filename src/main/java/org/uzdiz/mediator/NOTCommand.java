@@ -3,11 +3,11 @@ package org.uzdiz.mediator;
 import org.uzdiz.ConfigManager;
 import org.uzdiz.userInput.Command;
 
-public class NotifyCommand implements Command {
+public class NOTCommand implements Command {
     private NotificationTower notificationTower;
     ConfigManager config = ConfigManager.getInstance();
 
-    public NotifyCommand(NotificationMediator mediator) {
+    public NOTCommand(NotificationMediator mediator) {
         this.notificationTower = new NotificationTower(mediator);
     }
 

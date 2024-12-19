@@ -11,7 +11,7 @@ import org.uzdiz.utils.TableBuilder;
 
 import java.util.List;
 
-public class TimeTableCommand implements Command {
+public class IVRVCommand implements Command {
     @Override
     public void execute(String input) {
 

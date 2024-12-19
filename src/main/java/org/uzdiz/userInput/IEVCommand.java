@@ -10,7 +10,7 @@ import org.uzdiz.utils.TableBuilder;
 import java.util.List;
 import java.util.Optional;
 
-public class ListEtapeTableCommand implements Command {
+public class IEVCommand implements Command {
 
     @Override
     public void execute(String input) {

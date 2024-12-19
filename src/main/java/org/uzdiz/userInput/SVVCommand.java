@@ -1,6 +1,7 @@
 package org.uzdiz.userInput;
 
 import org.uzdiz.ConfigManager;
+import org.uzdiz.DrivingDays;
 import org.uzdiz.builder.Station;
 import org.uzdiz.railwayFactory.Railway;
 import org.uzdiz.timeTableComposite.*;
@@ -55,6 +56,11 @@ public class SVVCommand implements Command {
         if (train == null) {
             config.incrementErrorCount();
             System.out.println("Greška br. " + config.getErrorCount() + ": Vlak s oznakom '" + oznakaVlaka + "' nije pronađen.");
+            return;
+        }
+
+        if (!trainDrivesOnDay(train, dan)) {
+            System.out.println("Vlak s oznakom '" + oznakaVlaka + "' ne vozi na dan '" + dan + "'.");
             return;
         }
 
@@ -222,7 +228,7 @@ public class SVVCommand implements Command {
                     }
                 }
             } catch (IOException e) {
-                System.out.println("Greška u unosu: " + e.getMessage());
+                System.out.println("Greška u unosu");
             }
         });
 
@@ -322,5 +328,29 @@ public class SVVCommand implements Command {
             }
         }
         return null;
+    }
+
+    private boolean trainDrivesOnDay(Train train, String dan) {
+        List<DrivingDays> drivingDaysList = config.getDrivingDays();
+
+        for (TimeTableComponent etapaComponent : train.getChildren()) {
+            if (etapaComponent instanceof Etapa) {
+                Etapa etapa = (Etapa) etapaComponent;
+                String oznakaDana = etapa.getOznakaDana();
+
+                if (oznakaDana == null) {
+                    continue;
+                }
+
+                Optional<DrivingDays> drivingDaysOpt = drivingDaysList.stream()
+                        .filter(days -> days.getOznaka().equals(oznakaDana))
+                        .findFirst();
+
+                if (drivingDaysOpt.isEmpty() || !drivingDaysOpt.get().getDays().contains(dan)) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
